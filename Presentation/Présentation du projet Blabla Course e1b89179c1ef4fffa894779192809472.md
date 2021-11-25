@@ -15,7 +15,7 @@ Notre projet vous permettra de contacter d'autres citoyens afin de soit :
 
 ### Base de données
 
-[Base de données](./Base%20de%20donne%CC%81es%208f9b886f8c664d90a622cdc2437af808.md)
+[Base de données](./Base%20de%20données%208f9b886f8c664d90a622cdc2437af808.md)
 
 ### Algorithmie
 
