@@ -1,0 +1,53 @@
+# Base de données
+
+# Table utilisateur :
+
+| Identifiant (clé primaire) |
+| --- |
+| Nom |
+| Prénom |
+| Email |
+| Mdp |
+| Marchant (oui / non) |
+| Points |
+
+# Table Course :
+
+| Identifiant Course (clé primaire) |
+| --- |
+| Identifiant Coursier |
+| Date de début |
+| Date de fin |
+| Prix de la course |
+
+# Table Point
+
+| Identifiant Point (clé primaire) |
+| --- |
+| Identifiant Trajet (clé secondaire) |
+| Latitude |
+| Longitude |
+| Heure de passage |
+| Ordre |
+
+# Table Acheteur
+
+| Identifiant Transaction (clé primaire)  |
+| --- |
+| Identifiant utilisateur (clé secondaire) |
+| Identifiant course (clé secondaire) |
+| Validé (oui / non) |
+
+# Table Produits
+
+| Identifiant Produit (clé primaire) |
+| --- |
+| Nom |
+| Prix |
+
+# Table Achat
+
+| Identifiant transaction (clé primaire) |
+| --- |
+| Identifiant produit (clé primaire) |
+| Prix à l'achat |
