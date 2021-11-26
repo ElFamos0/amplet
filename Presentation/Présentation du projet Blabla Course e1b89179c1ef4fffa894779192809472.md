@@ -8,8 +8,8 @@ Aujourd'hui, beaucoup de personnes ne se rendent plus dans les magasins locaux e
 
 Notre projet vous permettra de contacter d'autres citoyens afin de :
 
-- Trouver un voisin qui prévoit de se rendre dans un commerce qui vend un produit dont on a besoin.
-- Proposer aux autres utilisateurs de profiter d'un trajet que l'on avait prévu chez un commerçant pour faire leurs courses au passage.
+- Trouver un voisin qui prévoit de se rendre dans un commerce qui vend un produit dont vous avez besoin.
+- Proposer aux autres utilisateurs de profiter d'un trajet que vous avez prévu chez un commerçant pour faire leurs courses au passage.
 
 ## Système :
 
