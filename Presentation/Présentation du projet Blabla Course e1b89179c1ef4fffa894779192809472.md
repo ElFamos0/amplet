@@ -6,10 +6,10 @@ Aujourd'hui, beaucoup de personnes ne se rendent plus dans les magasins locaux e
 
 ## Solution
 
-Notre projet vous permettra de contacter d'autres citoyens afin de soit :
+Notre projet vous permettra de contacter d'autres citoyens afin de :
 
-- Payer quelqu'un pour qu'il aille chercher nos courses.
-- Se faire payer pour un trajet que l'on avait prévu chez le vendeur.
+- Trouver un voisin qui prévoit de se rendre dans un commerce qui vend un produit dont on a besoin.
+- Proposer aux autres utilisateurs de profiter d'un trajet que l'on avait prévu chez un commerçant pour faire leurs courses au passage.
 
 ## Système :
 
@@ -19,7 +19,7 @@ Notre projet vous permettra de contacter d'autres citoyens afin de soit :
 
 ### Algorithmie
 
-- Nombre de points par transaction différents en fonction du type de transaction
-- Chat entre acheteur potentiel et vendeur
-- Classement des acheteurs en fonctions de leur nombre de points
+- Nombre de points par trajet différent en fonction du service rendu
+- Chat entre utilisateurs pour s'organiser et discuter des produits à acheter
+- Classement des utilisateurs en fonctions de leur nombre de points qui permet de passer en priorité lorsqu'on s'incrit sur le trajet d'un autre utilisateur.
 - Login bcrypt
