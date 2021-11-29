@@ -53,4 +53,4 @@ deploy:
   variables:
     GIT_STRATEGY: none
   script:
-    - 'wget --header "service: $SERVICE" --header "webhook-token: test" https://en7wkz0k4yaxx.x.pipedream.net'
+    - 'wget --header "service: $SERVICE" --header "webhook-token: $token" $host'
