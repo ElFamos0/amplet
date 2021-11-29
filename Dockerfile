@@ -9,4 +9,5 @@ RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install pipreqs
 RUN python3 -m pipreqs.pipreqs .
 RUN python3 -m pip install -r requirements.txt
-CMD [ "python3", "-m" , "flask", "run"]
+EXPOSE 5000
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
