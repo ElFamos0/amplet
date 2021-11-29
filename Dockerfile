@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get install -y sqlite3
 
 WORKDIR /app
-COPY . .
+COPY app .
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install pipreqs
 RUN python3 -m pipreqs.pipreqs .
