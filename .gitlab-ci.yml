@@ -53,4 +53,4 @@ deploy:
   variables:
     GIT_STRATEGY: none
   script:
-    - 'wget --header "service: $SERVICE" --header "webhook-token: $token" $host'
+    - 'wget --header "webhook-token: $token" $host/hooks/deploy'
