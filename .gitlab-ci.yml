@@ -13,6 +13,8 @@ variables:
 
 build:
   stage: build
+  tags:
+    - docker
   only:
     - tags
   before_script:
@@ -27,6 +29,8 @@ build:
 
 release:
   stage: release
+  tags:
+    - docker
   only:
     - tags
   variables:
@@ -42,6 +46,8 @@ release:
 
 deploy:
   stage: deploy
+  tags:
+    - docker
   only:
     - tags
   variables:
