@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
+from flask import render_template
 
 # Setup ####################################
 setup = False
@@ -23,7 +24,7 @@ if setup:
     db.session.commit()
 ############################################
 
-@app.route("/")
+@app.route("/admin")
 def hello_world():
     content = "<p>Hello, World ! Here are my users : </p>"
     content += "<br/>"
@@ -31,3 +32,9 @@ def hello_world():
         content += f"{user.id} - {user.username} & {user.email}"
         content += "<br/>"
     return content
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+app.run(debug=True)
