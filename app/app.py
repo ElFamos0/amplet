@@ -20,6 +20,8 @@ db.create_all() # Creates the tables if necessary
 if setup:
     admin = users.User(username='admin', email='admin@test.com')
     guest = users.User(username='guest', email='guest@test.com')
+    admin.set_password('oof')
+    guest.set_password('oof')
     db.session.add(admin)
     db.session.add(guest)
     db.session.commit()
