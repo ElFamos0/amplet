@@ -41,7 +41,7 @@ Notre projet vous permettra de :
     - Recherche, affichage et tri des Amplet à proximité
     - Possibilité de voter pour un commerce à visiter par la navette communale
     - Profil avec nombre de points et liste des Amplet effectuées ou en cours
-- [Base de données](https://www.notion.so/Base-de-donn-es-8f9b886f8c664d90a622cdc2437af808)
+- [Base de données](Presentation/Base de données 8f9b886f8c664d90a622cdc2437af808.md)
 
 ## Déroulement du projet
 
