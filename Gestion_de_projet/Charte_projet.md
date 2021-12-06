@@ -1,14 +1,14 @@
 # Charte projet
 
 - **Table des matières**
-    - [Cadrage]()
-        - [Contexte]()
-        - [Finalité]()
-        - [Objectifs de l'application]()
-    - [Déroulement du projet]()
-        - [Organisation/ressources]()
-        - [Jalons]()
-        - [Risques et opportunités]()
+    - Cadrage
+        - Contexte
+        - Finalité
+        - Objectifs de l'application
+    - Déroulement du projet
+        - Organisation/ressources
+        - Jalons
+        - Risques et opportunités
 
 ## Cadrage
 
