@@ -21,5 +21,5 @@ Notre projet vous permettra de contacter d'autres citoyens afin de :
 
 - Nombre de points par trajet différent en fonction du service rendu
 - Chat entre utilisateurs pour s'organiser et discuter des produits à acheter
-- Classement des utilisateurs en fonctions de leur nombre de points qui permet de passer en priorité lorsqu'on s'incrit sur le trajet d'un autre utilisateur.
+- Classement des utilisateurs en fonctions de leur nombre de points qui permet de passer en priorité lorsqu'on s'inscrit sur le trajet d'un autre utilisateur.
 - Login bcrypt
