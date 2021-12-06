@@ -18,7 +18,8 @@
 | Identifiant Coursier |
 | Date de début |
 | Date de fin |
-| Prix de la course |
+| Nombre de places proposées |
+| Nombre de places réservées |
 
 # Table Point
 
