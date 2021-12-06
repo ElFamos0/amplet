@@ -20,22 +20,28 @@ On commande de plus en plus de produits sur internet à la moindre occasion ce q
 
 ### Finalité
 
-Notre projet vous permettra de contacter d'autres citoyens afin de :
+Notre projet vous permettra de :
 
-- ****Trouver un voisin qui prévoit de se rendre dans un commerce qui vend un produit dont vous   avez besoin.
-- ****Proposer aux autres utilisateurs de profiter d'un trajet que vous avez prévu chez un    commerçant pour faire leurs courses au passage.
+- voter pour que la navette de votre ville passe chez un commerçant qui vend un produit dont vous avez besoin
+- vous inscrire sur la course d'un voisin qui passe chez ce commerçant pour qu'il fasse vos emplettes en même temps que les siennes
+- proposer aux autres utilisateurs de profiter d'un trajet que vous avez prévu chez un    commerçant pour faire leurs courses au passage.
 
 ### Objectifs de l'application
 
-- Utilisateur
-    - ****Chat entre utilisateurs pour s'organiser et discuter des produits à acheter
-    - ****Classement des utilisateurs en fonctions de leur nombre de points qui permet de passer en priorité lorsqu'on s'inscrit sur le trajet d'un autre utilisateur.
-    - ****Login bcrypt
-    
-- Amplet
-    - Description des produits demandés
-    - Description du commerçant visité
-    
+- Algo :
+    - Choix des commerces chaque jour en fonction des votes
+    - Répartition équitables parmi les différents concurrents des courses de la navette communale
+    - Calcul du trajet en fonction des commerces choisis
+    - Augmentation du poids d'un vote avec le temps
+    - Gestion du nombre de points rapportés par chaque Amplet pour le particulier qui fait le trajet en fonction de sa pénibilité
+    - Gestion de la priorité pour profiter d'une Amplet en fonction du nombre de points de l'utilisateur
+- Fonctionnalités du site web :
+    - Login
+    - Chat
+    - Recherche, affichage et tri des Amplet à proximité
+    - Possibilité de voter pour un commerce à visiter par la navette communale
+    - Profil avec nombre de points et liste des Amplet effectuées ou en cours
+- [Base de données](https://www.notion.so/Base-de-donn-es-8f9b886f8c664d90a622cdc2437af808)
 
 ## Déroulement du projet
 
@@ -46,7 +52,9 @@ Notre projet vous permettra de contacter d'autres citoyens afin de :
 
 ### Jalons
 
-TODO
+- 17/12 : fin de la phase de montage et architecture du site mise en place
+- milieu des vacances de Noël : première version fonctionnelle du site, bilan et prévision du travail qu'il reste
+- fin des vacances : version définitive avec toutes les fonctionnalités et clôture du projet
 
 ### Risques et opportunités
 
