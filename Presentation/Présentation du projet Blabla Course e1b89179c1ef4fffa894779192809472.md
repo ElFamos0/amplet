@@ -2,7 +2,7 @@
 
 ## Contexte
 
-Aujourd'hui, beaucoup de personnes ne se rendent plus dans les magasins locaux et spécialisés et préférent aller au supermarché. Le principe de notre projet est de ramener les artisans et vendeurs locaux dans la vie de tout le monde afin de permettre à tout le monde d'avoir accès à une plus grande qualité et diversité de produits et de faire marcher l'économie locale.
+Aujourd'hui, beaucoup de personnes ne se rendent plus dans les magasins locaux et spécialisés et préfèrent aller au supermarché. Le principe de notre projet est de ramener les artisans et vendeurs locaux dans la vie de tout le monde afin de permettre à tout le monde d'avoir accès à une plus grande qualité et diversité de produits et de faire marcher l'économie locale.
 
 ## Solution
 
