@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask import render_template
@@ -44,5 +44,14 @@ def index():
 def register():
     return render_template("register.html")
 
+@app.route("/register",methods=['POST'])
+def createaccount():    
+    username = request.form['username']
+    motdepasse = request.form['register']
+    mail = request.form['emailAddress']
+    return f"{mail},{username},{motdepasse}"
+    
 
-app.run(debug=True)
+
+if __name__=="__main__":
+    app.run(debug=True)
