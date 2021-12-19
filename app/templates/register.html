@@ -12,7 +12,39 @@
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <img class="card-img-top" src="http://jp59.j.p.pic.centerblog.net/mm114xcr.gif" alt="Card image cap">
-                        <div class="card-body p-4 p-md-5 text-center">
+                        <div class="card-body p-4 p-md-5 text-center">               
+                            {% if login %}
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Se connecter</h3>
+                            <p>Bonjour je suis un gentil petit login</p>
+                            {% for mesg in get_flashed_messages() %}
+                            <h1>{{ mesg }}</h1>
+                            {% endfor %}
+                            <div class="login-form">
+                                <form method='POST' action=''>
+                                    {{form.hidden_tag()}}
+                            <div class="row d-flex justify-content-center mb-3">
+                                <div class="col-md-6 mb-4 pb-2">
+                
+                                <div class="form-outline">
+                                    {{form.username}}
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-content-center mb-3">
+                                <div class="col-md-6 mb-4 pb-2">
+                
+                                <div class="form-outline">
+                                    {{form.password}}
+                                </div>
+                            </div>
+                                        <div class="row d-flex justify-content-center mb-3">
+                                <div class="col-md-6 mb-4 pb-2">
+                
+                                <div class="form-outline">
+                                    {{form.submit}}
+                                </div>
+                            </div>
+                                </form>
+                            {% else %}
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Créer un compte</h3>
                             <form method='POST'>
                 
@@ -48,6 +80,7 @@
                             </div>
                 
                             </form>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
