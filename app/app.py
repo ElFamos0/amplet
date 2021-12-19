@@ -43,23 +43,23 @@ def load_user(user_id):
 
 
 class LoginForm(FlaskForm):
-    username = StringField("Username", validators=[InputRequired(), Length(max=15)], render_kw={"placeholder": "Username"})
-    password = PasswordField("Password", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder":  "Password"})
-    submit = SubmitField("Login")
+    username = StringField("Username", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder": "Pseudo"})
+    password = PasswordField("Password", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder":  "Mot de passe"})
+    submit = SubmitField("Se connecter")
 
 class RegisterForm(FlaskForm):
-    email = StringField("Email", validators=[InputRequired(), Email(message="Invalid Email"), Length(max=50)], render_kw={"placeholder": "example@gmail.com"})
-    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15)], render_kw={"placeholder": "Username"})
-    password = PasswordField("Password", validators=[InputRequired(), Length(min=4, max=15)], render_kw={"placeholder": "********"})
-    submit = SubmitField("Sign Up")
+    email = StringField("Email", validators=[InputRequired(), Email(message="Invalid Email"), Length(max=100)], render_kw={"placeholder": "exemple@gmail.com"})
+    username = StringField("Username", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder": "Pseudo"})
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=4, max=50)], render_kw={"placeholder": "Mot de passe"})
+    submit = SubmitField("S'inscrire")
 
     def validate_username(self, username):
-        existing_user_username = User.query.filter_by(username=username.data).first()
+        existing_user_username = users.User.query.filter_by(username=username.data).first()
         if existing_user_username:
             raise ValidationError("Ce nom d'utilisateur existe déjà merci d'en choisir un autre")
 
     def validate_email(self, email):
-        existing_user_email = User.query.filter_by(email=email.data).first()
+        existing_user_email = users.User.query.filter_by(email=email.data).first()
         if existing_user_email:
             raise ValidationError("Cette addresse email est déjà utilisé par un autre utilisateur merci d'en choisir une autre")
 
@@ -76,31 +76,41 @@ def hello_world():
 def index():
     return render_template("index.html")
 
-@app.route("/register")
-def register():
-    return render_template("register.html",login=False)
+@app.route("/navette")
+@login_required
+def dashboard():
+    return f"{current_user.username}"
 
-@app.route("/register",methods=['POST'])
-def createaccount():    
-    username = request.form['username']
-    motdepasse = request.form['register']
-    mail = request.form['emailAddress']
-    return f"{mail},{username},{motdepasse}"
+@app.route('/register', methods=['GET','POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        new_user = users.User(username=form.username.data, email=form.email.data)
+        new_user.set_password(form.password.data)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form,login=False)
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
     form = LoginForm()
-    print(form.username.data)
     if form.validate_on_submit():
         user = users.User.query.filter_by(username=form.username.data).first()
+        print(user.password_hash)
         if user:
-            if users.User.check_password(user.password_hash, form.password.data):
+            if user.check_password(form.password.data):
                 login_user(user)
-                return redirect(url_for("hello_world"))
-    
+                return redirect(url_for("index"))
         flash("Cet utilisateur n'existe pas")
     return render_template('register.html', title="Login", form=form, login=True)
 
+@app.route('/logout', methods=["GET","POST"])
+def logout():
+    session.clear()
+    logout_user()
+    return redirect(url_for('login'))
 
 
 if __name__=="__main__":
