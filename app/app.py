@@ -81,6 +81,13 @@ def index():
 def dashboard():
     return f"{current_user.username}"
 
+@app.route("/profil")
+@login_required
+def profil():
+    L = {'username':str(current_user.username),'mail':str(current_user.email)}
+    return render_template("profil.html",data=L)
+
+
 @app.route('/register', methods=['GET','POST'])
 def register():
     form = RegisterForm()
