@@ -4,7 +4,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import InputRequired, Email, Length, ValidationError
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask_bcrypt import Bcrypt
 import os
 
 # Setup ####################################
@@ -31,8 +30,6 @@ if setup:
     db.session.add(guest)
     db.session.commit()
 ############################################
-
-bcrypt = Bcrypt(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -78,8 +75,13 @@ def index():
 
 @app.route("/navette")
 @login_required
-def dashboard():
-    return f"{current_user.username}"
+def navette():
+    L = {'username':str(current_user.username),'mail':str(current_user.email),'id':str(current_user.id)}
+    return render_template("navette.html",personne=L)
+@app.route("/particulier")
+@login_required
+def particulier():
+    return f"particulier"
 
 @app.route("/profil")
 @login_required

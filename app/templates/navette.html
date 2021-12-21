@@ -12,12 +12,12 @@
     <header class="p-3 mb-3 border-bottom">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="/README.md" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
             <pre class="justify-content-center mb-md-0 ">Amplet   </pre>
           </a>
   
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/app/" class="nav-link px-2 link-secondary">Présentation</a></li>
+            <li><a href="/" class="nav-link px-2 link-secondary">Présentation</a></li>
             <li><a href="/navette" class="nav-link px-2 link-dark">Navette Amplet</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Équipe</a></li>
           </ul>
@@ -33,7 +33,7 @@
             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
               <li><a class="dropdown-item" href="/login">Se connecter</a></li>
               <li><a class="dropdown-item" href="/register">S'inscrire</a></li>
-              <li><a class="dropdown-item" href="#">Profil</a></li>
+              <li><a class="dropdown-item" href="/profil">Profil</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href=/logout>Se déconnecter</a></li>
             </ul>
@@ -42,7 +42,12 @@
       </div>
 
     </header>
-    <p>{{data['username']}}</p>
-    <p>{{data['mail']}}</p>
+    <p>{{personne['username']}}</p>
+    <p>{{personne['mail']}}</p>
+    <p>{{personne['id']}}</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg>
 </body>
 </html>
