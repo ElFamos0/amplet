@@ -13,8 +13,6 @@ if not os.path.isfile("data/db.db"):
     setup = True
 ############################################
 
-
-
 from db import *
 from models import *
         
