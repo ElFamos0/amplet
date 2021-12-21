@@ -120,8 +120,10 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/nouvelleAmplet')
+@login_required
 def nouvelleAmplet():
-    return render_template('nouvelleAmplet.html')
+    L=['primeur du coin', 'chez Tony', 'vendeur de foutre']
+    return render_template('nouvelleAmplet.html', magasins=L)
 
 if __name__=="__main__":
     app.run(debug=True)
