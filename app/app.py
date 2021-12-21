@@ -119,6 +119,9 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+@app.route('/nouvelleAmplet')
+def nouvelleAmplet():
+    return render_template('nouvelleAmplet.html')
 
 if __name__=="__main__":
     app.run(debug=True)
