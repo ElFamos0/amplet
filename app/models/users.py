@@ -1,9 +1,6 @@
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, ValidationError, Email
+from flask_login import UserMixin
 
 
 class User(db.Model, UserMixin):
@@ -11,7 +8,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-
+    marchand = db.Column(db.Boolean, nullable=False)
+    points = db.Column(db.Integer, nullable=False)
+    
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 

@@ -55,12 +55,13 @@
 
 # Table Navette
 
-| Identifiant Navette |
+| Identifiant Navette (clé primaire)|
 | --- |
 | Date Départ |
 | Date Arrivée |
-| Marchant 1 |
-| Marchant 2 |
-| Marchant 3 |
-| Marchant 4 |
-| Marchant 5 |
+
+# Table Enregistrement Navette
+| Numéro d'enregistrement (clé primaire)|
+| --- |
+| Id Nav |
+| Marchants |
