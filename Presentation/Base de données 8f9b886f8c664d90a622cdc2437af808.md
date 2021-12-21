@@ -52,3 +52,15 @@
 | --- |
 | Identifiant produit (clé primaire) |
 | Prix à l'achat |
+
+# Table Navette
+
+| Identifiant Navette |
+| --- |
+| Date Départ |
+| Date Arrivée |
+| Marchant 1 |
+| Marchant 2 |
+| Marchant 3 |
+| Marchant 4 |
+| Marchant 5 |
