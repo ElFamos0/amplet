@@ -22,8 +22,8 @@ db.create_all() # Creates the tables if necessary
 
 # Setup ####################################
 if setup:
-    admin = users.User(username='admin', email='admin@test.com')
-    guest = users.User(username='guest', email='guest@test.com')
+    admin = users.User(username='admin', email='admin@test.com',points=20, marchand=True)
+    guest = users.User(username='guest', email='guest@test.com',points=0, marchand=False)
     admin.set_password('oof')
     guest.set_password('oof')
     db.session.add(admin)
@@ -94,7 +94,7 @@ def profil():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        new_user = users.User(username=form.username.data, email=form.email.data)
+        new_user = users.User(username=form.username.data, email=form.email.data, points=0, marchand=False)
         new_user.set_password(form.password.data)
         db.session.add(new_user)
         db.session.commit()
