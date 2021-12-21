@@ -86,7 +86,7 @@ def particulier():
 @app.route("/profil")
 @login_required
 def profil():
-    L = {'username':str(current_user.username),'mail':str(current_user.email)}
+    L = {'username':str(current_user.username),'mail':str(current_user.email),'points':str(current_user.points)}
     return render_template("profil.html",data=L)
 
 
