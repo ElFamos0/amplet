@@ -86,8 +86,13 @@ def particulier():
 @login_required
 def profil():
     L = {'username':str(current_user.username),'mail':str(current_user.email),'points':str(current_user.points)}
-    return render_template("profil.html",data=L)
+    return render_template("profil.html",personne=L)
 
+@app.route("/profilmodif")
+@login_required
+def profilmodif():
+    L = {'username':str(current_user.username),'mail':str(current_user.email),'points':str(current_user.points)}
+    return render_template("profilmodif.html",personne=L)
 
 @app.route('/register', methods=['GET','POST'])
 def register():
