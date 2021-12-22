@@ -52,8 +52,16 @@
             <td>Nom du produit</td>
             <td>Quantité (en kg, g ou unité)</td>
         </tr>
+        {% for i in range(5) %}
         <tr>
-         <td><input type='text'></td>
+         <td><input type='text' list="produits">
+        <datalist id="produits">
+          <option value="Carotte(s)"></option>
+          <option value="Pomme(s) de terre(s)"></option>
+        </datalist>
+        
+        </td>
+
          <td><input type='number'></td>
          <td><select name='unité'>
              <option value="kg">kg</option>
@@ -61,33 +69,7 @@
              <option value="unite">à l'unité</option>
          </select></td>
         </tr>
-        <tr>
-            <td><input type='text'></td>
-            <td><input type='number'></td>
-            <td><select name='unité'>
-                <option value="kg">kg</option>
-                <option value="g">g</option>
-                <option value="unite">à l'unité</option>
-            </select></td>
-           </tr>
-        <tr>
-         <td><input type='text'></td>
-         <td><input type='number'></td>
-         <td><select name='unité'>
-             <option value="kg">kg</option>
-             <option value="g">g</option>
-             <option value="unite">à l'unité</option>
-         </select></td>
-        </tr>
-        <tr>
-         <td><input type='text'></td>
-         <td><input type='number'></td>
-         <td><select name='unité'>
-             <option value="kg">kg</option>
-             <option value="g">g</option>
-             <option value="unite">à l'unité</option>
-         </select></td>
-        </tr>
+      {% endfor %}
     </table>
     </form>
     <style>
