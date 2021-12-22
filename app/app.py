@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, url_for, session, flash
+from re import M
+from flask import Flask, render_template, redirect, url_for, session, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
@@ -119,6 +120,18 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+@app.route('/nouvelleAmplet', methods=['GET','POST'])
+@login_required
+def nouvelleAmplet():
+    mag_dispo=['primeur du coin', 'chez Tony', 'vendeur de foutre']
+    mag_visit=[]
+    # if request.method=='POST':
+    #     L=request.form
+    #     for e in mag_dispo:
+    #         if e in L:
+    #             mag_visit.append(e)
+    #     return mag_visit[1]
+    return render_template('nouvelleAmplet.html', magasins=mag_dispo)
 
 if __name__=="__main__":
     app.run(debug=True)
