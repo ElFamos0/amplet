@@ -125,11 +125,12 @@ def logout():
 def nouvelleAmplet():
     mag_dispo=['primeur du coin', 'chez Tony', 'vendeur de foutre']
     mag_visit=[]
-    if request.method=='POST':
-        # for e in mag_dispo:
-        #     if request.form[e]=='on':
-        #         mag_visit.append(e)
-        None
+    # if request.method=='POST':
+    #     L=request.form
+    #     for e in mag_dispo:
+    #         if e in L:
+    #             mag_visit.append(e)
+    #     return mag_visit[1]
     return render_template('nouvelleAmplet.html', magasins=mag_dispo)
 
 if __name__=="__main__":
