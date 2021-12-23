@@ -30,6 +30,9 @@ if setup:
     db.session.add(guest)
     db.session.commit()
 ############################################
+
+from chat import *
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"

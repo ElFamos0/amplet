@@ -5,7 +5,7 @@ gen = SnowflakeGenerator(5)
 
 class Produits(db.Model):
     __tablename__ = 'produits'
-    id_produit = db.Column(db.String(40), primary_key=True)
+    id = db.Column(db.String(40), primary_key=True)
     id_marchand = db.Column(db.String(40), db.ForeignKey('marchands.id'))
     nom = db.Column(db.String(100))
     prix = db.Column(db.Integer)
