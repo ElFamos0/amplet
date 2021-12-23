@@ -22,8 +22,8 @@ db.create_all() # Creates the tables if necessary
 
 # Setup ####################################
 if setup:
-    admin = users.User(username='admin', email='admin@test.com',points=20, marchand=True)
-    guest = users.User(username='guest', email='guest@test.com',points=0, marchand=False)
+    admin = users.User(username='admin', email='admin@test.com', code_postal=57000)
+    guest = users.User(username='guest', email='guest@test.com', code_postal=57000)
     admin.set_password('oof')
     guest.set_password('oof')
     db.session.add(admin)
