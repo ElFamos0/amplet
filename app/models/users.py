@@ -25,6 +25,7 @@ class User(db.Model, UserMixin):
         self.username = username
         self.email = email
         self.code_postal = code_postal
+        self.points = 0
 
     def __repr__(self):
         return '<User %r>' % self.username

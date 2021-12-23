@@ -1,4 +1,3 @@
-
 # calcule le score rapporté par une course en fonction de
 # nb_mag : le nombre de magasins visités par le coursier
 # nb_clients : le nombre de clients qui ont bénéficié de la course
