@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import InputRequired, Email, Length, ValidationError
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from datetime import date
 import os
 
 # Setup ####################################
@@ -137,6 +138,49 @@ def nouvelleAmplet():
     #             mag_visit.append(e)
     #     return mag_visit[1]
     return render_template('nouvelleAmplet.html', magasins=mag_dispo)
+
+@app.route('/amplets_en_cours', methods=['GET','POST'])
+
+def amplets_en_cours() :
+    liste_mag =  ['Primeur','Garagiste','Boucher']
+    #A refaire avec une requete sql
+
+    recherche = ['Proximité','Date de début','Date de fin','Type de magasins']
+    d2 = date.today().strftime("%Y-%m-%d")
+
+
+    if request.method == "POST" :
+        debut = request.form.get('mindate',d2)
+        fin = request.form.get('maxdate',d2)
+        recherche_actuelle = request.form.get('recherche','Proximité')
+
+        i = 0
+        for j in range(4) :
+            if recherche[j] == recherche_actuelle :
+                i = j
+        recherche[0],recherche[i] = recherche[i],recherche[0]
+        
+        liste_magbis = []
+        for i in liste_mag :
+            val = request.form.get(i,'off')
+            if val == 'on' :
+                liste_magbis.append((i,True))
+            else :
+                liste_magbis.append((i,False))
+        
+
+    else :
+        debut = d2
+        fin = d2
+        liste_magbis = []
+        for i in liste_mag :
+            liste_magbis.append((i,True))
+
+
+    
+    return render_template('amplets_en_cours.html',magasins = liste_magbis,debut = debut,fin = fin,recherche = recherche)
+
+
 
 if __name__=="__main__":
     app.run(debug=True)
