@@ -1,13 +1,8 @@
 from re import M
-from flask import Flask, render_template, redirect, url_for, session, flash, request, send_from_directory
-from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
-from wtforms.validators import InputRequired, Email, Length, ValidationError
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask import render_template, request, url_for
+from flask_login import LoginManager, login_required, current_user
 from datetime import date
 import os
-from werkzeug.utils import secure_filename
 
 # Setup ####################################
 setup = False
@@ -32,8 +27,6 @@ if setup:
     db.session.commit()
 ############################################
 
-from chat import *
-
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -41,28 +34,6 @@ login_manager.login_view = "login"
 @login_manager.user_loader
 def load_user(user_id):
     return users.User.query.get(int(user_id))
-
-
-class LoginForm(FlaskForm):
-    username = StringField("Username", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder": "Pseudo"})
-    password = PasswordField("Password", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder":  "Mot de passe"})
-    submit = SubmitField("Se connecter")
-
-class RegisterForm(FlaskForm):
-    email = StringField("Email", validators=[InputRequired(), Email(message="Invalid Email"), Length(max=100)], render_kw={"placeholder": "exemple@gmail.com"})
-    username = StringField("Username", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder": "Pseudo"})
-    password = PasswordField("Password", validators=[InputRequired(), Length(min=4, max=50)], render_kw={"placeholder": "Mot de passe"})
-    submit = SubmitField("S'inscrire")
-
-    def validate_username(self, username):
-        existing_user_username = users.User.query.filter_by(username=username.data).first()
-        if existing_user_username:
-            raise ValidationError("Ce nom d'utilisateur existe déjà merci d'en choisir un autre")
-
-    def validate_email(self, email):
-        existing_user_email = users.User.query.filter_by(email=email.data).first()
-        if existing_user_email:
-            raise ValidationError("Cette addresse email est déjà utilisé par un autre utilisateur merci d'en choisir une autre")
 
 @app.route("/admin")
 def hello_world():
@@ -97,37 +68,6 @@ def profil():
 @login_required
 def profilmodif():
     return render_template("profilmodif.html",personne=current_user)
-
-@app.route('/register', methods=['GET','POST'])
-def register():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        new_user = users.User(username=form.username.data, email=form.email.data, points=0, marchand=False)
-        new_user.set_password(form.password.data)
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form,login=False)
-
-
-@app.route('/login', methods=['GET','POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = users.User.query.filter_by(username=form.username.data).first()
-        print(user.password_hash)
-        if user:
-            if user.check_password(form.password.data):
-                login_user(user)
-                return redirect(url_for("index"))
-        flash("Cet utilisateur n'existe pas")
-    return render_template('register.html', title="Login", form=form, login=True)
-
-@app.route('/logout', methods=["GET","POST"])
-def logout():
-    session.clear()
-    logout_user()
-    return redirect(url_for('login'))
 
 @app.route('/nouvelleAmplet', methods=['GET','POST'])
 @login_required
@@ -183,28 +123,9 @@ def amplets_en_cours() :
     
     return render_template('amplets_en_cours.html',magasins = liste_magbis,debut = debut,fin = fin,recherche = recherche)
 
-@app.route('/change_avatar', methods = ['GET', 'POST'])
-@login_required
-def upload_pp():
-    if request.method == 'POST':
-        f = request.files['file']
-        folder = f"static/avatar/{current_user.id}"
-        if not os.path.exists(folder):
-            os.mkdir(folder)
-        f.save(f"{folder}/avatar.png")
-        return 'avatar reçu !'
-    else:
-        return render_template('upload.html', personne=current_user)
+## IMPORT ROUTES
 
-if __name__=="__main__":
-    app.run(debug=True)
+from routes import *
 
-@app.route('/r/a/<string:id>')
-def get_pp(id):
-    folder = f"static/avatar/{id}"
-    file = f"avatar/{id}/avatar.png"
-    if not os.path.exists(folder):
-        return send_from_directory('static', "photos/chien.jpeg")
-    return send_from_directory('static', file)
 if __name__=="__main__":
     app.run(debug=True)
