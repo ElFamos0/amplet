@@ -1,5 +1,5 @@
 from re import M
-from flask import Flask, render_template, redirect, url_for, session, flash, request
+from flask import Flask, render_template, redirect, url_for, session, flash, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
@@ -7,6 +7,7 @@ from wtforms.validators import InputRequired, Email, Length, ValidationError
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from datetime import date
 import os
+from werkzeug.utils import secure_filename
 
 # Setup ####################################
 setup = False
@@ -95,8 +96,7 @@ def profil():
 @app.route("/profilmodif")
 @login_required
 def profilmodif():
-    L = {'username':str(current_user.username),'mail':str(current_user.email),'points':str(current_user.points)}
-    return render_template("profilmodif.html",personne=L)
+    return render_template("profilmodif.html",personne=current_user)
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -183,7 +183,28 @@ def amplets_en_cours() :
     
     return render_template('amplets_en_cours.html',magasins = liste_magbis,debut = debut,fin = fin,recherche = recherche)
 
+@app.route('/change_avatar', methods = ['GET', 'POST'])
+@login_required
+def upload_pp():
+    if request.method == 'POST':
+        f = request.files['file']
+        folder = f"static/avatar/{current_user.id}"
+        if not os.path.exists(folder):
+            os.mkdir(folder)
+        f.save(f"{folder}/avatar.png")
+        return 'avatar reçu !'
+    else:
+        return render_template('upload.html', personne=current_user)
 
+if __name__=="__main__":
+    app.run(debug=True)
 
+@app.route('/r/a/<string:id>')
+def get_pp(id):
+    folder = f"static/avatar/{id}"
+    file = f"avatar/{id}/avatar.png"
+    if not os.path.exists(folder):
+        return send_from_directory('static', "photos/chien.jpeg")
+    return send_from_directory('static', file)
 if __name__=="__main__":
     app.run(debug=True)

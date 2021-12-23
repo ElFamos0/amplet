@@ -14,6 +14,9 @@ class User(db.Model, UserMixin):
     points = db.Column(db.Integer, nullable=False)
     code_postal = db.Column(db.Integer, nullable=False)
     
+    def avatar_url(self):
+        return f"/r/a/{self.id}"
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
