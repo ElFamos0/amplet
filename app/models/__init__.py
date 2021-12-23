@@ -1,1 +1,10 @@
-__all__ = ["users","navette","enregistrement_navette"]
+__all__ = [
+    "amplet",
+    "chat",
+    "marchands_amp",
+    "marchands",
+    "participants_amp",
+    "produits_amp",
+    "produits",
+    "users"
+]
