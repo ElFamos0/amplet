@@ -37,7 +37,7 @@ class RegisterForm(FlaskForm):
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        new_user = users.User(username=form.username.data, email=form.email.data, points=0, marchand=False)
+        new_user = users.User(username=form.username.data, email=form.email.data,code_postal=54000)
         new_user.set_password(form.password.data)
         db.session.add(new_user)
         db.session.commit()
