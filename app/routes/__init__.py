@@ -1,4 +1,5 @@
 __all__ = [
     "avatar",
-    "login"
+    "login",
+    "profile"
 ]
