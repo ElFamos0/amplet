@@ -5,7 +5,6 @@ from flask_login import login_user, logout_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Email, Length, ValidationError
-import os
 
 ##############################
 ########### LOGIN  ###########
@@ -18,7 +17,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Se connecter")
 
 class RegisterForm(FlaskForm):
-    email = StringField("Email", validators=[InputRequired(), Email(message="Invalid Email"), Length(max=100)], render_kw={"placeholder": "exemple@gmail.com"})
+    email = StringField("Email", validators=[InputRequired(), Email(message="Email invalide"), Length(max=100)], render_kw={"placeholder": "exemple@gmail.com"})
     username = StringField("Username", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder": "Pseudo"})
     password = PasswordField("Password", validators=[InputRequired(), Length(min=4, max=50)], render_kw={"placeholder": "Mot de passe"})
     submit = SubmitField("S'inscrire")
@@ -42,20 +41,19 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form,login=False)
+    return render_template('auth.html', title='Register', form=form, login=False)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = users.User.query.filter_by(username=form.username.data).first()
-        print(user.password_hash)
         if user:
             if user.check_password(form.password.data):
                 login_user(user)
                 return redirect(url_for("index"))
-        flash("Cet utilisateur n'existe pas")
-    return render_template('register.html', title="Login", form=form, login=True)
+    flash("Vérifiez que le nom d'utilisateur / mot de passe est correct")
+    return render_template('auth.html', title="Login", form=form, login=True)
 
 @app.route('/logout', methods=["GET","POST"])
 def logout():

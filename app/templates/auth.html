@@ -11,13 +11,13 @@
                 <div class="row justify-content-center align-items-center h-100">
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                        <img class="card-img-top" src="http://jp59.j.p.pic.centerblog.net/mm114xcr.gif" alt="Card image cap">
                         <div class="card-body p-4 p-md-5 text-center">               
                             {% if login %}
-                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Se connecter</h3>
-                            <p>Bonjour je suis un gentil petit login</p>
+                            <h2 class="mb-4 pb-2 pb-md-0 mb-md-5">Se connecter</h2>
                             {% for mesg in get_flashed_messages() %}
-                            <h1>{{ mesg }}</h1>
+                            <div class="alert alert-danger" role="alert">
+                                {{ mesg }}
+                            </div>
                             {% endfor %}
                             <div class="login-form">
                                 <form method='POST' action=''>
@@ -50,6 +50,11 @@
                                 </div>
                             {% else %}
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Créer un compte</h3>
+                            {% for field, errors in form.errors.items() %}
+                            <div class="alert alert-danger">
+                                {{ ', '.join(errors) }}
+                            </div>
+                            {% endfor %}
                             <div class="login-form">
                                 <form method='POST' action=''>
                                     {{form.hidden_tag()}}
