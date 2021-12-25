@@ -52,7 +52,7 @@ def login():
             if user.check_password(form.password.data):
                 login_user(user)
                 return redirect(url_for("index"))
-    flash("Vérifiez que le nom d'utilisateur / mot de passe est correct")
+        flash("Vérifiez que le nom d'utilisateur / mot de passe est correct")
     return render_template('auth.html', title="Login", form=form, login=True)
 
 @app.route('/logout', methods=["GET","POST"])
