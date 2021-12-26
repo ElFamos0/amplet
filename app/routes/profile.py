@@ -7,12 +7,25 @@ from flask_login import login_required, current_user
 ######### PROFILE  ###########
 ##############################
 
-@app.route("/profil")
+@app.route("/p")
 @login_required
-def profil():
-    return render_template("profil.html",personne=current_user)
+def other_profiles():
+    return render_template("profil.html", user=current_user, chat=False)
 
-@app.route("/profilmodif")
+
+@app.route("/p/<string:id>")
+@login_required
+def profil(id):
+    usr = users.User.query.get(id)
+    if usr == None:
+        return '404'
+    chat = True
+    if id == current_user.id:
+        chat = False
+    print(chat)
+    return render_template("profil.html", user=usr, chat=chat)
+
+@app.route("/pe")
 @login_required
 def profilmodif():
-    return render_template("profilmodif.html",personne=current_user)
+    return render_template("profilmodif.html",user=current_user)

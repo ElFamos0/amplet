@@ -45,7 +45,14 @@
 .people-list .chat-list li {
     padding: 10px 15px;
     list-style: none;
-    border-radius: 3px
+    border-radius: 3px;
+}
+
+.chat-list {
+    max-height: 350px;
+    height: 350px;
+    min-height: 350px;
+    overflow-x: auto;
 }
 
 .people-list .chat-list li:hover {
@@ -103,6 +110,7 @@
     padding: 20px;
     border-bottom: 2px solid #fff;
     max-height: 300px;
+    min-height: 300px;
     overflow-x: auto;
 }
 
@@ -241,9 +249,10 @@
     .chat-app .chat .chat-header {
         border-radius: 0.55rem 0.55rem 0 0
     }
-    .chat-app .chat-history {
+    .chat-app .chat-history .chat-list {
         height: 300px;
         max-height: 300px;
+        min-height: 300px;
         overflow-x: auto;
     }
 }
@@ -252,11 +261,13 @@
     .chat-app .chat-list {
         height: 650px;
         max-height: 650px;
+        min-height: 650px;
         overflow-x: auto
     }
     .chat-app .chat-history {
         height: 600px;
         max-height: 600px;
+        min-height: 600px;
         overflow-x: auto
     }
 }
@@ -265,11 +276,13 @@
     .chat-app .chat-list {
         height: 480px;
         max-height: 480px;
+        min-height: 480px;
         overflow-x: auto
     }
     .chat-app .chat-history {
         height: calc(100vh - 350px);
         max-height: calc(100vh - 350px);
+        min-height: calc(100vh - 350px);
         overflow-x: auto
     }
 }

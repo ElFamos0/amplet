@@ -1,6 +1,6 @@
 from db import *
 from models import *
-from utils.timestamp import now
+from utils.timestamp import now, timestamp_to_date
 from flask_socketio import emit, join_room, disconnect
 from flask_login import current_user
 import functools
@@ -25,10 +25,10 @@ def handle_connection():
 def handle_message(msg):
     target = msg['target']
     content = msg['content']
-    print('sent to db')
-    db.session.add(chat.Chat(id_emetteur=current_user.id,id_amp=target,timestamps=now(),contenu=content))
+    timestamp = now()
+    db.session.add(chat.Chat(id_emetteur=current_user.id,id_amp=target,timestamps=timestamp,contenu=content))
     db.session.commit()
-    count = chat.Chat.query().filter(chat.Chat.id_emetteur==current_user.id,chat.Chat.id_amp==target).count()
+    count = chat.Chat.query.filter(chat.Chat.id_emetteur==current_user.id,chat.Chat.id_amp==target).count()
     if count == 1:
         pl = {
                 'avatar_url' : current_user.avatar_url(),
@@ -36,70 +36,65 @@ def handle_message(msg):
                 'username': current_user.username,
             }
         emit('contact', pl, room=target)
-    data = {
-        "sender": current_user.id,
-        "receiver": target,
-        "content": content,
-        "time": "12:00",
-        "date": "Today",
-        "self": True,
+    d = timestamp_to_date(timestamp)
+    pl = {
+        'sender': current_user.id,
+        'receiver': target,
+        'content' : content,
+        'time': f'{d.hour:02d}:{d.minute:02d}:{d.second:02d}',
+        'date': f'{d.day}-{d.month}-{d.year}',
+        'self': True,
     }
-    emit('message', data, room=current_user.id)
-    data["self"] = False
-    emit('message', data, room=target)
+    emit('message', pl, room=current_user.id)
+    pl["self"] = False
+    emit('message', pl, room=target)
+
+@socketio.on('contact')
+@authenticated_only
+def handle_contact(data):
+    req = users.User.query.get(data['id'])
+    pl = {
+        'avatar_url' : req.avatar_url(),
+        'id': req.id,
+        'username': req.username,
+    }
+    emit('contact', pl, room=current_user.id)
 
 @socketio.on('chats')
 @authenticated_only
-def handle_message(data):
+def handle_chat(data):
     print('chats')
     if data["id"] == "all":
-        for user in users.User.query.join(chat.Chat).filter(db.or_(chat.Chat.id_emetteur == users.User.id, chat.Chat.id_amp == users.User.id)).filter(db.or_(chat.Chat.id_emetteur == current_user.id, chat.Chat.id_amp == current_user.id)).all():
-            pl = {
-                'avatar_url' : user.avatar_url(),
-                'id': user.id,
-                'username': user.username,
-            }
-            emit('contact', pl, room=current_user.id)
-        for msg in chat.Chat.query.filter(chat.Chat.id_emetteur == current_user.id).all():
-            pl = {
-                'sender': msg.id_emetteur,
-                'receiver': msg.id_amp,
-                'content' : msg.contenu,
-                'time': '00',
-                'date': msg.timestamps,
-                'self': True,
-            }
-            emit('message', pl, room=current_user.id)
-        for msg in chat.Chat.query.filter(chat.Chat.id_amp == current_user.id).all():
-            pl = {
-                'sender': msg.id_emetteur,
-                'receiver': msg.id_amp,
-                'content' : msg.contenu,
-                'time': '00',
-                'date': msg.timestamps,
-                'self': False,
-            }
-            emit('message', pl, room=current_user.id)
+        q1 = db.session.query(chat.Chat.id_amp.label('id')).filter_by(id_emetteur=current_user.id)
+        q2 = db.session.query(chat.Chat.id_emetteur.label('id')).filter_by(id_amp=current_user.id)
+        u = q1.union(q2).group_by('id').all()
+        for id in u:
+            user = users.User.query.get(id)
+            if user:
+                pl = {
+                    'avatar_url' : user.avatar_url(),
+                    'id': user.id,
+                    'username': user.username,
+                }
+                emit('contact', pl, room=current_user.id)
     else:
-        print(current_user.id, data["id"])
-        for msg in chat.Chat.query.filter(chat.Chat.id_amp == data["id"]).filter(chat.Chat.id_emetteur == current_user.id).all():
+        q1 = chat.Chat.query.filter(chat.Chat.id_amp == data["id"]).filter(chat.Chat.id_emetteur == current_user.id)
+        q2 = chat.Chat.query.filter(chat.Chat.id_emetteur == data["id"]).filter(chat.Chat.id_amp == current_user.id)
+        u = q1.union(q2).order_by(chat.Chat.timestamps.asc()).all()
+        for msg in u:
+            isSelf = False
+            if msg.id_emetteur == current_user.id:
+                isSelf = True
+            d = timestamp_to_date(msg.timestamps)
             pl = {
                 'sender': msg.id_emetteur,
                 'receiver': msg.id_amp,
                 'content' : msg.contenu,
-                'time': '00',
-                'date': msg.timestamps,
-                'self': True,
+                'time': f'{d.hour:02d}:{d.minute:02d}:{d.second:02d}',
+                'date': f'{d.day}-{d.month}-{d.year}',
+                'self': isSelf,
             }
             emit('message', pl, room=current_user.id)
-        for msg in chat.Chat.query.filter(chat.Chat.id_emetteur == data["id"]).filter(chat.Chat.id_amp == current_user.id).all():
-            print(msg)
-            pl = {
-                'sender': msg.id_emetteur,
-                'receiver': msg.id_amp,
-                'content' : msg.contenu,
-                'time': '00',
-                'date': msg.timestamps,
-                'self': False,
-            }
-            emit('message', pl, room=current_user.id)
+            if msg.id_emetteur == msg.id_amp:
+                pl['self'] = False
+                emit('message', pl, room=current_user.id)

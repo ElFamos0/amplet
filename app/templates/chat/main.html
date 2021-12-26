@@ -53,15 +53,4 @@
 
 {% endif %}
 
-<script>
-    function openChat() {
-        document.getElementById("chat").style.display = "block";
-        document.getElementById("openChat").style.display = "none";
-    }
-
-    function closeChat() {
-        document.getElementById("chat").style.display = "none";
-        document.getElementById("openChat").style.display = "block";
-    }
-    document.getElementById("chat").style.display = "none";
-</script>
+<script src="{{url_for('static',filename='js/chat.js')}}"></script>
