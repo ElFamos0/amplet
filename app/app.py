@@ -56,8 +56,14 @@ def index():
 def navette():
     L = {'username':str(current_user.username),'mail':str(current_user.email),'id':str(current_user.id)}
     if request.method=='POST':
-        L = request.form
-        return L
+        items = []
+        for i in range(0,5):
+            items.append({
+                    "produit": request.form.get(f"produit{i}"),
+                    "quantite": request.form.get(f"quantite{i}"),
+                    "unite": request.form.get(f"unite{i}"),
+                    })
+        return str(items)
     return render_template("navette.html",personne=L)
 
 @app.route('/nouvelleAmplet', methods=['GET','POST'])
