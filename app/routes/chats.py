@@ -2,7 +2,7 @@ from db import *
 from models import *
 from utils.timestamp import now
 from flask_socketio import emit, join_room, disconnect
-from flask_login import current_user*
+from flask_login import current_user
 import functools
 
 def authenticated_only(f):
