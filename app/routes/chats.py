@@ -37,8 +37,6 @@ def handle_message(msg):
                 'username': current_user.username,
             }
         emit('contact', pl, room=target)
-        ## Client will ask for the message out of curiosity
-        return
     d = timestamp_to_date(timestamp)
     pl = {
         'sender': current_user.id,
@@ -49,6 +47,9 @@ def handle_message(msg):
         'self': True,
     }
     emit('message', pl, room=current_user.id)
+    if count1+count2 == 1:
+        ## Client will ask for the message out of curiosity
+        return
     pl["self"] = False
     emit('message', pl, room=target)
 
