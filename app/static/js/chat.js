@@ -4,6 +4,11 @@ var settings = {
     'currentselect': '',
 };
 
+var cache = [];
+var cachenodes = {};
+
+var selectLatest = false;
+
 socket.on('connect', function() {
     E = document.getElementById('selectedUser')
     var first = E.firstElementChild;
@@ -68,7 +73,13 @@ socket.on('message', function(m) {
 });
 
 socket.on('contact', function(m) {
-    console.log("contact")
+    if (cache.includes(m.id)) {
+        if (selectLatest) {
+            changeSelected(m, cachenodes[m.id]);
+        }
+        return
+    }
+    cache.push(m.id)
 
     L = document.getElementById('userList');
 
@@ -78,12 +89,14 @@ socket.on('contact', function(m) {
     var name = document.createElement("div");
 
     node.className = "clearfix";
-    if (settings.currentselect == '') {
+    if (settings.currentselect == '' || selectLatest) {
         changeSelected(m, node)
+        socket.emit('chats', {
+            "id": m.id,
+        });
     }
     node.onclick = function() {
         changeSelected(m, node)
-
         socket.emit('chats', {
             "id": m.id,
         });
@@ -98,6 +111,7 @@ socket.on('contact', function(m) {
     node.appendChild(img);
     node.appendChild(abt);
     L.appendChild(node);
+    cachenodes[m.id] = node;
 });
 
 function changeSelected(user, node) {
@@ -139,11 +153,35 @@ function changeSelected(user, node) {
 };
 
 chat = document.getElementById('chat-send');
-chat.addEventListener("keydown", function(e) {
+chat.addEventListener("keyup", function(e) {
     if (e.keyCode == 13) {
         socket.emit('message', {
             content: e.target.value,
             target: settings.currentselect
         });
+        console.log(settings.currentselect)
     }
 });
+
+function openChat() {
+    document.getElementById("chat").style.display = "block";
+    document.getElementById("openChat").style.display = "none";
+}
+
+function closeChat() {
+    document.getElementById("chat").style.display = "none";
+    document.getElementById("openChat").style.display = "block";
+}
+
+function requestID(e) {
+    selectLatest = true
+    socket.emit('contact', {
+        id: e,
+    });
+    openChat()
+    socket.emit('chats', {
+        "id": e,
+    });
+}
+
+document.getElementById("chat").style.display = "none";
