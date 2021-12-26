@@ -2,7 +2,7 @@ from db import *
 from models import *
 from utils.timestamp import now
 from flask_socketio import emit, join_room, disconnect
-from flask_login import current_user
+from flask_login import current_user*
 import functools
 
 def authenticated_only(f):
@@ -28,6 +28,14 @@ def handle_message(msg):
     print('sent to db')
     db.session.add(chat.Chat(id_emetteur=current_user.id,id_amp=target,timestamps=now(),contenu=content))
     db.session.commit()
+    count = chat.Chat.query().filter(chat.Chat.id_emetteur==current_user.id,chat.Chat.id_amp==target).count()
+    if count == 1:
+        pl = {
+                'avatar_url' : current_user.avatar_url(),
+                'id': current_user.id,
+                'username': current_user.username,
+            }
+        emit('contact', pl, room=target)
     data = {
         "sender": current_user.id,
         "receiver": target,
