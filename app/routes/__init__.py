@@ -1,5 +1,6 @@
 __all__ = [
     "avatar",
     "login",
-    "profile"
+    "profile",
+    "chats"
 ]

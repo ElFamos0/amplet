@@ -20,10 +20,13 @@ db.create_all() # Creates the tables if necessary
 if setup:
     admin = users.User(username='admin', email='admin@test.com', code_postal=57000)
     guest = users.User(username='guest', email='guest@test.com', code_postal=57000)
+    third = users.User(username='third', email='third@test.com', code_postal=57000)
     admin.set_password('oof')
     guest.set_password('oof')
+    third.set_password('oof')
     db.session.add(admin)
     db.session.add(guest)
+    db.session.add(third)
     db.session.commit()
 ############################################
 
@@ -46,7 +49,7 @@ def hello_world():
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", user=current_user)
 
 @app.route("/navette")
 @login_required
@@ -112,9 +115,10 @@ def amplets_en_cours() :
     
     return render_template('amplets_en_cours.html',magasins = liste_magbis,debut = debut,fin = fin,recherche = recherche)
 
+
 ## IMPORT ROUTES
 
 from routes import *
 
-if __name__=="__main__":
-    app.run(debug=True)
+if __name__ == 'app':
+    socketio.run(app)

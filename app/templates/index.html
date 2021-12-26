@@ -216,7 +216,12 @@
             </aside>
         </div>
     </section>
+
+    {% include 'chat/main.html' %}
+
     </main>
 </body>
+
+<script src="{{url_for('static',filename='js/chat.js')}}"></script>
 
 </html>
