@@ -121,4 +121,4 @@ def amplets_en_cours() :
 from routes import *
 
 if __name__ == 'app':
-    socketio.run(app)
+    socketio.run(app, host='0.0.0.0', port=5000)
