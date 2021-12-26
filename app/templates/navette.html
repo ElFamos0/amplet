@@ -25,7 +25,7 @@
             </tr>
             {% for i in range(5) %}
             <tr>
-                <td><input type='text' list="produits">
+                <td><input type='text' list="produits" name="produit{{i}}">
                     <datalist id="produits">
           <option value="Carotte(s)"></option>
           <option value="Pomme(s) de terre(s)"></option>
@@ -33,10 +33,10 @@
 
                 </td>
 
-                <td><input type='number'></td>
+                <td><input type='number' name="number{{i}}"></td>
 
                 <td>
-                    <div class=i temopt></div><select name='unité'>
+                    <div class=i temopt></div><select name='unite{{i}}'>
              <option value="kg">kg</option>
              <option value="g">g</option>
              <option value="unite">à l'unité</option>
@@ -46,7 +46,7 @@
             </tr>
             {% endfor %}
         </table>
-        <input type="button" value="Envoyer">
+        <input type="submit" href='/navette' value="Envoyer">
     </form>
 </body>
 

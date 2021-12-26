@@ -51,10 +51,13 @@ def hello_world():
 def index():
     return render_template("index.html", user=current_user)
 
-@app.route("/navette")
+@app.route("/navette", methods=['GET','POST'])
 @login_required
 def navette():
     L = {'username':str(current_user.username),'mail':str(current_user.email),'id':str(current_user.id)}
+    if request.method=='POST':
+        L = request.form
+        return L
     return render_template("navette.html",personne=L)
 
 @app.route('/nouvelleAmplet', methods=['GET','POST'])
