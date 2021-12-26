@@ -27,8 +27,9 @@
             <tr>
                 <td><input type='text' list="produits" name="produit{{i}}">
                     <datalist id="produits">
-          <option value="Carotte(s)"></option>
-          <option value="Pomme(s) de terre(s)"></option>
+            {% for produit in produits %}
+          <option value="{{produit}}"></option>
+          {% endfor %}
         </datalist>
 
                 </td>
