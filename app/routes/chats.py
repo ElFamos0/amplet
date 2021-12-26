@@ -28,14 +28,17 @@ def handle_message(msg):
     timestamp = now()
     db.session.add(chat.Chat(id_emetteur=current_user.id,id_amp=target,timestamps=timestamp,contenu=content))
     db.session.commit()
-    count = chat.Chat.query.filter(chat.Chat.id_emetteur==current_user.id,chat.Chat.id_amp==target).count()
-    if count == 1:
+    count1 = chat.Chat.query.filter(chat.Chat.id_emetteur==current_user.id,chat.Chat.id_amp==target).count()
+    count2 = chat.Chat.query.filter(chat.Chat.id_amp==current_user.id,chat.Chat.id_emetteur==target).count()
+    if count1+count2 == 1:
         pl = {
                 'avatar_url' : current_user.avatar_url(),
                 'id': current_user.id,
                 'username': current_user.username,
             }
         emit('contact', pl, room=target)
+        ## Client will ask for the message out of curiosity
+        return
     d = timestamp_to_date(timestamp)
     pl = {
         'sender': current_user.id,
