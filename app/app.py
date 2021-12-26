@@ -56,10 +56,6 @@ def index():
 def navette():
     L = {'username':str(current_user.username),'mail':str(current_user.email),'id':str(current_user.id)}
     return render_template("navette.html",personne=L)
-@app.route("/particulier")
-@login_required
-def particulier():
-    return f"particulier"
 
 @app.route('/nouvelleAmplet', methods=['GET','POST'])
 @login_required
