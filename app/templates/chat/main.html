@@ -1,0 +1,67 @@
+<div id="chat" class="chat-body container chat-open">
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card chat-app">
+                <div id="plist" class="people-list">
+                    <button type="button" class="btn-close" onclick="closeChat()" aria-label="Close"></button>
+                    <!-- Peut-être plus tard
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                    --->
+                    <ul id="userList" class="list-unstyled chat-list mt-2 mb-0">
+
+                    </ul>
+                </div>
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div id="selectedUser" class="col-lg-6">
+                            </div>
+                            <!--- Si on veut mettre des actions ?
+                            <div class="col-lg-6 hidden-sm text-right">
+                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div id="chat-history" class="chat-history">
+                        <ul id="msgList" class="m-b-0">
+
+                        </ul>
+                    </div>
+                    <div class="chat-message clearfix">
+                        <div class="input-group mb-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-send"></i></span>
+                            </div>
+                            <input id="chat-send" type="text" class="form-control" placeholder="Enter text here...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if user.is_authenticated %}
+
+<p class="chat-open"><button id="openChat" class="btn btn-primary" onclick="openChat()">Chat</button></p>
+
+{% endif %}
+
+<script>
+    function openChat() {
+        document.getElementById("chat").style.display = "block";
+        document.getElementById("openChat").style.display = "none";
+    }
+
+    function closeChat() {
+        document.getElementById("chat").style.display = "none";
+        document.getElementById("openChat").style.display = "block";
+    }
+    document.getElementById("chat").style.display = "none";
+</script>
