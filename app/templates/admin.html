@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Amplet</title>
+    {% include 'headers/imports.html' %}
+    <link href="{{url_for('static',filename='css/amplet_en_cours.css')}}" rel="stylesheet">
+</head>
+<body>
+    <h1>Hello master</h1>
+    <p>Création d'amplet Navette : </p>
+    <p>Format dd-mm-aaaa (pitié je vais mettre le truc a jupux plus tard)</p>
+    <form method="POST">
+    <input type='text' name="dateD">
+    <input type='text' name="dateA">
+    <input type="submit">
+    </form>
+</body>
+</html>

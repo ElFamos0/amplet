@@ -52,7 +52,7 @@ login_manager.login_view = "login"
 def load_user(user_id):
     return users.User.query.get(int(user_id))
 
-@app.route("/admin")
+@app.route("/dashboard")
 def hello_world():
     content = "<p>Hello, World ! Here are my users : </p>"
     content += "<br/>"
@@ -71,6 +71,21 @@ def hello_world():
     for produit_amp in produits_amp.Produits_amp.query.all():
         content += f"{produit_amp.id_amp} - {produit_amp.id_produit} - {produit_amp.quantite} - {produit_amp.unite}"
     return content
+
+@app.route("/admin", methods=['GET','POST'])
+@login_required
+def adminpage():
+    if current_user.username == "admin":
+        if request.method=='POST':
+            dateD = request.form.get("dateD")
+            dateA = request.form.get("dateA")
+            navamplet = amplet.Amplets(navette=True,date_depart=dateD,date_arrivee=dateA,places_dispo=5,id_coursier=87)
+            db.session.add(navamplet)
+            db.session.commit()
+            return render_template("admin.html")
+        return render_template("admin.html")
+    else:
+        return "404"
 
 @app.route("/")
 def index():
@@ -92,11 +107,12 @@ def navette():
                     "unite": request.form.get(f"unite{i}"),
                     })
         for item in items:
-            if item["produit"] not in listeproduits or int(item["quantite"]) > 40:
+            if item["produit"] not in listeproduits or 0 >= int(item["quantite"]) > 40:
                 continue
-            #produit = produits_amp.Produits_amp(id_amp=57,id_produit=54,quantite=int(item["quantite"]),unite=item["unite"],user_id=0)
-            #db.session.add(produit)
-            #db.session.commit()
+            idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
+            produit = produits_amp.Produits_amp(id_amp=57,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],user_id=0)
+            db.session.add(produit)
+            db.session.commit()
         return "Commande effectué"
     return render_template("navette.html",personne=L,produits=listeproduits)
 
