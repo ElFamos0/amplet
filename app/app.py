@@ -65,6 +65,11 @@ def hello_world():
     for amplit in amplet.Amplets.query.all():
         content += f"{amplit.id} - {amplit.date_depart} - {amplit.date_arrivee} - {amplit.places_dispo} - {amplit.id_coursier}"
         content += "<br/>"
+    content += "<br>"
+    content += "<p>Commande</p>"
+    content += "<br/>"
+    for produit_amp in produits_amp.Produits_amp.query.all():
+        content += f"{produit_amp.id_amp} - {produit_amp.id_produit} - {produit_amp.quantite} - {produit_amp.unite}"
     return content
 
 @app.route("/")
@@ -86,8 +91,13 @@ def navette():
                     "quantite": request.form.get(f"quantite{i}"),
                     "unite": request.form.get(f"unite{i}"),
                     })
-        #for item in items:
-            #produit = produits_amp.Produits_amp(id_amp=)
+        for item in items:
+            if item["produit"] not in listeproduits or int(item["quantite"]) > 40:
+                continue
+            #produit = produits_amp.Produits_amp(id_amp=57,id_produit=54,quantite=int(item["quantite"]),unite=item["unite"],user_id=0)
+            #db.session.add(produit)
+            #db.session.commit()
+        return "Commande effectué"
     return render_template("navette.html",personne=L,produits=listeproduits)
 
 @app.route('/nouvelleAmplet', methods=['GET','POST'])
