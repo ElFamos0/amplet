@@ -13,11 +13,17 @@
 
     {% include 'headers/navbar.html' %}
 
-    <h1>Bonjour {{personne['username']}} que souhaitez vous pour la navette du "current navette"</h1>
+    <h1>Bonjour {{personne['username']}} </h1>
     <br>
     <br>
     <br>
     <form class=option method="POST">
+        <h6>Sélectionnez votre navette</h6>
+        <select id="navette" name="navette">
+            {% for option in optionnavette %}
+            <option value="{{option}}">{{option}}</option>
+            {% endfor %}
+          </select>
         <table>
             <tr>
                 <td>Nom du produit</td>

@@ -54,7 +54,7 @@ def load_user(user_id):
 
 @app.route("/dashboard")
 def hello_world():
-    content = "<p>Hello, World ! Here are my users : </p>"
+    content = "<p>UTILISATEURS</p>"
     content += "<br/>"
     for user in users.User.query.all():
         content += f"{user.id} - {user.username} & {user.email}"
@@ -66,10 +66,11 @@ def hello_world():
         content += f"{amplit.id} - {amplit.date_depart} - {amplit.date_arrivee} - {amplit.places_dispo} - {amplit.id_coursier}"
         content += "<br/>"
     content += "<br>"
-    content += "<p>Commande</p>"
+    content += "<p>COMMANDES</p>"
     content += "<br/>"
     for produit_amp in produits_amp.Produits_amp.query.all():
         content += f"{produit_amp.id_amp} - {produit_amp.id_produit} - {produit_amp.quantite} - {produit_amp.unite}"
+        content += "<br/>"
     return content
 
 @app.route("/admin", methods=['GET','POST'])
@@ -96,8 +97,11 @@ def index():
 def navette():
     L = {'username':str(current_user.username),'mail':str(current_user.email),'id':str(current_user.id)}
     listeproduits = []
+    listenavettes = []
     for produit in produits.Produits.query.all():
         listeproduits.append(produit.nom)
+    for navette in amplet.Amplets.query.filter(amplet.Amplets.navette==True).all():
+        listenavettes.append([navette.date_depart,navette.date_arrivee])
     if request.method=='POST':
         items = []
         for i in range(0,5):
@@ -114,7 +118,7 @@ def navette():
             db.session.add(produit)
             db.session.commit()
         return "Commande effectué"
-    return render_template("navette.html",personne=L,produits=listeproduits)
+    return render_template("navette.html",personne=L,produits=listeproduits,optionnavette=listenavettes)
 
 @app.route('/nouvelleAmplet', methods=['GET','POST'])
 @login_required
