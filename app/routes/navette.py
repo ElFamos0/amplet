@@ -2,7 +2,7 @@ from db import *
 from models import *
 from flask_login import current_user, login_required
 from flask import render_template
-
+from utils import timestamp
 ##############################
 ########### NAVETTE ##########
 ##############################
@@ -16,7 +16,7 @@ def navette():
     for produit in produits.Produits.query.all():
         listeproduits.append(produit.nom)
     for navette in amplet.Amplets.query.filter(amplet.Amplets.navette==True).all():
-        listenavettes.append([navette.date_depart,navette.date_arrivee])
+        listenavettes.append([timestamp.timestamp_to_date(navette.date_depart),timestamp.timestamp_to_date(navette.date_arrivee)])
     if request.method=='POST':
         items = []
         for i in range(0,5):

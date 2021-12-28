@@ -23,7 +23,7 @@ if setup:
     amplet2 = amplet.Amplets(navette=True,date_depart=1640803800000, date_arrivee=1640807400000,places_dispo=5,id_coursier=5,delai_fermeture_depart=6666666,ferme=False)
     amplet3 = amplet.Amplets(navette=True,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=5,delai_fermeture_depart=6666666,ferme=False)
     produit1 = produits.Produits(id_marchand=78,nom="Tomate(s)",prix=450)
-    produit2 = produits.Produits(id_marchand=78,nom="Pomme(s) de terre",prix=450)
+    produit2 = produits.Produits(id_marchand=78,nom="Pomme(s) de terre(s)",prix=450)
     produit3 = produits.Produits(id_marchand=78,nom="Orange(s)",prix=450)
     produit4 = produits.Produits(id_marchand=78,nom="Carotte(s)",prix=450)
     admin.set_password('oof')
