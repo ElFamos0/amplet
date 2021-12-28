@@ -16,7 +16,7 @@ def navette():
     for produit in produits.Produits.query.all():
         listeproduits.append(produit.nom)
     for navette in amplet.Amplets.query.filter(amplet.Amplets.navette==True).all():
-        listenavettes.append([timestamp.timestamp_to_date(navette.date_depart),timestamp.timestamp_to_date(navette.date_arrivee)])
+        listenavettes.append(timestamp.timestamp_to_date(navette.date_arrivee, format=True))
     if request.method=='POST':
         items = []
         for i in range(0,5):
@@ -29,7 +29,7 @@ def navette():
             if item["produit"] not in listeproduits or 0 >= int(item["quantite"]) > 40:
                 continue
             idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
-            produit = produits_amp.Produits_amp(id_amp=57,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],user_id=0)
+            produit = produits_amp.Produits_amp(id_amp=57,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],id_user=0)
             db.session.add(produit)
             db.session.commit()
         return "Commande effectué"
