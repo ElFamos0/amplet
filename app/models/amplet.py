@@ -12,7 +12,7 @@ class Amplets(db.Model):
     date_arrivee = db.Column(db.Integer, nullable=False)
     delai_fermeture_depart = db.Column(db.Integer, nullable=False)
     places_dispo = db.Column(db.Integer, nullable=False)
-    ferme = db.Column(db.Bool, nullable=False)
+    ferme = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, navette, date_depart, date_arrivee, places_dispo, id_coursier, delai_fermeture_depart, ferme):
         self.id = next(gen)
