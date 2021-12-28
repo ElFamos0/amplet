@@ -11,7 +11,7 @@ class Amplets(db.Model):
     date_depart = db.Column(db.Integer, nullable=False)
     date_arrivee = db.Column(db.Integer, nullable=False)
     places_dispo = db.Column(db.Integer, nullable=False)
-    fermer = db.Column(db.Bool, nullable=False)
+    ferme = db.Column(db.Bool, nullable=False)
 
     def __init__(self, navette, date_depart, date_arrivee, places_dispo, id_coursier):
         self.id = next(gen)
