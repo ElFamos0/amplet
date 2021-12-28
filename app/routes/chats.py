@@ -5,6 +5,10 @@ from flask_socketio import emit, join_room, disconnect
 from flask_login import current_user
 import functools
 
+##############################
+########### CHATS  ###########
+##############################
+
 def authenticated_only(f):
     @functools.wraps(f)
     def wrapped(*args, **kwargs):

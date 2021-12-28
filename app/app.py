@@ -1,7 +1,5 @@
 from re import M
-from flask import render_template, request, url_for
-from flask_login import LoginManager, login_required, current_user
-from datetime import date
+from flask_login import LoginManager
 import os
 
 # Setup ####################################
@@ -21,11 +19,11 @@ if setup:
     admin = users.User(username='admin', email='admin@test.com', code_postal=57000)
     guest = users.User(username='guest', email='guest@test.com', code_postal=57000)
     third = users.User(username='third', email='third@test.com', code_postal=57000)
-    amplet1 = amplet.Amplets(navette=False,date_depart="18h50-28/12/2021",date_arrivee="19h50-28/12/2021",places_dispo=5,id_coursier=2)
-    amplet2 = amplet.Amplets(navette=True,date_depart="18h50-29/12/2021",date_arrivee="19h50-30/12/2021",places_dispo=5,id_coursier=5)
-    amplet3 = amplet.Amplets(navette=True,date_depart="18h50-30/12/2021",date_arrivee="19h50-31/12/2021",places_dispo=5,id_coursier=5)
+    amplet1 = amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=2)
+    amplet2 = amplet.Amplets(navette=True,date_depart=1640803800000, date_arrivee=1640807400000,places_dispo=5,id_coursier=5)
+    amplet3 = amplet.Amplets(navette=True,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=5)
     produit1 = produits.Produits(id_marchand=78,nom="Tomate(s)",prix=450)
-    produit2 = produits.Produits(id_marchand=78,nom="Pomme(s) de terre(s)",prix=450)
+    produit2 = produits.Produits(id_marchand=78,nom="Pomme(s) de terre",prix=450)
     produit3 = produits.Produits(id_marchand=78,nom="Orange(s)",prix=450)
     produit4 = produits.Produits(id_marchand=78,nom="Carotte(s)",prix=450)
     admin.set_password('oof')
@@ -51,129 +49,6 @@ login_manager.login_view = "login"
 @login_manager.user_loader
 def load_user(user_id):
     return users.User.query.get(int(user_id))
-
-@app.route("/dashboard")
-def hello_world():
-    content = "<p>UTILISATEURS</p>"
-    content += "<br/>"
-    for user in users.User.query.all():
-        content += f"{user.id} - {user.username} & {user.email}"
-        content += "<br/>"
-    content += "<br>"
-    content += "<p>AMPLET</p>"
-    content += "<br/>"
-    for amplit in amplet.Amplets.query.all():
-        content += f"{amplit.id} - {amplit.date_depart} - {amplit.date_arrivee} - {amplit.places_dispo} - {amplit.id_coursier}"
-        content += "<br/>"
-    content += "<br>"
-    content += "<p>COMMANDES</p>"
-    content += "<br/>"
-    for produit_amp in produits_amp.Produits_amp.query.all():
-        content += f"{produit_amp.id_amp} - {produit_amp.id_produit} - {produit_amp.quantite} - {produit_amp.unite}"
-        content += "<br/>"
-    return content
-
-@app.route("/admin", methods=['GET','POST'])
-@login_required
-def adminpage():
-    if current_user.username == "admin":
-        if request.method=='POST':
-            dateD = request.form.get("dateD")
-            dateA = request.form.get("dateA")
-            navamplet = amplet.Amplets(navette=True,date_depart=dateD,date_arrivee=dateA,places_dispo=5,id_coursier=87)
-            db.session.add(navamplet)
-            db.session.commit()
-            return render_template("admin.html")
-        return render_template("admin.html")
-    else:
-        return "404"
-
-@app.route("/")
-def index():
-    return render_template("index.html", user=current_user)
-
-@app.route("/navette", methods=['GET','POST'])
-@login_required
-def navette():
-    L = {'username':str(current_user.username),'mail':str(current_user.email),'id':str(current_user.id)}
-    listeproduits = []
-    listenavettes = []
-    for produit in produits.Produits.query.all():
-        listeproduits.append(produit.nom)
-    for navette in amplet.Amplets.query.filter(amplet.Amplets.navette==True).all():
-        listenavettes.append([navette.date_depart,navette.date_arrivee])
-    if request.method=='POST':
-        items = []
-        for i in range(0,5):
-            items.append({
-                    "produit": request.form.get(f"produit{i}"),
-                    "quantite": request.form.get(f"quantite{i}"),
-                    "unite": request.form.get(f"unite{i}"),
-                    })
-        for item in items:
-            if item["produit"] not in listeproduits or 0 >= int(item["quantite"]) > 40:
-                continue
-            idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
-            produit = produits_amp.Produits_amp(id_amp=57,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],user_id=0)
-            db.session.add(produit)
-            db.session.commit()
-        return "Commande effectué"
-    return render_template("navette.html",personne=L,produits=listeproduits,optionnavette=listenavettes)
-
-@app.route('/nouvelleAmplet', methods=['GET','POST'])
-@login_required
-def nouvelleAmplet():
-    mag_dispo=['primeur du coin', 'chez Tony', 'vendeur de foutre']
-    mag_visit=[]
-    # if request.method=='POST':
-    #     L=request.form
-    #     for e in mag_dispo:
-    #         if e in L:
-    #             mag_visit.append(e)
-    #     return mag_visit[1]
-    return render_template('nouvelleAmplet.html', magasins=mag_dispo)
-
-@app.route('/amplets_en_cours', methods=['GET','POST'])
-
-def amplets_en_cours() :
-    liste_mag =  ['Primeur','Garagiste','Boucher']
-    #A refaire avec une requete sql
-
-    recherche = ['Proximité','Date de début','Date de fin','Type de magasins']
-    d2 = date.today().strftime("%Y-%m-%d")
-
-
-    if request.method == "POST" :
-        debut = request.form.get('mindate',d2)
-        fin = request.form.get('maxdate',d2)
-        recherche_actuelle = request.form.get('recherche','Proximité')
-
-        i = 0
-        for j in range(4) :
-            if recherche[j] == recherche_actuelle :
-                i = j
-        recherche[0],recherche[i] = recherche[i],recherche[0]
-        
-        liste_magbis = []
-        for i in liste_mag :
-            val = request.form.get(i,'off')
-            if val == 'on' :
-                liste_magbis.append((i,True))
-            else :
-                liste_magbis.append((i,False))
-        
-
-    else :
-        debut = d2
-        fin = d2
-        liste_magbis = []
-        for i in liste_mag :
-            liste_magbis.append((i,True))
-
-
-    
-    return render_template('amplets_en_cours.html',magasins = liste_magbis,debut = debut,fin = fin,recherche = recherche)
-
 
 ## IMPORT ROUTES
 
