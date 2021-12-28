@@ -8,6 +8,8 @@ class Marchands(db.Model):
     id = db.Column(db.String(40), primary_key=True)
     nom = db.Column(db.String(100))
     adresse = db.Column(db.String(400))
+    coordx = db.Column(db.Double)
+    coordy = db.Column(db.Double)
     type = db.Column(db.String(50))
     multiplicateur = db.Column(db.Float)
 
