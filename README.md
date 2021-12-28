@@ -20,6 +20,8 @@ Gérald Oster <<gerald.oster@telecomnancy.eu>>
 
 [Charte projet](Gestion_de_projet/Charte_projet.md)
 
-[Base de données](./Presentation/Base%20de%20données%208f9b886f8c664d90a622cdc2437af808.md)
+[Présentation du projet](./Presentation/Projet.md)
 
-[Web et Design](./Presentation/Web%20et%20Design%20d19f6fb4b1424b1a8947d94a170c3be0.md)
+[Base de données](./Presentation/BDD.pdf)
+
+[Web et Design](./Presentation/Web_et_design.md)

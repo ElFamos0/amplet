@@ -27,7 +27,7 @@ Avancement
 - Code : Ce qui a été mis en place
     - Initialisation de la BD (avec SQLAlchemy)
     - Dans 'modele' mettre toutes les classes crées. Une classe = (en gros) une table.
-    - Dans [init.py](http://init.py) : rajouter tous les modèle.
+    - Dans init.py : rajouter tous les modèle.
     - Informer Tristan en cas de modifications des modèles. (S'occupe de la gestion)
     
 - WEB :

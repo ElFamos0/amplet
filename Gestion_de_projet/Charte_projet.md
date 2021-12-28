@@ -41,7 +41,7 @@ Notre projet vous permettra de :
     - Recherche, affichage et tri des Amplet à proximité
     - Possibilité de voter pour un commerce à visiter par la navette communale
     - Profil avec nombre de points et liste des Amplet effectuées ou en cours
-- [Base de données](https://gitlab.telecomnancy.univ-lorraine.fr/ppii2k22/project1-grp_e10/-/blob/master/Presentation/Base%20de%20donn%C3%A9es%208f9b886f8c664d90a622cdc2437af808.md)
+- [Base de données](../Presentation/BDD.pdf)
 
 ## Déroulement du projet
 
