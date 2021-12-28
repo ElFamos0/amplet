@@ -17,4 +17,4 @@ Ordres du jour :
 
 ## Refonte des bases de données :
 
-(Base de données)[Presentation/Base de données 8f9b886f8c664d90a622cdc2437af808.md]
+[Base de données](./Base%20de%20données%208f9b886f8c664d90a622cdc2437af808.md)
