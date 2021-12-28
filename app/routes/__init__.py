@@ -2,5 +2,9 @@ __all__ = [
     "avatar",
     "login",
     "profile",
-    "chats"
+    "chats",
+    "admin",
+    "index",
+    "navette",
+    "amplets"
 ]

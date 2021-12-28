@@ -9,4 +9,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/db.db' # Declares the da
 
 db = SQLAlchemy(app) # Uses SQLAlchemy as ORM
 
-socketio = SocketIO(app, async_mode="gevent", engineio_logger=True, cors_allowed_origins=['https://amplet.fr', 'http://amplet.fr']) # Uses SocketIO as WS
+socketio = SocketIO(app, async_mode="gevent", engineio_logger=True, cors_allowed_origins=['https://amplet.fr', 'http://amplet.fr', 'http://127.0.0.1:5000']) # Uses SocketIO as WS
