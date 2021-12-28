@@ -17,5 +17,4 @@ Ordres du jour :
 
 ## Refonte des bases de données :
 
-[https://www.notion.so/Base-de-donn-es-8f9b886f8c664d90a622cdc2437af808#921ce067c9814fa79a926fe4987d6c0f](Presentation/Base de données 8f9b886f8c664d90a622cdc2437af808.md
-)
+[](Presentation/Base de données 8f9b886f8c664d90a622cdc2437af808.md)
