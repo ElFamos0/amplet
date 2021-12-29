@@ -54,6 +54,11 @@
             {% endfor %}
         </table>
         <input type="submit" href='/navette' value="Envoyer">
+        {% for mesg in get_flashed_messages() %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ mesg }}
+                            </div>
+                            {% endfor %}
     </form>
 </body>
 

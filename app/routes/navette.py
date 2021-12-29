@@ -1,8 +1,11 @@
+from sqlalchemy.sql.expression import and_
 from db import *
 from models import *
 from flask_login import current_user, login_required
-from flask import render_template
+from flask import render_template,flash,redirect,url_for
 from utils import timestamp
+from sqlalchemy import and_
+
 ##############################
 ########### NAVETTE ##########
 ##############################
@@ -15,8 +18,11 @@ def navette():
     listenavettes = {}
     for produit in produits.Produits.query.all():
         listeproduits.append(produit.nom)
-    for navette in amplet.Amplets.query.filter(amplet.Amplets.navette==True).all():
-        listenavettes[timestamp.timestamp_to_date(navette.date_arrivee, format=True)]= navette.id
+    for navette in amplet.Amplets.query.filter(and_(amplet.Amplets.navette==True,amplet.Amplets.ferme==False)).all():
+        if produits_amp.Produits_amp.query.filter(produits_amp.Produits_amp.id_amp==navette.id).first() == None:
+            listenavettes[timestamp.timestamp_to_date(navette.date_arrivee, format=True)] = navette.id
+    if listenavettes == {}:
+        return "Il n'y a pas de navettes disponible merci de revenir ultérieurement"
     if request.method=='POST':
         items = []
         for i in range(0,5):
@@ -26,11 +32,12 @@ def navette():
                     "unite": request.form.get(f"unite{i}"),
                     })
         for item in items:
-            if item["produit"] not in listeproduits or 0 >= int(item["quantite"]) > 40:
+            if item["produit"] not in listeproduits or 0 >= int(item["quantite"]) > 40 or item["quantite"]==None:
                 continue
             idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
             produit = produits_amp.Produits_amp(id_amp=listenavettes[request.form.get("navette")],id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],id_user=current_user.id)
             db.session.add(produit)
             db.session.commit()
-        return "Commande effectué"
+        flash("votre commande à été prise en compte")
+        redirect(url_for('navette'))
     return render_template("navette.html",personne=L,produits=listeproduits,optionnavette=listenavettes.keys())
