@@ -25,7 +25,7 @@
                                     <h4>{{user.username}}</h4>
                                     <p class="text-secondary mb-1">ID : {{user.id}}</p>
                                     <p class="text-secondary mb-1">{{user.email}}</p>
-                                    <p class="text-muted font-size-sm">Secteur</p>
+                                    <p class="text-muted font-size-sm">{{user.code_postal}}</p>
                                 </div>
                             </div>
                         </div>
@@ -52,18 +52,10 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Telephone</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="0685741254">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
                                     <h6 class="mb-0">Adresse</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="Secteur">
+                                    <input type="text" class="form-control" value="{{user.code_postal}}">
                                 </div>
                             </div>
                             <div class="row">
