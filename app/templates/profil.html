@@ -24,7 +24,7 @@
                                 <div class="mt-3">
                                     <h4>{{user.username}}</h4>
                                     <p class="text-secondary mb-1">{{user.email}}</p>
-                                    <p class="text-muted font-size-sm">Habite dans le secteur ????</p>
+                                    <p class="text-muted font-size-sm">{{user.code_postal}}</p>
                                     {% if chat %}
                                     <button onclick="requestID('{{user.id}}')" class="btn btn-primary">Message</button> {% endif %}
                                 </div>
@@ -55,19 +55,10 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Téléphone</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    En mode 06
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
                                     <h6 class="mb-0">Adresse</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Secteur
+                                    {{user.code_postal}}
                                 </div>
                             </div>
                             <hr>
