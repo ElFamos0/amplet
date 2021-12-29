@@ -7,5 +7,5 @@ def now() :
 def timestamp_to_date(timestamp:int,format=False):
     if format==True:
         d = datetime.utcfromtimestamp(timestamp/1000)
-        return f"{d.day}/{d.month}/{d.year} - {d.hour}h{d.minute}"
+        return f"{d.day:02d}/{d.month:02d}/{d.year:02d} - {d.hour:02d}h{d.minute:02d}"
     return datetime.utcfromtimestamp(timestamp/1000)

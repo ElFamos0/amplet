@@ -47,7 +47,7 @@ def handle_message(msg):
         'receiver': target,
         'content' : content,
         'time': f'{d.hour:02d}:{d.minute:02d}:{d.second:02d}',
-        'date': f'{d.day}-{d.month}-{d.year}',
+        'date': f'{d.day:02d}-{d.month:02d}-{d.year}',
         'self': True,
     }
     emit('message', pl, room=current_user.id)
