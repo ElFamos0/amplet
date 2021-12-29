@@ -14,7 +14,6 @@ Malo :
 | 25 décembre | 28 décembre | Création de la page navette, utilisation de la BDD pour afficher des éléments et créer de nouvelles entrées en fonction des demandes utilisateurs / mise en page css |
 | 25 décembre  | 28 décembre | Modifications mineures sur l’ensemble du projet (ex ajout d’une fonction formatage sur les timestamps) |
 |  |  | Implémentation de l’algorithme du plus court chemin pour savoir dans quel ordre passer chez les marchants |
-|  |  |  |
 
 Tristan :
 
