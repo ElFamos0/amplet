@@ -13,15 +13,15 @@
 
     {% include 'headers/navbar.html' %}
 
-    <h1>Bonjour {{personne['username']}} </h1>
+    <h1>Bonjour {{user.username}} </h1>
     <br>
     <br>
     <br>
     <form class=option method="POST">
         <h6>Sélectionnez votre navette</h6>
         <select id="navette" name="navette">
-            {% for option in optionnavette %}
-            <option value="{{option}}">{{option}}</option>
+            {% for navette in navettes %}
+            <option value="{{navette.id}}">{{navette.nom_amplet()}}</option>
             {% endfor %}
           </select>
         <table>
@@ -53,12 +53,11 @@
             </tr>
             {% endfor %}
         </table>
-        <input type="submit" href='/navette' value="Envoyer">
-        {% for mesg in get_flashed_messages() %}
-                            <div class="alert alert-danger" role="alert">
-                                {{ mesg }}
-                            </div>
-                            {% endfor %}
+        <input type="submit" href='/navette' value="Envoyer"> {% for mesg in get_flashed_messages() %}
+        <div class="alert alert-danger" role="alert">
+            {{ mesg }}
+        </div>
+        {% endfor %}
     </form>
 </body>
 

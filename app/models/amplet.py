@@ -1,5 +1,6 @@
 from app import db
 from snowflake import SnowflakeGenerator
+from utils import timestamp
 
 gen = SnowflakeGenerator(1)
 
@@ -13,6 +14,9 @@ class Amplets(db.Model):
     delai_fermeture_depart = db.Column(db.Integer, nullable=False)
     places_dispo = db.Column(db.Integer, nullable=False)
     ferme = db.Column(db.Boolean, nullable=False)
+
+    def nom_amplet(self):
+        return f'{self.id_coursier} - {timestamp.timestamp_to_date(self.date_arrivee, format=True)}'
 
     def __init__(self, navette, date_depart, date_arrivee, places_dispo, id_coursier, delai_fermeture_depart, ferme):
         self.id = next(gen)
