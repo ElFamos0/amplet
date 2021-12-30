@@ -1,0 +1,70 @@
+from db import *
+from models import *
+from utils.timestamp import now, timestamp_to_date
+
+def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
+
+    amps = amplet.Amplets.query.all()
+    liste_amplet = []
+    for amp in amps :
+        ampl = {'id_amp' : amp.id}
+
+        cours = users.User.query.add_entity(amplet.Amplets).join(amplet.Amplets).filter(amplet.Amplets.id == amp.id,amplet.Amplets.id_coursier==users.User.id).first()
+        if cours is None :
+            coursier = "NULL"
+        else :
+            coursier = cours.username
+            cp = cours.code_postal
+        ampl['coursier'] = coursier
+
+        participants = users.User.query.add_entity(participants_amp.Participants_amp).join(participants_amp.Participants_amp).filter(participants_amp.Participants_amp.id_amp == amp.id,participants_amp.Participants_amp.id_user==users.User.id)
+        liste_p = []
+        for p in participants :
+            liste_p.append(p[0].username)
+        ampl['participants'] = liste_p
+
+        if amp.navette :
+            navette = amp.id_coursier
+            cp = amp.id_coursier
+        else :
+            navette = 'NULL'
+            cp = 0
+        ampl['navette'] = navette
+        ampl['cp'] = int(cp)
+
+        places = amp.places_dispo - len(liste_p)
+        ampl['places'] = places
+
+        magas = marchands.Marchands.query.add_entity(marchands_amp.Marchands_amp).join(marchands_amp.Marchands_amp).filter(marchands_amp.Marchands_amp.id_amp == amp.id,marchands_amp.Marchands_amp.id_marchand==marchands.Marchands.id)
+        liste_m = []
+        l_type = []
+        
+        for m in magas :
+            #print(m)
+            liste_m.append(m[0].nom)
+            if m[0].type not in l_type :
+                l_type.append(m[0].type)
+        ampl['l_magasins'] = liste_m
+        ampl['l_type'] = l_type
+
+        d = timestamp_to_date(amp.date_depart,True)
+        ampl['debut'] = d
+        ampl['date'] = amp.date_depart
+
+        valide = True
+        if amp.ferme or amp.date_depart < debut_stamp or amp.date_depart > fin_stamp or places <= 0:
+            valide = False
+            #print("date")
+        for mag_typ in liste_typebis : 
+            if mag_typ[1] :
+                if mag_typ[0] not in l_type :
+                    valide = False
+                    #print("type")
+        #if valide :
+            #print(ampl)
+        
+
+        
+        if valide :
+            liste_amplet.append(ampl)
+    return liste_amplet
