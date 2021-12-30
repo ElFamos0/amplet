@@ -1,6 +1,7 @@
 from db import *
 from models import *
 from flask_login import login_required
+from flask_login import current_user
 from flask import render_template, request
 from datetime import date, datetime
 from time import mktime
@@ -26,7 +27,7 @@ def nouvelleAmplet():
     return render_template('nouvelleAmplet.html', magasins=mag_dispo)
 
 @app.route('/amplets_en_cours', methods=['GET','POST'])
-
+@login_required
 def amplets_en_cours() :
 
     march = marchands.Marchands.query.all()
@@ -74,7 +75,15 @@ def amplets_en_cours() :
     fin_stamp = mktime(datetime.strptime(fin,"%Y-%m-%d").timetuple()) * 1000 # On convertit en timestamp
 
     liste_amplet= amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis)
-    liste_amplet = recherche_par(liste_amplet,recherche[0])
+
+    if recherche[0] == 'Proximité' :
+
+        cp = users.User.query.get(current_user.id).code_postal
+
+    else :
+        cp = 0
+
+    liste_amplet = recherche_par(liste_amplet,recherche[0],cp)
 
 
 
@@ -89,7 +98,7 @@ def amplets_en_cours() :
 
 
 @app.route('/amptest', methods=['GET','POST'])
-
+@login_required
 def amptest() :
     #db.session.add(marchands.Marchands(nom= 'Chez Jupux',adresse="4 rue Jean Gireadoux 54600",type="Crémier",multiplicateur=1.0,coordx = 0,coordy= 0))
     #db.session.add(marchands.Marchands(nom= 'Chez Tomczak',adresse="12 rue Siclover 54000",type="Maître Sauceur",multiplicateur=1.0,coordx = 0,coordy= 0))
@@ -120,7 +129,7 @@ def amptest() :
     #test3 = users.User.query.add_entity(amplet.Amplets).join(amplet.Amplets).filter(amplet.Amplets.id == "6881902203561316352",amplet.Amplets.id_coursier==users.User.id)
     #test3 = amplet.Amplets.query.all()
     #test3 = marchands.Marchands.query.all()
-    test3 = participants_amp.Participants_amp.query.all()
+    test3 = users.User.query.get(current_user.id)
     test4 = users.User.query.all()
     liste1 = ""
     liste2 = ""
@@ -132,11 +141,11 @@ def amptest() :
     for i  in test2 :
         liste2 += i + " "
 
-    for i  in test3 :
-        liste3 += i.id_amp + "__" + i.id_user + "   "
+    #for i  in test3 :
+        #liste3 += i.id_amp + "__" + i.id_user + "   "
         #liste3 += i[0].username
-        print(1)
-
+        #liste3 += i.username + i.id
+    liste3+= test3.username + str(test3.code_postal)
     for i  in test4 :
         liste4 += i.id + "__" + i.username + "  "
     

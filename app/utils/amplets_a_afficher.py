@@ -30,7 +30,7 @@ def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
             navette = 'NULL'
             cp = 'NULL'
         ampl['navette'] = navette
-        ampl['cp'] = cp
+        ampl['cp'] = int(cp)
 
         places = amp.places_dispo - len(liste_p)
         ampl['places'] = places
@@ -49,6 +49,7 @@ def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
 
         d = timestamp_to_date(amp.date_depart,True)
         ampl['debut'] = d
+        ampl['date'] = amp.date_depart
 
         valide = True
         if amp.ferme or amp.date_depart < debut_stamp or amp.date_depart > fin_stamp or places <= 0:
