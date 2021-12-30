@@ -107,7 +107,7 @@ def generate_password_hash(data:str):
     pepper = '53l3cJhxBSp465Wbne8XI97s742'
     salt = gen_salt(random.randint(10,20))
     data = salt+data+pepper
-    iterations = random.randint(10000,15000)
+    iterations = random.randint(7000,9000)
     for i in range(iterations):
         data = hash(data.encode())
     return f'{pepper}${salt}${iterations}${data}'
