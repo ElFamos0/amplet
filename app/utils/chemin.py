@@ -32,12 +32,6 @@ def pluscourtchemin(listepoint:list):
     return listepassage
 
 
-
-
-
-    
-    
-
 print(creationgraph([(5,6),(3,2),(8,7),(6,9),(0,0)]))  
 print(pluscourtchemin([(5,6),(3,2),(8,7),(6,9),(0,0)]))
 print(pluscourtchemin([(20,13),(21,4),(45,9),(20,28),(8,7)]))
