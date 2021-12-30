@@ -81,7 +81,7 @@ def amplets_en_cours() :
         cp = users.User.query.get(current_user.id).code_postal
 
     else :
-        cp = 0
+        cp = -100000
 
     liste_amplet = recherche_par(liste_amplet,recherche[0],cp)
 

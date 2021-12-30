@@ -28,7 +28,7 @@ def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
             cp = amp.id_coursier
         else :
             navette = 'NULL'
-            cp = 'NULL'
+            cp = 0
         ampl['navette'] = navette
         ampl['cp'] = int(cp)
 
