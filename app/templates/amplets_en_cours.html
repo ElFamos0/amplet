@@ -13,7 +13,7 @@
 
     {% include 'headers/navbar.html' %}
 
-    <h1 class="titre"> Les amplets à venir !</h1>
+    <h1 class="titre"> Les amplets à venir ! </h1>
 
     <div class="mainbody">
 
@@ -35,9 +35,9 @@
                     </select>
             </div>
             <div class="itemopt">
-                <p>Types de magasins :</p>
+                <p>Type de magasins :</p>
                 <div class="checkboxlist">
-                    {% for mag in magasins %}
+                    {% for mag in type_magasins %}
                     <div class="checkboxitem">
                         <input type="checkbox" id="{{mag[0]}}" name="{{mag[0]}}" value="on" {{ "checked" if mag[1] else "" }}>
                         <label for="{{mag[0]}}">{{mag[0]}}</label>
@@ -46,13 +46,72 @@
                 </div>
             </div>
             <div class="itemopt">
-                <button type="submit" href="/amplets_en_cours" class="button1"> Rechercher</button>
+                <button type="submit" href="/amplets_en_cours" class="button1"> Rechercher </button>
             </div>
         </form>
+
         <div class="affichage">
-            Aucune amplet ne répond à vos critères !
+
+            {{ "Aucune amplet ne répond à vos critères !" if amplets|length==0 else "" }}
+            
+            {% for amp in amplets %}
+                    <div class="amplet_item">
+
+                         <div class = "a_head">
+                            <h5 class ="a_titre">Amplet du {{amp.debut}}</h5>
+
+                            <button class = "a_button"> S'inscrire</button>
+
+                        </div>
+
+                        <div class = "a_body">
+                                
+                            <div class="a_cont">
+                            <p> Place{{ "s" if amp.places >1 else "" }} restante{{ "s" if amp.places >1 else "" }} : {{(amp.places)}}  </p>  
+                            <p> Code postal : {{amp.cp}} </p>
+                            <p> Coursier : {{  "Navette" if amp.navette !='NULL' else amp.coursier }} </p>
+                            </div>
+
+                            <div class = "a_cont"> 
+                                
+                                <div class= "a_text">
+                                Participant{{ "s" if amp.participants|length>1 else ""}} :
+                                </div>
+                                <div class="a_liste"> 
+
+                                    {% if amp.participants|length==0 %} <div class= 'a_liste_item'>  Aucun </div> {% endif %}
+
+                                    {% for p in amp.participants %}
+                                    <div class= "a_liste_item">  {{p}} </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class = "a_cont"> 
+                                
+                                <div class= "a_text">
+                                Magasin{{ "s" if amp.l_magasins|length>1 else ""}} visité{{ "s" if amp.l_magasins|length>1 else ""}} :
+                                </div>
+                                <div class="a_liste"> 
+                                    
+                                    {% for m in amp.l_magasins %}
+                                    <div class= "a_liste_item">  {{m}} </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+            {% endfor %}
+
         </div>
+
+
     </div>
+
+
 </body>
 
 </html>
