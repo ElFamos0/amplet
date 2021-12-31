@@ -1,5 +1,6 @@
 from math import sqrt
 import numpy as np
+import itertools
 
 
 
@@ -18,20 +19,63 @@ def pluscourtchemin(listepoint:list):
     M = creationgraph(listepoint)
     listepassage = []
     listedejavisite = [0]
+    taillechemin = 0
     while len(listedejavisite)!=len(listepoint):
         i = listedejavisite[-1]
-        min = 10000 #valeur hypothétique qui ne sera jamais atteinte
+        min = float("inf") #valeur hypothétique qui ne sera jamais atteinte
         for j in range(len(M[i])):
             if M[i][j]<=min and i!=j and j not in listedejavisite:
                 min = M[i][j]
+                taillechemin += min
                 visite = j
                 passage = listepoint[j]
         listedejavisite.append(visite)
         listepassage.append(passage)
+    taillechemin += M[listedejavisite[-1]][0]
     listepassage.append(listepoint[0])
     return listepassage
 
 
+def pluscourtcheminexhaustif(listepoint:list):
+    """Sachant qu'au maximum on passe par 6 points (une seule fois) on aura donc 1/2*(n-1)! chemins à tester pour voir lequel est le meilleur on liste donc toute les
+    substitution avec un algorithme de Heap"""
+    listepossible = []
+    depart = listepoint[0]
+    min = float("inf")
+    def heap(listepoint:list,n):
+
+        if n == 1:
+            listepossible.append(listepoint)    
+        
+        for i in range(n):
+            heap(listepoint, n-1)
+    
+            if n & 1:
+                listepoint[0], listepoint[n-1] = listepoint[n-1], listepoint[0]
+            else:
+                listepoint[i], listepoint[n-1] = listepoint[n-1], listepoint[i] 
+    heap(listepoint[1:],len(listepoint[1:]))
+    for liste in listepossible:
+        trajet = 0
+        precedent = depart
+        for elm in liste:
+            trajet += sqrt((elm[0] - precedent[0])**2 +  (elm[1] - precedent[0])**2)
+            precedent = elm
+        trajet += sqrt((depart[0] - precedent[0])**2 +  (depart[1] - precedent[0])**2)
+        if trajet < min:
+            min = trajet
+            listeretenu = liste
+            listeretenu.append(depart)
+    return listeretenu, trajet
+
+
+            
+               
+
+     
+ 
+
+
 print(creationgraph([(5,6),(3,2),(8,7),(6,9),(0,0)]))  
 print(pluscourtchemin([(5,6),(3,2),(8,7),(6,9),(0,0)]))
-print(pluscourtchemin([(20,13),(21,4),(45,9),(20,28),(8,7)]))
+print(pluscourtcheminexhaustif([(20,13),(21,4),(45,9),(20,28),(8,7)]))
