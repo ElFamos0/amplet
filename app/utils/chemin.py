@@ -42,11 +42,12 @@ def pluscourtcheminexhaustif(listepoint:list):
     listepossible = []
     depart = listepoint[0]
     min = float("inf")
+
     def heap(listepoint:list,n):
 
         if n == 1:
             listepossible.append(listepoint)    
-        
+    
         for i in range(n):
             heap(listepoint, n-1)
     
@@ -59,9 +60,9 @@ def pluscourtcheminexhaustif(listepoint:list):
         trajet = 0
         precedent = depart
         for elm in liste:
-            trajet += sqrt((elm[0] - precedent[0])**2 +  (elm[1] - precedent[0])**2)
+            trajet += sqrt(((elm[0] - precedent[0])**2) +  ((elm[1] - precedent[1])**2))
             precedent = elm
-        trajet += sqrt((depart[0] - precedent[0])**2 +  (depart[1] - precedent[0])**2)
+        trajet += sqrt(((depart[0] - precedent[0])**2) +  ((depart[1] - precedent[1])**2))
         if trajet < min:
             min = trajet
             listeretenu = liste
@@ -70,12 +71,26 @@ def pluscourtcheminexhaustif(listepoint:list):
 
 
             
-               
+def calcultrajet(listepoint):
+    liste = listepoint[1:]
+    depart = listepoint[0]
+    trajet = 0
+    precedent = depart
+    for elm in liste:
+            trajet += sqrt(((elm[0] - precedent[0])**2)+ ((elm[1] - precedent[1])**2))
+            precedent = elm
+    trajet += sqrt(((depart[0] - precedent[0])**2) + ((depart[1] - precedent[1])**2))
+    return trajet
+
 
      
  
 
-
-print(creationgraph([(5,6),(3,2),(8,7),(6,9),(0,0)]))  
-print(pluscourtchemin([(5,6),(3,2),(8,7),(6,9),(0,0)]))
-print(pluscourtcheminexhaustif([(20,13),(21,4),(45,9),(20,28),(8,7)]))
+#print(creationgraph([(5,6),(3,2),(8,7),(6,9),(0,0)]))  
+#print(pluscourtchemin([(5,6),(3,2),(8,7),(6,9),(0,0)]))
+#print(pluscourtchemin([(20,13),(21,4),(45,9),(20,28),(8,7)]))
+#print(pluscourtcheminexhaustif([(20,13),(21,4),(45,9),(20,28),(8,7)]))
+#print(pluscourtcheminexhaustif([(5,6),(3,2),(8,7),(6,9),(0,0)]))
+#print(calcultrajet([(5, 6),(6, 9), (8, 7), (3, 2), (0, 0)]))
+#print(calcultrajet([(5, 6),(0, 0), (3, 2), (8, 7), (6, 9)]))
+#print(calcultrajet([(20,13), (21, 4), (8, 7), (20, 28), (45, 9)]))
