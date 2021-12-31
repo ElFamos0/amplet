@@ -25,33 +25,36 @@
             {% endfor %}
           </select>
         <table>
-            <tr>
-                <td>Nom du produit</td>
-                <td>Quantité (en kg, g ou unité)</td>
-            </tr>
-            {% for i in range(5) %}
-            <tr>
-                <td><input type='text' list="produits" name="produit{{i}}">
-                    <datalist id="produits">
-            {% for produit in produits %}
-          <option value="{{produit}}"></option>
-          {% endfor %}
-        </datalist>
-
-                </td>
-
-                <td><input type='number' name="quantite{{i}}"></td>
-
-                <td>
-                    <div class=i temopt></div><select name='unite{{i}}'>
-             <option value="kg">kg</option>
-             <option value="g">g</option>
-             <option value="unite">à l'unité</option>
-         </select></div>
-                </td>
-
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    <td>Nom du produit</td>
+                    <td>Quantité (en kg, g ou unité)</td>
+                    <td>Unité</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(5) %}
+                <tr>
+                    <td>
+                        <select name="produit{{i}}">
+                        {% for produit in produits %}
+                            <option value="{{produit}}">{{produit}}</option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <input type='number' class="w-25" min="0" max="40" name="quantite{{i}}">
+                    </td>
+                    <td>
+                        <select name='unite{{i}}'>
+                            <option value="kg">kg</option>
+                            <option value="g">g</option>
+                            <option value="unite">à l'unité</option>
+                        </select>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
         <input type="submit" href='/navette' value="Envoyer"> {% for mesg in get_flashed_messages() %}
         <div class="alert alert-danger" role="alert">

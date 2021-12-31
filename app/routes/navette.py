@@ -19,7 +19,7 @@ def navette():
         navid = request.form.get("navette")
         navette = amplet.Amplets.query.filter_by(id=navid,navette=True, ferme=False).first()
         if navette == None:
-            return "Villain petit canard"
+            flash("Villain petit canard")
         items = []
         for i in range(0,5):
             items.append({
