@@ -28,17 +28,18 @@ def navette():
                     "unite": request.form.get(f"unite{i}"),
                     })  
         #Cette partie ci-dessous me permet de faire toute les comparaisons nécessaire au bon fonctionnement du form
+        print(items)
         participation_valide = False
         listeverif = []
         allgood = True
         for item in items:      
-            if item["produit"] != "":
+            if item["produit"] != "null":
                 listeverif.append(item["produit"])
         if len(set(listeverif))!=len(listeverif):
             allgood = False
         if allgood:
             for item in items:
-                if item["produit"] not in listeproduits or 0 >= int(item["quantite"]) > 40 or item["quantite"]=="":
+                if item["produit"] not in listeproduits or 0 > int(item["quantite"]) > 40 or item["quantite"]=="":
                     continue
                 idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
                 produit = produits_amp.Produits_amp(id_amp=navette.id,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],id_user=current_user.id)

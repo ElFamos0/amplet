@@ -12,4 +12,4 @@ from flask import render_template
 @login_required
 def commande():
     
-    return render_template("commande.html",moi=current_user,)
+    return render_template("commande.html",moi=current_user)
