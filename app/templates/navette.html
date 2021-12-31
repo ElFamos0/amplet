@@ -57,12 +57,17 @@
                 {% endfor %}
             </tbody>
         </table>
-        <input type="submit" href='/navette' value="Envoyer"> {% for mesg in get_flashed_messages() %}
+        <input type="submit" href='/navette' value="Envoyer"> 
+        {%if not noproblem %}
         <div class="alert alert-danger" role="alert">
-            {{ mesg }}
+            Merci de ne pas mettre plus d'une fois le même article
         </div>
-        {% endfor %}
+        {% endif %}
+    <br>
+    <br>
+        <p>Afin que votre demande/vote se déroule dans les meilleures conditions merci de ne pas choisir de produits sans quantités ou de quantités sans produits. Ces demandes seraient alors ignorés de votre commande</p>
     </form>
+
 </body>
 
 </html>
