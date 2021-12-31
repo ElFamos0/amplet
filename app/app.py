@@ -72,19 +72,18 @@ if setup:
 
     db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[2]))
 
-    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse 50 cL",prix = "500"))
-    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 50 cL",prix = "500"))
-    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 25 cL",prix = "300"))
+    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse 50 cL",prix = 500))
+    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 50 cL",prix = 500))
+    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 25 cL",prix = 300))
 
-    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Blanche 50 cL",prix = "500"))
-    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Andalouse 50 cL",prix = "500"))
-    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Bolognaise 25 cL",prix = "300"))
+    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Blanche 50 cL",prix = 500))
+    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Andalouse 50 cL",prix = 500))
+    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Bolognaise 25 cL",prix = 300))
 
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Tomate",prix=450))
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Pomme de terre",prix=450))
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Orange",prix=450))
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Carotte",prix=450))
-
 
     db.session.commit()
 ############################################
