@@ -7,7 +7,7 @@ from datetime import date, datetime
 from time import mktime
 from utils.timestamp import now, timestamp_to_date
 from utils.recherche_par import recherche_par
-from utils.amplets_a_afficher import amplets_a_afficher
+from utils.amplets_a_afficher import amplets_a_afficher, amplet_dict
 
 ##############################
 ########### AMPLETS  ###########
@@ -98,9 +98,51 @@ def amplets_en_cours() :
 
 
 
+@app.route('/inscription_amplet', methods=['GET','POST'])
+@login_required
+def inscription_amplet() :
+    
+
+    if request.method=='POST':
+        ampl = request.form.get("amp_id")
+        am = amplet_dict(ampl)
+
+        mag = marchands.Marchands.query.add_entity(marchands_amp.Marchands_amp).join(marchands_amp.Marchands_amp).filter(marchands_amp.Marchands_amp.id_amp == ampl,marchands_amp.Marchands_amp.id_marchand==marchands.Marchands.id)
+        
+        liste_mag = [m[0].id for m in mag]
+        listeproduits = []
+        listeprix = []
+        for id_mag in liste_mag :
+            prod = produits.Produits.query.add_entity(marchands.Marchands).join(marchands.Marchands).filter(marchands.Marchands.id == id_mag,produits.Produits.id_marchand == marchands.Marchands.id)
+            listeprix += [p[0].prix for p in prod]
+            listeproduits += [p[0].nom for p in prod]
+        
+    
+    if request.method == "GET" :
+        return render_template("index.html")
+    
+    return render_template('inscription_amplet.html',user=current_user,produits=listeproduits,amp = am,prix = listeprix)
+    
+@app.route('/send_inscription_amplet', methods=['POST'])
+@login_required
+def send_inscription_amplet() :
 
 
-
+    return render_template("index.html", user=current_user)
+    items = []
+    for i in range(0,5):
+        items.append({
+                    "produit": request.form.get(f"produit{i}"),
+                    "quantite": request.form.get(f"quantite{i}"),
+                    "unite": request.form.get(f"unite{i}"),
+                    })
+        for item in items:
+            if item["produit"] not in listeproduits or 0 >= int(item["quantite"]) > 40 or item["quantite"]==None:
+                continue
+            idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
+            produit = produits_amp.Produits_amp(id_amp=navette.id,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],id_user=current_user.id)
+            db.session.add(produit)
+            db.session.commit()
 
 
 @app.route('/amptest', methods=['GET','POST'])

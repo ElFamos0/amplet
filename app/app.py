@@ -22,10 +22,6 @@ if setup:
     amplet1 = amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=2,delai_fermeture_depart=6666666,ferme=False)
     amplet2 = amplet.Amplets(navette=True,date_depart=1640803800000, date_arrivee=1640807400000,places_dispo=5,id_coursier=5,delai_fermeture_depart=6666666,ferme=False)
     amplet3 = amplet.Amplets(navette=True,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=5,delai_fermeture_depart=6666666,ferme=False)
-    produit1 = produits.Produits(id_marchand=78,nom="Tomate(s)",prix=450)
-    produit2 = produits.Produits(id_marchand=78,nom="Pomme(s) de terre(s)",prix=450)
-    produit3 = produits.Produits(id_marchand=78,nom="Orange(s)",prix=450)
-    produit4 = produits.Produits(id_marchand=78,nom="Carotte(s)",prix=450)
     admin.set_password('oof')
     guest.set_password('oof')
     third.set_password('oof')
@@ -38,10 +34,6 @@ if setup:
     db.session.add(amplet1)
     db.session.add(amplet2)
     db.session.add(amplet3)
-    db.session.add(produit1)
-    db.session.add(produit2)
-    db.session.add(produit3)
-    db.session.add(produit4)
     db.session.commit()
 
     l_u = users.User.query.all()
@@ -79,6 +71,19 @@ if setup:
     db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[1]))
 
     db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[2]))
+
+    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse 50 cL",prix = "500"))
+    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 50 cL",prix = "500"))
+    db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 25 cL",prix = "300"))
+
+    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Blanche 50 cL",prix = "500"))
+    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Andalouse 50 cL",prix = "500"))
+    db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Bolognaise 25 cL",prix = "300"))
+
+    db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Tomate",prix=450))
+    db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Pomme de terre",prix=450))
+    db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Orange",prix=450))
+    db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Carotte",prix=450))
 
 
     db.session.commit()

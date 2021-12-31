@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Amplet</title>
+    {% include 'headers/imports.html' %}
+    <link href="{{url_for('static',filename='css/navette.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="b-example-divider"></div>
+
+    {% include 'headers/navbar.html' %}
+
+    <h1>Bonjour {{user.username}} </h1>
+    <br>
+    <br>
+    <br>
+    <form class=option method="POST" action = '/send_inscription_amplet' >
+        <h6>Inscription sur l'amplet de {{amp.coursier}} du {{amp.debut}}</h6>
+
+        <table>
+            <tr>
+                <td>Nom du produit</td>
+                <td>Quantité (/unité)</td>
+                <td>Prix (en €)</td>
+            </tr>
+            {% for i in range(5) %}
+            <tr>
+                <td><input type='text' list="produits" name="produit{{i}}">
+                    <datalist id="produits">
+            {% for produit in produits %}
+          <option value="{{produit}}"></option>
+          {% endfor %}
+        </datalist>
+
+                </td>
+
+                <td><input type='number' name="quantite{{i}}"></td>
+
+                <td>
+                    <div class=i temopt>Prix </div>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Envoyer"> {% for mesg in get_flashed_messages() %}
+        <div class="alert alert-danger" role="alert">
+            {{ mesg }}
+        </div>
+        {% endfor %}
+    </form>
+</body>
+
+</html>

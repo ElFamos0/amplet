@@ -59,8 +59,10 @@
 
                          <div class = "a_head">
                             <h5 class ="a_titre">Amplet du {{amp.debut}}</h5>
-
-                            <button class = "a_button"> S'inscrire</button>
+                            
+                            <form  method="POST" action='/inscription_amplet'>
+                                <button type = "submit" class = "a_button" name = "amp_id" value = {{amp.id_amp}} > S'inscrire</button>
+                            </form>
 
                         </div>
 
