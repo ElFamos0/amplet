@@ -13,8 +13,8 @@ def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
         if cours is None :
             coursier = "NULL"
         else :
-            coursier = cours.username
-            cp = cours.code_postal
+            coursier = cours[0].username
+            cp = cours[0].code_postal
         ampl['coursier'] = coursier
 
         participants = users.User.query.add_entity(participants_amp.Participants_amp).join(participants_amp.Participants_amp).filter(participants_amp.Participants_amp.id_amp == amp.id,participants_amp.Participants_amp.id_user==users.User.id)
@@ -28,7 +28,8 @@ def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
             cp = amp.id_coursier
         else :
             navette = 'NULL'
-            cp = 0
+            if cours is None :
+                cp = 0
         ampl['navette'] = navette
         ampl['cp'] = int(cp)
 
@@ -52,7 +53,7 @@ def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
         ampl['date'] = amp.date_depart
 
         valide = True
-        if amp.ferme or amp.date_depart < debut_stamp or amp.date_depart > fin_stamp or places <= 0:
+        if amp.ferme or amp.date_depart < debut_stamp or amp.date_depart > fin_stamp or places <= 0 or amp.navette :
             valide = False
             #print("date")
         for mag_typ in liste_typebis : 

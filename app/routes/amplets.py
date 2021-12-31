@@ -68,7 +68,7 @@ def amplets_en_cours() :
         fin = d2
         liste_typebis = []
         for i in liste_type :
-            liste_typebis.append((i,True))
+            liste_typebis.append((i,False))
 
     
     debut_stamp = mktime(datetime.strptime(debut,"%Y-%m-%d").timetuple()) * 1000 # On convertit en timestamp
@@ -97,16 +97,22 @@ def amplets_en_cours() :
 
 
 
+
+
+
+
+
+
 @app.route('/amptest', methods=['GET','POST'])
 @login_required
 def amptest() :
     #db.session.add(marchands.Marchands(nom= 'Chez Jupux',adresse="4 rue Jean Gireadoux 54600",type="Crémier",multiplicateur=1.0,coordx = 0,coordy= 0))
-    #db.session.add(marchands.Marchands(nom= 'Chez Tomczak',adresse="12 rue Siclover 54000",type="Maître Sauceur",multiplicateur=1.0,coordx = 0,coordy= 0))
-    #db.session.add(marchands.Marchands(nom= 'Chez LV',adresse="18 rue du Foutreux 54200",type="Primeur",multiplicateur=1.0,coordx = 0,coordy= 0))
-    #db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier="6881886553539346432",ferme = False,delai_fermeture_depart = 1000))
-    #db.session.add(amplet.Amplets(navette=True,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier="54600",ferme = False,delai_fermeture_depart = 1000))
-    #db.session.add(amplet.Amplets(navette=True,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier="54200",ferme = True,delai_fermeture_depart = 0))
+    #db.session.add(marchands.Marchands(nom= 'Chez Tomczak',adresse="12 rue de Mondésert 54000",type="Maître Sauceur",multiplicateur=1.0,coordx = 0,coordy= 0))
+    #db.session.add(marchands.Marchands(nom= 'Chez LV',adresse="2 Avenue Paul Muller 54000",type="Primeur",multiplicateur=1.0,coordx = 0,coordy= 0))
 
+    #db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
+    #db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
+    #db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
 
     #db.session.add(participants_amp.Participants_amp(id_amp = "6882299353730387968",id_user = "6882298862820655104"))
     #db.session.add(participants_amp.Participants_amp(id_amp = "6882299353730387969",id_user = "6882298862820655105"))
@@ -124,6 +130,14 @@ def amptest() :
 
 
     #db.session.commit()
+
+    
+
+
+
+    
+
+
     test = db.metadata.tables.keys()
     test2 = db.metadata.tables['amplets'].columns.keys()
     #test3 = users.User.query.add_entity(amplet.Amplets).join(amplet.Amplets).filter(amplet.Amplets.id == "6881902203561316352",amplet.Amplets.id_coursier==users.User.id)

@@ -19,8 +19,8 @@
     margin-left: 5em;
     border-radius: 25px;
     width: 35%;
-    min-width: 200px;
-    min-height: 300px;
+    height:300px;
+    min-width: 400px;
     background: rgb(255, 255, 255);
     flex-direction: column;
     justify-content: space-around;

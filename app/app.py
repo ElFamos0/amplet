@@ -29,6 +29,9 @@ if setup:
     admin.set_password('oof')
     guest.set_password('oof')
     third.set_password('oof')
+    db.session.add(marchands.Marchands(nom= 'Chez Jupux',adresse="4 rue Jean Gireadoux 54600",type="Crémier",multiplicateur=1.0,coordx = 0,coordy= 0))
+    db.session.add(marchands.Marchands(nom= 'Chez Tomczak',adresse="12 rue de Mondésert 54000",type="Maître Sauceur",multiplicateur=1.0,coordx = 0,coordy= 0))
+    db.session.add(marchands.Marchands(nom= 'Chez LV',adresse="2 Avenue Paul Muller 54000",type="Primeur",multiplicateur=1.0,coordx = 0,coordy= 0))
     db.session.add(admin)
     db.session.add(guest)
     db.session.add(third)
@@ -39,6 +42,45 @@ if setup:
     db.session.add(produit2)
     db.session.add(produit3)
     db.session.add(produit4)
+    db.session.commit()
+
+    l_u = users.User.query.all()
+    lu_id = []
+    for i in l_u :
+        lu_id.append(i.id)
+    
+    db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
+    db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
+    db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.commit()
+
+
+    l_m = marchands.Marchands.query.all()
+    l_a = amplet.Amplets.query.all()
+    lm_id = []
+    la_id = []
+    
+    for i in l_a :
+        la_id.append(i.id)
+    
+    for i in l_m :
+        lm_id.append(i.id)
+
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[3],id_user = lu_id[1]))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[4],id_user = lu_id[2]))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[1]))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[2]))
+
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[0]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[0]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[0]))
+
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[1]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[1]))
+
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[2]))
+
+
     db.session.commit()
 ############################################
 
