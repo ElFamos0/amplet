@@ -11,4 +11,5 @@ from flask import render_template
 @app.route("/commande")
 @login_required
 def commande():
-    return "Fait chauffer le camion marcel"
+    
+    return render_template("commande.html",moi=current_user,)

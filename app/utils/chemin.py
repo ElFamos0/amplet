@@ -20,7 +20,7 @@ def pluscourtchemin(listepoint:list):
     listedejavisite = [0]
     while len(listedejavisite)!=len(listepoint):
         i = listedejavisite[-1]
-        min = 10000
+        min = 10000 #valeur hypothétique qui ne sera jamais atteinte
         for j in range(len(M[i])):
             if M[i][j]<=min and i!=j and j not in listedejavisite:
                 min = M[i][j]

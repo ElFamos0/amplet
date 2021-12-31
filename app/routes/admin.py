@@ -24,8 +24,15 @@ def hello_world():
     content += "<p>COMMANDES</p>"
     content += "<br/>"
     for produit_amp in produits_amp.Produits_amp.query.all():
-        requete1 = users.User.query.filter(users.User.id==produits_amp.Produits_amp.id_user).first()
+        requete1 = users.User.query.filter(users.User.id==produit_amp.id_user).first()
         content += f"{produit_amp.id_amp} - {produit_amp.id_produit} - {produit_amp.quantite} - {produit_amp.unite} - {requete1.username}"
+        content += "<br/>"
+    content += "<br>"
+    content += "<p>PARTICIPANTS</p>"
+    content += "<br/>"
+    for participant in participants_amp.Participants_amp.query.all():
+        requete1 = users.User.query.filter(users.User.id==participant.id_user).first()
+        content += f"{participant.id_amp} - {requete1.username}"
         content += "<br/>"
     return content
 
