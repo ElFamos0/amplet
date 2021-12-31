@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Amplet</title>
+    {% include 'headers/imports.html' %}
+    <link href="{{url_for('static',filename='css/navette.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="b-example-divider"></div>
+
+    {% include 'headers/navbar.html' %}
+    <div class = "container">
+
+        <h1 class = "titre1">Votre inscription a été enregistrée avec succès ! </h1>
+
+        <form action = "/amplets_en_cours" method = "GET">
+
+            <input class = "bouton1" type ="submit" value = "Retour"> 
+            
+        </form>
+
+    </div>
+
+    <style>
+        .container{
+            width:100%;
+            flex-direction: column;
+            justify-content: flex-start;
+            display: flex;
+        }
+
+        .titre1{
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .bouton1{
+            padding: 0.5em;
+            padding-left: 2em;
+            padding-right: 2em;
+            text-align: center;
+            font-size: 1.5em;
+            border-radius: 8px;
+            background-color: rgb(255, 255, 255);
+        }
+
+    </style>
+
+
+
+    
+
+</body>
+
+</html>

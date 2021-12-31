@@ -58,10 +58,10 @@ if setup:
     for i in l_m :
         lm_id.append(i.id)
 
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[3],id_user = lu_id[1]))
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[4],id_user = lu_id[2]))
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[1]))
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[2]))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[3],id_user = lu_id[1],valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[4],id_user = lu_id[2],valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[1],valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[2],valide=1))
 
     db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[0]))
     db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[0]))

@@ -128,7 +128,7 @@ def inscription_amplet() :
 def send_inscription_amplet() :
 
 
-    return render_template("index.html", user=current_user)
+    return render_template("succès.html", user=current_user)
     items = []
     for i in range(0,5):
         items.append({
@@ -143,6 +143,13 @@ def send_inscription_amplet() :
             produit = produits_amp.Produits_amp(id_amp=navette.id,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],id_user=current_user.id)
             db.session.add(produit)
             db.session.commit()
+
+@app.route('/succès')
+@login_required
+def succès() :
+
+    return render_template('succès.html')
+
 
 
 @app.route('/amptest', methods=['GET','POST'])
@@ -172,14 +179,6 @@ def amptest() :
 
 
     #db.session.commit()
-
-    
-
-
-
-    
-
-
     test = db.metadata.tables.keys()
     test2 = db.metadata.tables['amplets'].columns.keys()
     #test3 = users.User.query.add_entity(amplet.Amplets).join(amplet.Amplets).filter(amplet.Amplets.id == "6881902203561316352",amplet.Amplets.id_coursier==users.User.id)

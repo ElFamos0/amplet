@@ -28,16 +28,15 @@
             </tr>
             {% for i in range(5) %}
             <tr>
-                <td><input type='text' list="produits" name="produit{{i}}">
-                    <datalist id="produits">
-            {% for produit in produits %}
-          <option value="{{produit}}"></option>
-          {% endfor %}
-        </datalist>
+                <td><select name="produit{{i}}">
+                {% for produit in produits %}
+                    <option value="{{produit}}">{{produit}}</option>
+                {% endfor %}
+                    </select>
 
                 </td>
 
-                <td><input type='number' name="quantite{{i}}"></td>
+                <td><input type='number' name="quantite{{i}}" min= "0" max= "40" value = "0"></td>
 
                 <td>
                     <div class=i temopt>Prix </div>

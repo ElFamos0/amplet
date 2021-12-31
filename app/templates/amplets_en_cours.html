@@ -28,14 +28,14 @@
             </div>
             <div class="itemopt">
                 Classé par :
-                <select class=s elect1 name="recherche">
+                <select class='select1' name="recherche">
                         {% for rec in recherche %}
                         <option value="{{rec}}">{{rec}}</option>
                         {% endfor %}
                     </select>
             </div>
             <div class="itemopt">
-                <p>Type de magasins :</p>
+                <p>Type de magasins à inclure :</p>
                 <div class="checkboxlist">
                     {% for mag in type_magasins %}
                     <div class="checkboxitem">

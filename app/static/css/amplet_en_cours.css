@@ -19,11 +19,11 @@
     margin-left: 5em;
     border-radius: 25px;
     width: 35%;
-    height:300px;
+    min-height:300px;
     min-width: 400px;
     background: rgb(255, 255, 255);
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     display: flex;
     border: 1px solid;
     border-color: rgb(183, 183, 185);
