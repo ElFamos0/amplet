@@ -28,11 +28,12 @@ def navette():
                     "unite": request.form.get(f"unite{i}"),
                     })  
         #Cette partie ci-dessous me permet de faire toute les comparaisons nécessaire au bon fonctionnement du form
+        print(items)
         participation_valide = False
         listeverif = []
         allgood = True
         for item in items:      
-            if item["produit"] != "":
+            if item["produit"] != "null":
                 listeverif.append(item["produit"])
         if len(set(listeverif))!=len(listeverif):
             allgood = False
