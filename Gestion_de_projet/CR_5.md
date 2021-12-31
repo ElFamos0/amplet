@@ -19,7 +19,7 @@ Modification à faire sur la bd
 
 Les choses à faires
 
-#Compte Réunion
+# Compte Réunion : 
 
 Réflexions sur la possibilité ou non d’optimiser les clients sélectionnés par un particulier en fonction de leur liste du course et de la capacité de la voiture : difficile à mettre en place mais le client peut refuser lui-même un client s’il constate que la liste de courses demandée est trop chargée.
 
