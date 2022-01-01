@@ -6,5 +6,6 @@ __all__ = [
     "participants_amp",
     "produits_amp",
     "produits",
-    "users"
+    "users",
+    "adresses"
 ]

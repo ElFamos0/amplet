@@ -6,10 +6,8 @@ gen = SnowflakeGenerator(4)
 class Marchands(db.Model):
     __tablename__ = 'marchands'
     id = db.Column(db.String(40), primary_key=True)
+    id_adresse = db.Column(db.Integer, db.ForeignKey('adresses.id'))
     nom = db.Column(db.String(100))
-    adresse = db.Column(db.String(400))
-    coordx = db.Column(db.Integer)
-    coordy = db.Column(db.Integer)
     type = db.Column(db.String(50))
     multiplicateur = db.Column(db.Float)
 

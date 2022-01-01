@@ -8,11 +8,11 @@ gen = SnowflakeGenerator(0)
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.String(40), primary_key=True)
+    id_adresse = db.Column(db.Integer, db.ForeignKey('adresses.id'))
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     points = db.Column(db.Integer, nullable=False)
-    code_postal = db.Column(db.Integer, nullable=False)
     
     def avatar_url(self):
         return f"/r/a/{self.id}"
