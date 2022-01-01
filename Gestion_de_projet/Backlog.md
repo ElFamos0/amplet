@@ -29,6 +29,9 @@ Tristan :
 | 27 décembre | 28 décembre | création du systeme de timestamp |
 | 28 décembre | 28 décembre | création de l’algorithme SHA1 |
 | 28 décembre | 29 décembre | écriture du rapport (sha1 et socketio) |
+| 30 décembre | 1 janvier | écriture du rapport (performance et tests) |
+| 1 janvier | 1 janvier | ajout de la table adresse ainsi que de la récupération des coordonnées |
+
 
 Jules :
 
