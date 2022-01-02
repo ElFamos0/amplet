@@ -1,7 +1,5 @@
 from app import db
 
-
-
 class Participants_amp(db.Model):
     __tablename__ = 'participants_amp'
     id_amp = db.Column(db.String(40), db.ForeignKey('amplets.id'), primary_key=True)

@@ -28,7 +28,6 @@ def navette():
                     "unite": request.form.get(f"unite{i}"),
                     })  
         #Cette partie ci-dessous me permet de faire toute les comparaisons nécessaire au bon fonctionnement du form
-        print(items)
         participation_valide = False
         listeverif = []
         allgood = True
@@ -58,5 +57,4 @@ def navette():
             listenavettes.pop(i)
     if listenavettes == []:
         return "Il n'y a pas de navettes disponible merci de revenir ultérieurement"
-    
     return render_template("navette.html",user=current_user,produits=listeproduits,navettes=listenavettes,noproblem=allgood)
