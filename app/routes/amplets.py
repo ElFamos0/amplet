@@ -16,7 +16,7 @@ from utils.amplets_a_afficher import amplets_a_afficher, amplet_dict
 @app.route('/nouvelleAmplet', methods=['GET','POST'])
 @login_required
 def nouvelleAmplet():
-    mag_dispo=['primeur du coin', 'chez Tony', 'vendeur de foutre']
+    mag_dispo=['primeur du coin', 'chez Tony']
     mag_visit=[]
     # if request.method=='POST':
     #     L=request.form
