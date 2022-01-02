@@ -1,6 +1,6 @@
 from db import app
 from models import *
-from flask import render_template
+from flask import render_template,request
 from flask_login import login_required, current_user
 
 ##############################
@@ -25,7 +25,12 @@ def profil(id):
     print(chat)
     return render_template("profil.html", user=usr, chat=chat)
 
-@app.route("/pe")
+@app.route("/pe",methods=['GET','POST'])
 @login_required
 def profilmodif():
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("mail")
+        adresse = request.form.get("adresse")
+        return username,email,adresse
     return render_template("profilmodif.html",user=current_user)
