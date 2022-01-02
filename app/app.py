@@ -85,8 +85,14 @@ if setup:
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Orange",prix=450))
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Carotte",prix=450))
 
+    db.session.add(participants_amp.Participants_amp(id_amp=la_id[1], id_user=lu_id[0], valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp=la_id[0], id_user=lu_id[0], valide=0))
+    db.session.add(participants_amp.Participants_amp(id_amp=la_id[2], id_user=lu_id[0], valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp=la_id[0], id_user=lu_id[2], valide=1))
+
     db.session.commit()
 ############################################
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
