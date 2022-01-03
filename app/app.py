@@ -30,9 +30,11 @@ if setup:
     for i in l_ad :
         lad_id.append(i.id)
 
-    admin = users.User(username='admin', email='admin@test.com', id_adresse=lad_id[0],points = 54)
-    guest = users.User(username='guest', email='guest@test.com', id_adresse=lad_id[1],points = 27)
-    third = users.User(username='third', email='third@test.com', id_adresse=lad_id[2],points = 0)
+    admin = users.User(username='admin', email='admin@test.com', id_adresse=lad_id[0])
+    admin.points = 54
+    guest = users.User(username='guest', email='guest@test.com', id_adresse=lad_id[1])
+    guest.points = 38
+    third = users.User(username='third', email='third@test.com', id_adresse=lad_id[2])
     admin.set_password('oof')
     guest.set_password('oof')
     third.set_password('oof')
