@@ -16,6 +16,7 @@ def other_profiles():
 @app.route("/p/<string:id>")
 @login_required
 def profil(id):
+    "page profil de base n'importe qui peut y accèder du moment qu'il a accès à l'id de l'utilisateur"
     usr = users.User.query.get(id)
     if usr == None:
         return '404'
