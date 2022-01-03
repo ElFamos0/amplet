@@ -10,7 +10,13 @@
 <div class="container">
     <div class="row">
       <div class="col-sm">
-        Mes Inscriptions :
+        Mes Inscriptions :<br><br>
+        {% for i in range(n) %}
+        Amplet numéro {{i}} :<br>
+        ID : {{inscr_id_amp[i]}}<br>
+        Coursier : <a href="/p/{{inscr_id_coursier[i]}}" >{{inscr_nom_coursier[i]}}</a><br>
+        Status : {{inscr_valide[i]}}<br><br>
+        {% endfor %}
       </div>
       <div class="col-sm">
         Mes Commandes : 
