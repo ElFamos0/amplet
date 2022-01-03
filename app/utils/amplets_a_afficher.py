@@ -23,7 +23,7 @@ def amplet_dict(amp_id) :
     ampl['coursier'] = coursier
     ampl['id_cours'] = id_cours
 
-    participants = users.User.query.add_entity(participants_amp.Participants_amp).join(participants_amp.Participants_amp).filter(participants_amp.Participants_amp.id_amp == amp.id,participants_amp.Participants_amp.id_user==users.User.id)
+    participants = users.User.query.add_entity(participants_amp.Participants_amp).join(participants_amp.Participants_amp).filter(participants_amp.Participants_amp.id_amp == amp.id,participants_amp.Participants_amp.id_user==users.User.id,participants_amp.Participants_amp.valide==1)
     liste_p = []
     for p in participants :
         liste_p.append(p[0].username)
