@@ -26,15 +26,17 @@ def commande():
             inscr_valide.append("Accepté")
         if temp.valide==2:
             inscr_valide.append("Refusé")
-        inscr_id_coursier.append(amplet.Amplets.query.filter_by(id = inscr_id_amp[-1]).first().id_coursier)
+        inscr_id_coursier.append(amplet.Amplets.query.filter_by(id = inscr_id_amp[-1], navette = 0).first().id_coursier)
         inscr_nom_coursier.append(users.User.query.filter_by(id = inscr_id_coursier[-1]).first().username)
     n = len(inscriptions)
+
+
         
     
 
 
 
-    #faut afficher les amplet sur lesquelles l'utilisateur a été accepté
+    # afficher les amplet dont user est le coursier
     # + une fois que Jules aura fait le classement, les produits des commandes navettes qui sont dispo dans les masagasins selectionnés
 
     
