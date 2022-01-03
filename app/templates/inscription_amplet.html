@@ -17,40 +17,53 @@
     <br>
     <br>
     <br>
-    <form class=option method="POST" action = '/send_inscription_amplet' >
+    <form class=option method="POST" action = "/send_inscription_amplet">
         <h6>Inscription sur l'amplet de {{amp.coursier}} du {{amp.debut}}</h6>
 
         <table>
-            <tr>
-                <td>Nom du produit</td>
-                <td>Quantité (/unité)</td>
-                <td>Prix (en €)</td>
-            </tr>
-            {% for i in range(5) %}
-            <tr>
-                <td><select name="produit{{i}}">
-                {% for produit in produits %}
-                    <option value="{{produit}}">{{produit}}</option>
+            <thead>
+                <tr>
+                    <td>Nom du produit</td>
+                    <td>Quantité (en kg, g ou unité)</td>
+                    <td>Unité</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(5) %}
+                <tr>
+                    <td>
+                        <select name="produit{{i}}">
+                        {% for produit in produits %}
+                            <option value="{{produit}}">{{produit}}</option>
+                        {% endfor %}
+                        <option value="null" selected="selected"></option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type='number' class="w-25" min="0" max="40" name="quantite{{i}}">
+                    </td>
+                    <td>
+                        <select name='unite{{i}}'>
+                            <option value="kg">kg</option>
+                            <option value="g">g</option>
+                            <option value="unite">à l'unité</option>
+                        </select>
+                    </td>
+                </tr>
                 {% endfor %}
-                    </select>
-
-                </td>
-
-                <td><input type='number' name="quantite{{i}}" min= "0" max= "40" value = "0"></td>
-
-                <td>
-                    <div class=i temopt>Prix </div>
-                </td>
-
-            </tr>
-            {% endfor %}
+            </tbody>
         </table>
-        <input type="submit" value="Envoyer"> {% for mesg in get_flashed_messages() %}
+        <input type="submit" value="Envoyer"> 
+        {%if not noproblem %}
         <div class="alert alert-danger" role="alert">
-            {{ mesg }}
+            Merci de ne pas mettre plus d'une fois le même article
         </div>
-        {% endfor %}
+        {% endif %}
+    <br>
+    <br>
+        <p>Afin que votre demande/vote se déroule dans les meilleures conditions merci de ne pas choisir de produits sans quantités ou de quantités sans produits. Ces demandes seraient alors ignorés de votre commande</p>
     </form>
+
 </body>
 
 </html>

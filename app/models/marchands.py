@@ -11,11 +11,9 @@ class Marchands(db.Model):
     type = db.Column(db.String(50))
     multiplicateur = db.Column(db.Float)
 
-    def __init__(self, nom, adresse, coordx, coordy, type,multiplicateur):
+    def __init__(self, nom, id_adresse, type,multiplicateur):
         self.id = next(gen)
         self.nom = nom
-        self.adresse = adresse
+        self.id_adresse = id_adresse
         self.type = type
         self.multiplicateur = multiplicateur
-        self.coordx = coordx
-        self.coordy = coordy

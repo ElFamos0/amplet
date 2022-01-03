@@ -16,18 +16,32 @@ db.create_all() # Creates the tables if necessary
 
 # Setup ####################################
 if setup:
-    admin = users.User(username='admin', email='admin@test.com', code_postal=57000)
-    guest = users.User(username='guest', email='guest@test.com', code_postal=57000)
-    third = users.User(username='third', email='third@test.com', code_postal=57000)
+    db.session.add(adresses.Adresse(numero = 34,rue = "Rue des Tilleuls",ville = "Metz",codepostal = 57070))
+    db.session.add(adresses.Adresse(numero = 1,rue = "Rue Emile Knoeplfer",ville = "Mey",codepostal = 57070))
+    db.session.add(adresses.Adresse(numero = 37,rue = "Rue Alfred Krieger",ville = "Metz",codepostal = 57070))
+    db.session.add(adresses.Adresse(numero = 3,rue = "Rue Delattre de Tassigny",ville = "Laquenexy",codepostal = 57530))
+    db.session.add(adresses.Adresse(numero = 1,rue = "Rue du Chapitre",ville = "Woippy",codepostal = 57140))
+    db.session.add(adresses.Adresse(numero = 8,rue = "Rue de Metz",ville = "Gravelotte",codepostal = 57130))
+
+    db.session.commit()
+
+    l_ad = adresses.Adresse.query.all()
+    lad_id = []
+    for i in l_ad :
+        lad_id.append(i.id)
+
+    admin = users.User(username='admin', email='admin@test.com', id_adresse=lad_id[0],points = 54)
+    guest = users.User(username='guest', email='guest@test.com', id_adresse=lad_id[1],points = 27)
+    third = users.User(username='third', email='third@test.com', id_adresse=lad_id[2],points = 0)
     amplet1 = amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=2,delai_fermeture_depart=6666666,ferme=False)
     amplet2 = amplet.Amplets(navette=True,date_depart=1640803800000, date_arrivee=1640807400000,places_dispo=5,id_coursier=5,delai_fermeture_depart=6666666,ferme=False)
     amplet3 = amplet.Amplets(navette=True,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=5,delai_fermeture_depart=6666666,ferme=False)
     admin.set_password('oof')
     guest.set_password('oof')
     third.set_password('oof')
-    db.session.add(marchands.Marchands(nom= 'Chez Jupux',adresse="4 rue Jean Gireadoux 54600",type="Crémier",multiplicateur=1.0,coordx = 0,coordy= 0))
-    db.session.add(marchands.Marchands(nom= 'Chez Tomczak',adresse="12 rue de Mondésert 54000",type="Maître Sauceur",multiplicateur=1.0,coordx = 0,coordy= 0))
-    db.session.add(marchands.Marchands(nom= 'Chez LV',adresse="2 Avenue Paul Muller 54000",type="Primeur",multiplicateur=1.0,coordx = 0,coordy= 0))
+    db.session.add(marchands.Marchands(nom= 'Chez Jupux',id_adresse=lad_id[3],type="Crémier",multiplicateur=1.0))
+    db.session.add(marchands.Marchands(nom= 'Chez Tomczak',id_adresse=lad_id[4],type="Maître Sauceur",multiplicateur=1.0))
+    db.session.add(marchands.Marchands(nom= 'Chez LV',id_adresse=lad_id[5],type="Primeur",multiplicateur=1.0))
     db.session.add(admin)
     db.session.add(guest)
     db.session.add(third)

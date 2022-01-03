@@ -23,12 +23,12 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    def __init__(self, username, email, code_postal):
+    def __init__(self, username, email, id_adresse,points):
         self.id = next(gen)
         self.username = username
         self.email = email
-        self.code_postal = code_postal
-        self.points = 0
+        self.id_adresse = id_adresse
+        self.points = points
 
     def __repr__(self):
         return '<User %r>' % self.username

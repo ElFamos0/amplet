@@ -78,7 +78,9 @@ def amplets_en_cours() :
 
     if recherche[0] == 'Proximité' :
 
-        cp = users.User.query.get(current_user.id).code_postal
+        id_ad =  users.User.query.get(current_user.id).id_adresse
+
+        cp = adresses.Adresse.query.get(id_ad).codepostal
 
     else :
         cp = -100000
@@ -127,22 +129,38 @@ def inscription_amplet() :
 @login_required
 def send_inscription_amplet() :
 
-
-    return render_template("succès.html", user=current_user)
     items = []
     for i in range(0,5):
         items.append({
-                    "produit": request.form.get(f"produit{i}"),
-                    "quantite": request.form.get(f"quantite{i}"),
-                    "unite": request.form.get(f"unite{i}"),
-                    })
+                "produit": request.form.get(f"produit{i}"),
+                "quantite": request.form.get(f"quantite{i}"),
+                "unite": request.form.get(f"unite{i}"),
+                })  
+        #Cette partie ci-dessous me permet de faire toute les comparaisons nécessaire au bon fonctionnement du form
+    participation_valide = False
+    listeverif = []
+    allgood = True
+    for item in items:      
+        if item["produit"] != "null":
+            listeverif.append(item["produit"])
+    if len(set(listeverif))!=len(listeverif):
+        allgood = False
+    if allgood:
         for item in items:
-            if item["produit"] not in listeproduits or 0 >= int(item["quantite"]) > 40 or item["quantite"]==None:
+            if item["produit"] not in listeproduits or 0 > int(item["quantite"]) > 40 or item["quantite"]=="":
                 continue
             idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
             produit = produits_amp.Produits_amp(id_amp=navette.id,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],id_user=current_user.id)
+            if participation_valide == False: #afin que le form ne comptabilise qu'une seule participation à une amplet
+                participation = participants_amp.Participants_amp(id_amp=navette.id,id_user=current_user.id)
+                db.session.add(participation)
+                participation_valide = True
             db.session.add(produit)
             db.session.commit()
+
+
+    return render_template("succès.html", user=current_user)
+
 
 @app.route('/succès')
 @login_required

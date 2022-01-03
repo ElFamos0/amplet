@@ -14,7 +14,10 @@ def amplet_dict(amp_id) :
         coursier = "NULL"
     else :
         coursier = cours[0].username
-        cp = cours[0].code_postal
+        id_ad =  cours[0].id_adresse
+
+        cp = adresses.Adresse.query.get(id_ad).codepostal
+
     ampl['coursier'] = coursier
 
     participants = users.User.query.add_entity(participants_amp.Participants_amp).join(participants_amp.Participants_amp).filter(participants_amp.Participants_amp.id_amp == amp.id,participants_amp.Participants_amp.id_user==users.User.id)
