@@ -123,7 +123,7 @@ def inscription_amplet() :
             listeprix += [p[0].prix for p in prod]
             listeproduits += [p[0].nom for p in prod]
         
-        participation_valide = participants_amp.Participants_amp.query.filter_by(id_amp=ampl,id_user=current_user.id) is not None
+        participation_valide = participants_amp.Participants_amp.query.filter_by(id_amp=ampl,id_user=current_user.id).first() is not None
     if request.method == "GET" :
         return render_template("index.html")
     
