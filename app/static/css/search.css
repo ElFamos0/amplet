@@ -1,0 +1,29 @@
+.recherche {
+    position: relative;
+    display: inline-block;
+}
+
+.recherche-user {
+    position: absolute;
+    width: 100%;
+}
+
+.recherche-user a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: lightgray;
+    width: 100%;
+}
+
+.recherche-user a:hover {
+    background-color: #ddd;
+}
+
+.recherche-photo {
+    margin-left: 10px;
+    border-radius: 15px;
+    width: 35px;
+    height: 35px;
+}

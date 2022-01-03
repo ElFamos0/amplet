@@ -1,4 +1,6 @@
-var socket = io();
+if (!socket) {
+    var socket = io();
+}
 
 var settings = {
     'currentselect': '',

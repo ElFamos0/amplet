@@ -12,8 +12,10 @@
                 <li><a href="/amplets_en_cours" class="nav-link px-2 link-dark">Les prochaines amplets</a></li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control" placeholder="Rechercher..." aria-label="Search">
+            <form class="recherche col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <input id="recherche-user-input" type="search" class="form-control" placeholder="Rechercher..." aria-label="Search">
+                <div id="recherche-user" class="recherche-user">
+                </div>
             </form>
 
             <div class="dropdown text-end">
@@ -34,3 +36,4 @@
         </div>
     </div>
 </header>
+<script src="{{url_for('static',filename='js/search.js')}}"></script>
