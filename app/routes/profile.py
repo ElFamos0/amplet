@@ -9,7 +9,7 @@ from flask_login import login_required, current_user
 
 @app.route("/p")
 @login_required
-def other_profiles():
+def own_profile():
     return render_template("profil.html", user=current_user, chat=False)
 
 

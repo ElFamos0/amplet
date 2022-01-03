@@ -61,12 +61,14 @@
                                     {{user.code_postal}}
                                 </div>
                             </div>
+                            {% if not chat %}
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <a class="btn btn-info" href="/pe">Modification</a>
                                 </div>
                             </div>
+                            {% endif %}
                             <hr>
                         </div>
                     </div>
