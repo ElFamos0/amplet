@@ -32,5 +32,6 @@ def profilmodif():
         username = request.form.get("username")
         email = request.form.get("mail")
         adresse = request.form.get("adresse")
-        return username,email,adresse
-    return render_template("profilmodif.html",user=current_user)
+        return f"{username},{email},{adresse}"
+    adressereelle = adresses.Adresse.query.filter_by(id=current_user.id_adresse).first()
+    return render_template("profilmodif.html",user=current_user,adressereelle=adressereelle)

@@ -15,6 +15,7 @@
 
     <div class="container">
         <div class="main-body">
+            <form method="POST">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card">
@@ -31,11 +32,11 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-3">
-                                <form method="POST">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Pseudo</h6>
                                 </div>
@@ -56,7 +57,10 @@
                                     <h6 class="mb-0">Adresse</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" name="adresse" value="{{user.id_adresse}}">
+                                    <input type="text" class="form-control" name="numero" value="{{adressereelle.numero}}">
+                                    <input type="text" class="form-control" name="rue" value="{{adressereelle.rue}}">
+                                    <input type="text" class="form-control" name="ville" value="{{adressereelle.ville}}">
+                                    <input type="text" class="form-control" name="code_postal" value="{{adressereelle.codepostal}}">
                                 </div>
                             </div>
                             <div class="row">
@@ -64,12 +68,12 @@
                                 <div class="col-sm-9 text-secondary">
                                     <input type="submit" class="btn btn-primary px-4" value="Sauvegarder">
                                 </div>
-                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </form>
         </div>
     </div>
 </body>
