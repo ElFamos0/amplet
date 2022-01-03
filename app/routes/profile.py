@@ -1,4 +1,4 @@
-from db import app
+from db import *
 from models import *
 from flask import render_template,request
 from flask_login import login_required, current_user
@@ -32,7 +32,19 @@ def profilmodif():
     if request.method == "POST":
         username = request.form.get("username")
         email = request.form.get("mail")
-        adresse = request.form.get("adresse")
-        return f"{username},{email},{adresse}"
+        numero = request.form.get("numero")
+        rue = request.form.get("rue")
+        ville = request.form.get("ville")
+        codepostal = request.form.get("codepostal")
+        adressemodif = adresses.Adresse.query.filter_by(id=current_user.id_adresse).first()
+        if not users.User.query.filter_by(username=username).first():
+            utilisateur = users.User.query.get(current_user.id)
+            print(username)
+            utilisateur.username = username
+            db.session.commit()
+            print("commit lol")
+            
+
+        
     adressereelle = adresses.Adresse.query.filter_by(id=current_user.id_adresse).first()
     return render_template("profilmodif.html",user=current_user,adressereelle=adressereelle)
