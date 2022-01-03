@@ -12,13 +12,16 @@ def amplet_dict(amp_id) :
     cours = users.User.query.add_entity(amplet.Amplets).join(amplet.Amplets).filter(amplet.Amplets.id == amp.id,amplet.Amplets.id_coursier==users.User.id).first()
     if cours is None :
         coursier = "NULL"
+        id_cours = "Navette"
     else :
         coursier = cours[0].username
+        id_cours = cours[0].id
         id_ad =  cours[0].id_adresse
 
         cp = adresses.Adresse.query.get(id_ad).codepostal
 
     ampl['coursier'] = coursier
+    ampl['id_cours'] = id_cours
 
     participants = users.User.query.add_entity(participants_amp.Participants_amp).join(participants_amp.Participants_amp).filter(participants_amp.Participants_amp.id_amp == amp.id,participants_amp.Participants_amp.id_user==users.User.id)
     liste_p = []

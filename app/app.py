@@ -17,7 +17,7 @@ db.create_all() # Creates the tables if necessary
 # Setup ####################################
 if setup:
     db.session.add(adresses.Adresse(numero = 34,rue = "Rue des Tilleuls",ville = "Metz",codepostal = 57070))
-    db.session.add(adresses.Adresse(numero = 1,rue = "Rue Emile Knoeplfer",ville = "Mey",codepostal = 57070))
+    db.session.add(adresses.Adresse(numero = 1,rue = "Rue Emile Knoepfler",ville = "Mey",codepostal = 57070))
     db.session.add(adresses.Adresse(numero = 37,rue = "Rue Alfred Krieger",ville = "Metz",codepostal = 57070))
     db.session.add(adresses.Adresse(numero = 3,rue = "Rue Delattre de Tassigny",ville = "Laquenexy",codepostal = 57530))
     db.session.add(adresses.Adresse(numero = 1,rue = "Rue du Chapitre",ville = "Woippy",codepostal = 57140))
@@ -33,9 +33,6 @@ if setup:
     admin = users.User(username='admin', email='admin@test.com', id_adresse=lad_id[0],points = 54)
     guest = users.User(username='guest', email='guest@test.com', id_adresse=lad_id[1],points = 27)
     third = users.User(username='third', email='third@test.com', id_adresse=lad_id[2],points = 0)
-    amplet1 = amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=2,delai_fermeture_depart=6666666,ferme=False)
-    amplet2 = amplet.Amplets(navette=True,date_depart=1640803800000, date_arrivee=1640807400000,places_dispo=5,id_coursier=5,delai_fermeture_depart=6666666,ferme=False)
-    amplet3 = amplet.Amplets(navette=True,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=5,delai_fermeture_depart=6666666,ferme=False)
     admin.set_password('oof')
     guest.set_password('oof')
     third.set_password('oof')
@@ -45,9 +42,6 @@ if setup:
     db.session.add(admin)
     db.session.add(guest)
     db.session.add(third)
-    db.session.add(amplet1)
-    db.session.add(amplet2)
-    db.session.add(amplet3)
     db.session.commit()
 
     l_u = users.User.query.all()
@@ -58,6 +52,8 @@ if setup:
     db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
     db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
     db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1640990200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1640940200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
     db.session.commit()
 
 
@@ -72,19 +68,19 @@ if setup:
     for i in l_m :
         lm_id.append(i.id)
 
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[3],id_user = lu_id[1],valide=1))
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[4],id_user = lu_id[2],valide=1))
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[1],valide=1))
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[2],valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[0],id_user = lu_id[1],valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[1],id_user = lu_id[2],valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[1],valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[2],valide=1))
 
-    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[0]))
-    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[0]))
-    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[0]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[0],id_marchand = lm_id[0]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[1],id_marchand = lm_id[0]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[2],id_marchand = lm_id[0]))
 
-    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[1]))
-    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[1]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[2],id_marchand = lm_id[1]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[1],id_marchand = lm_id[1]))
 
-    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[2]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[2],id_marchand = lm_id[2]))
 
     db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse 50 cL",prix = 500))
     db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 50 cL",prix = 500))

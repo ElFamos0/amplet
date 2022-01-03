@@ -53,10 +53,17 @@
                 {% endfor %}
             </tbody>
         </table>
+        <input type = 'hidden' name = "amp_id" value ="{{ampid}}">
         <input type="submit" value="Envoyer"> 
         {%if not noproblem %}
         <div class="alert alert-danger" role="alert">
             Merci de ne pas mettre plus d'une fois le même article
+        </div>
+        {% endif %}
+
+        {%if dejainsc %}
+        <div class="alert alert-danger" role="alert">
+            Vous vous êtes déjà inscrit à cet amplet !
         </div>
         {% endif %}
     <br>
