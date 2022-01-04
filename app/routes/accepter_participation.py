@@ -9,8 +9,10 @@ from routes.commande import commande
 @login_required
 def accepter_participation(id_ampl,id_part):
     curr_amp = participants_amp.Participants_amp.query.filter_by(id_user = id_part, id_amp=id_ampl).first()
-    
-    if curr_amp:
+    curr_amp_id = curr_amp.id_amp
+    amp = amplet.Amplets.query.filter_by(id = curr_amp_id).first()
+    cours_id = amp.id_coursier
+    if curr_amp and current_user.id==cours_id:
         curr_amp.valide=1
         db.session.commit()
         return commande()
