@@ -34,7 +34,7 @@
                     <td>
                         <select name="produit{{i}}">
                         {% for produit in produits %}
-                            <option value="{{produit.nom}}">{{produit.nom}}</option>
+                            <option value="{{produit.nom}}">{{produit.nom}} de {{produit.marchand}}</option>
                         {% endfor %}
                         <option value="null" selected="selected"></option>
                         </select>
@@ -53,7 +53,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <input type="submit" value="Envoyer"> {% for mesg in get_flashed_messages() %}
+        <input type="submit" value="Envoyer" class = "bouton1"> {% for mesg in get_flashed_messages() %}
         <div class="alert alert-danger" role="alert">
             {{ mesg }}
         </div>

@@ -18,7 +18,7 @@ def send_inscription_amplet(id) :
     listeproduits = []
     for id_mag in liste_mag :
         prod = produits.Produits.query.add_entity(marchands.Marchands).join(marchands.Marchands).filter(marchands.Marchands.id == id_mag,produits.Produits.id_marchand == marchands.Marchands.id)
-        listeproduits += [{"nom":p[0].nom, "prix:": p[0].prix} for p in prod]
+        listeproduits += [{"nom":p[0].nom, "marchand": p[1].nom} for p in prod]
 
     items = []
     for i in range(0,5):
@@ -28,7 +28,7 @@ def send_inscription_amplet(id) :
                 "unite": request.form.get(f"unite{i}"),
                 })  
         #Cette partie ci-dessous me permet de faire toute les comparaisons nécessaire au bon fonctionnement du form
-    participation_valide = not participants_amp.Participants_amp.query.filter_by(id_amp=ampl,id_user=current_user.id).first() is not None #afin que le form ne comptabilise qu'une seule participation à une amplet
+    participation_valide = not participants_amp.Participants_amp.query.filter(participants_amp.Participants_amp.id_amp==ampl,participants_amp.Participants_amp.id_user==current_user.id).first() is not None #afin que le form ne comptabilise qu'une seule participation à une amplet
     listeverif = []
     
     for item in items:      
