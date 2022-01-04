@@ -69,9 +69,9 @@ def send_inscription_amplet(id) :
             if participation_valide: #afin que le form ne comptabilise qu'une seule participation à une amplet
                 participation = participants_amp.Participants_amp(id_amp=ampl,id_user=current_user.id,valide= 0)
                 db.session.add(participation)
-                participation_valide = True
+                participation_valide = False
             db.session.add(produit)
-            db.session.commit()
+        db.session.commit()
 
 
     return redirect("/succes")
