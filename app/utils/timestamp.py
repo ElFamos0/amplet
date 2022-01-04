@@ -1,6 +1,9 @@
 from time import time
 from datetime import datetime
 
+def until(t):
+    return t-now()
+
 def now() :
     return int(round(time() * 1000))
 
