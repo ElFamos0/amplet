@@ -12,5 +12,7 @@ __all__ = [
     "amplets_en_cours",
     "inscription_amplet",
     "send_inscription_amplet",
-    "succes"
+    "succes",
+    "accepter_participation",
+    "refuser_participation"
 ]

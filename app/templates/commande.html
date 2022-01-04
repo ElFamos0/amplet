@@ -38,7 +38,7 @@
             {% if cours_valide_participants[i][j]==0 %}
               <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
               Status : En attente<br>
-              Accepter Refuser
+              <a href="/a/cours_id_amp[i]/user.id" >Accepter</a> Refuser
             {% endif %}
           {% endfor %}<br>
         {% endfor %}
