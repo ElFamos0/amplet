@@ -27,37 +27,36 @@ def navette():
                     "unite": request.form.get(f"unite{i}"),
                     })  
         #Cette partie ci-dessous me permet de faire toute les comparaisons nécessaire au bon fonctionnement du form
-        participation_valide = False
+        participation_valide = not participants_amp.Participants_amp.query.filter_by(id_amp=navette.id,id_user=current_user.id).first() is not None #afin que le form ne comptabilise qu'une seule participation à une amplet
         listeverif = []
         allgood = True
+
         for item in items:      
             if item["produit"] != "null":
                 listeverif.append(item["produit"])
-        if len(set(listeverif)) != len(listeverif):
-            allgood = False
+        allgood = len(set(listeverif)) == len(listeverif) and len(listeverif) > 0
         if allgood: #si il n'y pas d'erreur on ajoute item après item 
             for item in items: #vérifie si les valeurs entrés ne dépassent pas certaines valeurs
                 produit, qte, unite = item["produit"], conversion(item["quantite"], int, 0), item["unite"]
 
                 if produit not in listeproduits:
                     continue
-                
-                if unite == "kg" and 0 < qte < 10:
+
+                if unite == "kg" and 0 > qte > 10:
                     continue
-                if unite == "g" and 0 < qte < 10000:
+                if unite == "g" and 0 > qte > 10000:
                     continue
                 if unite == "unite" and qte > 0:
                     continue
                 
                 idproduit = produits.Produits.query.filter(produits.Produits.nom==produit).first()
                 produit = produits_amp.Produits_amp(id_amp=navette.id,id_produit=idproduit.id,quantite=qte,unite=unite,id_user=current_user.id)
-                if participation_valide == False: # afin que le form ne comptabilise qu'une seule participation à une amplet
+                if participation_valide: # afin que le form ne comptabilise qu'une seule participation à une amplet
                     participation = participants_amp.Participants_amp(id_amp=navette.id,id_user=current_user.id,valide=0)
                     db.session.add(participation)
                     participation_valide = True
                 db.session.add(produit)
             db.session.commit()
-            print("comited")
             return render_template("succes.html", user=current_user,succesnavette=True)
 
     listenavettes = amplet.Amplets.query.filter_by(navette=True, ferme=False).all()
