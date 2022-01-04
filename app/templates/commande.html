@@ -12,7 +12,7 @@
       <div class="col-sm">
         Les Amplets sur lesquelles je suis inscrit :<br><br>
         {% for i in range(n) %}
-        Amplet numéro {{i}} :<br>
+        Amplet numéro {{i+1}}<br>
         ID : {{inscr_id_amp[i]}}<br>
         Coursier : <a href="/p/{{inscr_id_coursier[i]}}" >{{inscr_nom_coursier[i]}}</a><br>
         Status : {{inscr_valide[i]}}<br><br>
@@ -22,7 +22,17 @@
         Les navettes sur lesquelles je suis inscrit :
       </div>
       <div class="col-sm">
-        Les Amplets que je propose :    
+        Les Amplets que je propose :<br><br>
+        {% for i in range(m) %}
+          ================================<br>
+          Amplet numéro {{i+1}}<br><br>
+          ID : {{cours_id_amp[i]}}<br><br>
+          Participants :<br>
+          {% for j in range(list_len[i]) %}
+          <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
+          Status : {{cours_valide_participants[i][j]}}<br><br>
+          {% endfor %}<br>
+        {% endfor %}
       </div>
     </div>
 </div>
