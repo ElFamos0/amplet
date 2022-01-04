@@ -16,13 +16,15 @@
         Sélectionnez un ou plusieurs magasins de votre ville que vous allez visiter:
         <form action='nouvelleAmplet' method='POST'>
             <br> {% for mag in mag_dispo %}
-            <input type="checkbox" id="{{mag.id}}" name="{{mag.id}}">
+            <input type="checkbox" id="{{mag.id}}" name="{{mag.id}}" value="mag">
             <label for="{{mag.id}}">{{mag.nom}}</label><br> {% endfor %}
 
-            <br> Distance maximale avec les bénéficiaires potentiels :<br>
-            <input type="range" value="24" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+            <br>Distance maximale avec les bénéficiaires potentiels :<br>
+            <input type="range" name="dist_max" value="20" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
             <input type="number"> </input><br>
-            <input type="number" name="dist_max" value="20">
+            <input type="date" name="date_depart" value="">à<input type="number" name="heure_depart" value="8" min="0" max="23">h<br>
+            Fermer mon Amplet <input type="number" name="delai_ferm" value="8" min="0" max="23">h à l'avance<br>
+            Places disponibles : <input type="number" name="places_dispo" value="5" min="1" max="10"><br>
             <input type="submit">
         </form>
     </div>
