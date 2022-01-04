@@ -15,7 +15,7 @@
         Amplet numéro {{i+1}}<br>
         ID : {{inscr_id_amp[i]}}<br>
         Coursier : <a href="/p/{{inscr_id_coursier[i]}}" >{{inscr_nom_coursier[i]}}</a><br>
-        Status : {{inscr_valide[i]}}<br><br>
+        Statut : {{inscr_valide[i]}}<br><br>
         {% endfor %}
       </div>
       <div class="col-sm">
@@ -31,14 +31,14 @@
           {% for j in range(list_len[i]) %}
             {% if cours_valide_participants[i][j]==1 %}
               <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
-              Status : Accepté<br>
+              Statut : Accepté<br>
             {% endif %}
           {% endfor %}<br>
           {% for j in range(list_len[i]) %}
             {% if cours_valide_participants[i][j]==0 %}
               <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
-              Status : En attente<br>
-              <a href="/a/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}">Accepter</a> Refuser
+              Statut : En attente<br>
+              <a href="/a/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}">Accepter</a> <a href="/r/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}">Refuser</a>
             {% endif %}
           {% endfor %}<br>
         {% endfor %}
