@@ -1,5 +1,4 @@
 from flask_login.utils import login_required
-from models.users import User
 from db import *
 from models import *
 from flask_login import current_user
@@ -10,6 +9,7 @@ from routes.commande import commande
 @login_required
 def accepter_participation(id_ampl,id_part):
     curr_amp = participants_amp.Participants_amp.query.filter_by(id_user = id_part, id_amp=id_ampl).first()
+    
     if curr_amp:
         curr_amp.valide=1
         db.session.commit()
