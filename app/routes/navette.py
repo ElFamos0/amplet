@@ -54,7 +54,7 @@ def navette():
                 if participation_valide: # afin que le form ne comptabilise qu'une seule participation à une amplet
                     participation = participants_amp.Participants_amp(id_amp=navette.id,id_user=current_user.id,valide=0)
                     db.session.add(participation)
-                    participation_valide = True
+                    participation_valide = False
                 db.session.add(produit)
             db.session.commit()
             return render_template("succes.html", user=current_user,succesnavette=True)
