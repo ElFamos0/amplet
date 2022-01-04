@@ -16,7 +16,7 @@ class Amplets(db.Model):
     ferme = db.Column(db.Boolean, nullable=False)
 
     def nom_amplet(self):
-        return f'{self.id_coursier} - {timestamp.timestamp_to_date(self.date_arrivee, format=True)}'
+        return f'{self.id} - {timestamp.timestamp_to_date(self.date_arrivee, format=True)}'
 
     def __init__(self, navette, date_depart, date_arrivee, places_dispo, id_coursier, delai_fermeture_depart, ferme):
         self.id = next(gen)

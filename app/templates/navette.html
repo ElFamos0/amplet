@@ -17,11 +17,15 @@
     <br>
     <br>
     <br>
-    <form class=option method="POST">
+    <form class=option method="POST" action='/navette/{{navid}}'>
         <h6>Sélectionnez votre navette</h6>
-        <select id="navette" name="navette">
+        <select id="navette" name="navette" onchange="window.location='/navette/'+this.value">
             {% for navette in navettes %}
+            {% if navid == navette.id %}
+            <option value="{{navette.id}}" selected="selected">{{navette.nom_amplet()}}</option>
+            {% else %}
             <option value="{{navette.id}}">{{navette.nom_amplet()}}</option>
+            {% endif %}
             {% endfor %}
           </select>
         <table>
@@ -38,13 +42,13 @@
                     <td>
                         <select name="produit{{i}}">
                         {% for produit in produits %}
-                            <option value="{{produit}}">{{produit}}</option>
+                            <option value="{{produit[1].id}}">{{produit[1].nom}}</option>
                         {% endfor %}
                         <option value="null" selected="selected"></option>
                         </select>
                     </td>
                     <td>
-                        <input type='number' class="w-25" min="0" max="40" name="quantite{{i}}">
+                        <input type='number' class="w-25 " min="0 " max="40 " name="quantite{{i}}">
                     </td>
                     <td>
                         <select name='unite{{i}}'>
@@ -57,14 +61,13 @@
                 {% endfor %}
             </tbody>
         </table>
-        <input type="submit" href='/navette' value="Envoyer"> 
-        {%if not noproblem %}
+        <button type="submit" class="btn btn-secondary btn-lg">Envoyer</button> {% for mesg in get_flashed_messages() %}
         <div class="alert alert-danger" role="alert">
-            Merci de ne pas mettre plus d'une fois le même article
+            {{ mesg }}
         </div>
-        {% endif %}
-    <br>
-    <br>
+        {% endfor %}
+        <br>
+        <br>
         <p>Afin que votre demande/vote se déroule dans les meilleures conditions merci de ne pas choisir de produits sans quantités ou de quantités sans produits. Ces demandes seraient alors ignorés de votre commande</p>
     </form>
 
