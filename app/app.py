@@ -52,8 +52,8 @@ if setup:
         lu_id.append(i.id)
     
     db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
-    db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
-    db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[1],ferme = False,delai_fermeture_depart = 6666666))
+    db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660))
     db.session.add(amplet.Amplets(navette=True,date_depart=1640940200000,date_arrivee=1640806800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
     db.session.add(amplet.Amplets(navette=True,date_depart=1640990200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
     db.session.commit()
@@ -70,7 +70,7 @@ if setup:
     for i in l_m :
         lm_id.append(i.id)
 
-    db.session.add(participants_amp.Participants_amp(id_amp = la_id[0],id_user = lu_id[1],valide=1))
+    db.session.add(participants_amp.Participants_amp(id_amp = la_id[0],id_user = lu_id[1],valide=0))
     db.session.add(participants_amp.Participants_amp(id_amp = la_id[1],id_user = lu_id[2],valide=1))
     db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[1],valide=1))
     db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[2],valide=1))
@@ -97,8 +97,6 @@ if setup:
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Orange",prix=450))
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Carotte",prix=450))
 
-    db.session.add(participants_amp.Participants_amp(id_amp=la_id[1], id_user=lu_id[0], valide=1))
-    db.session.add(participants_amp.Participants_amp(id_amp=la_id[0], id_user=lu_id[0], valide=0))
     db.session.add(participants_amp.Participants_amp(id_amp=la_id[2], id_user=lu_id[0], valide=1))
     db.session.add(participants_amp.Participants_amp(id_amp=la_id[0], id_user=lu_id[2], valide=1))
 
