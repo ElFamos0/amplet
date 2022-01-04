@@ -41,8 +41,8 @@ def commande():
     if coursier:
         for i in range(len(coursier)):
             cours_id_amp.append(coursier[i].id)
-            cours_id_participants.append([e.id_user for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1])])
-            cours_valide_participants.append([e.valide for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1])])
+            cours_id_participants.append([e.id_user for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1]) if e.valide!=2])
+            cours_valide_participants.append([e.valide for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1]) if e.valide!=2])
             cours_nom_participants.append([users.User.query.filter_by(id = e).first().username for e in cours_id_participants[-1]])
         m = len(coursier)
         for i in range(len(cours_valide_participants)):
