@@ -2,6 +2,7 @@ from db import *
 from models import *
 from flask_login import login_required, current_user
 from flask import render_template, request
+from utils import vote_marchand
 
 ##############################
 ########### ADMIN  ###########
@@ -34,6 +35,7 @@ def hello_world():
         requete1 = users.User.query.filter(users.User.id==participant.id_user).first()
         content += f"ID AMPLET : {participant.id_amp} - USERNAME : {requete1.username}"
         content += "<br/>"
+    #vote_marchand.vote(6884187769132814339)
     return content
 
 @app.route("/admin", methods=['GET','POST'])
