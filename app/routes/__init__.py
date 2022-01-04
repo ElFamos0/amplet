@@ -6,8 +6,11 @@ __all__ = [
     "admin",
     "index",
     "navette",
-    "amplets",
     "commande",
     "recherche_users",
-    "nouvelleAmplet"
+    "nouvelleAmplet",
+    "amplets_en_cours",
+    "inscription_amplet",
+    "send_inscription_amplet",
+    "succes"
 ]

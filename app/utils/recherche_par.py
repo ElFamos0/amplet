@@ -1,4 +1,21 @@
-def recherche_par(liste_amplet,type,cp = 0) :
+from db import *
+from models import *
+
+def distance(adresse1,adresse2) :
+    
+    x1 = adresse1.coordx
+    x2 = adresse2.coordx
+    distx = x1-x2
+
+    y1 = adresse1.coordy
+    y2 = adresse2.coordy
+    disty = y1-y2
+
+    return (distx**2 + disty**2)**(0.5)
+
+
+
+def recherche_par(liste_amplet,type,id_adresse = 0) :
     if type == "Proximité" : # A améliorer avec une API type google map
 
         if len(liste_amplet) <= 1 :
@@ -6,15 +23,22 @@ def recherche_par(liste_amplet,type,cp = 0) :
         else :
             m = len(liste_amplet)//2
 
-        l1 = recherche_par(liste_amplet[:m],type,cp)
-        l2 = recherche_par(liste_amplet[m:],type,cp)
+        l1 = recherche_par(liste_amplet[:m],type,id_adresse)
+        l2 = recherche_par(liste_amplet[m:],type,id_adresse)
         retour = []
+        adresse_user = adresses.Adresse.query.get(id_adresse)
         while len(l1) >0 and len(l2) >0 :
 
-                cp1 = abs(l1[0]['cp']-cp)
-                cp2 = abs(l2[0]['cp'] -cp)
+                id_ad1 = users.User.query.get(l1[0]['id_cours']).id_adresse
+                id_ad2 = users.User.query.get(l2[0]['id_cours']).id_adresse
 
-                if cp1 < cp2 :
+                adresse1 = adresses.Adresse.query.get(id_ad1)
+                adresse2 = adresses.Adresse.query.get(id_ad2)
+
+                distance1 = distance(adresse_user,adresse1)
+                distance2 = distance(adresse_user,adresse2)
+
+                if distance1 < distance2 :
                     retour.append(l1.pop(0))
                 else :
                     retour.append(l2.pop(0))

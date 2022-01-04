@@ -12,10 +12,11 @@
     <div class="b-example-divider"></div>
 
     {% include 'headers/navbar.html' %}
+    {% if succesnavette==False %}
     <div class = "container">
 
         <h1 class = "titre1">Votre inscription a été enregistrée avec succès ! </h1>
-        {% if succesnavette==False %}
+        
         <form action = "/amplets_en_cours" method = "GET">
 
             <input class = "bouton1" type ="submit" value = "Retour"> 

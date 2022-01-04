@@ -48,7 +48,7 @@ def navette():
                     participation_valide = True
                 db.session.add(produit)
                 db.session.commit()
-                return render_template("succès.html", user=current_user,succesnavette=True)
+                return render_template("succes.html", user=current_user,succesnavette=True)
 
     listenavettes = amplet.Amplets.query.filter_by(navette=True, ferme=False).all()
     for i in range(len(listenavettes)-1,-1,-1):# on gère l'affichage des amplets de type navette disponibles pour chaque utilisateurs
@@ -57,5 +57,5 @@ def navette():
         if count > 0: #on vérifie que il y a au moins une navette disponible
             listenavettes.pop(i)
     if listenavettes == []:
-        return "Il n'y a pas de navettes disponible merci de revenir ultérieurement"
+        return render_template("erreur.html",user=current_user,erreur = "Il n'y a pas de navette disponible pour le moment !")
     return render_template("navette.html",user=current_user,produits=listeproduits,navettes=listenavettes,noproblem=allgood) #chargement de la page
