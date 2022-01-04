@@ -1,5 +1,4 @@
 from flask_login.utils import login_required
-from models.users import User
 from db import *
 from models import *
 from flask_login import current_user

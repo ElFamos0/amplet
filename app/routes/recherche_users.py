@@ -1,9 +1,8 @@
 from db import *
 from models.users import User
-from flask_socketio import emit, join_room, disconnect
+from flask_socketio import emit, disconnect
 from flask_login import current_user
 import functools
-import json
 
 #################################################
 ########### RECHERCHE D'UTILISATEUR  ############

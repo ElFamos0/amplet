@@ -3,9 +3,7 @@ from utils.cast import conversion
 from db import *
 from models import *
 from flask_login import current_user, login_required
-from flask import render_template,flash,redirect,url_for
-from utils import timestamp
-from sqlalchemy import and_
+from flask import render_template
 
 ##############################
 ########### NAVETTE ##########
