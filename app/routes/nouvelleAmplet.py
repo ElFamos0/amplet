@@ -12,12 +12,12 @@ from utils.amplets_a_afficher import amplets_a_afficher, amplet_dict
 @app.route('/nouvelleAmplet', methods=['GET','POST'])
 @login_required
 def nouvelleAmplet():
-    mag_dispo=['primeur du coin', 'chez Tony']
-    mag_visit=[]
+    mag_dispo=marchands.Marchands.query.all()
+    mag_dispo_noms=[e.nom for e in mag_dispo]
+    mag_choisis_id=[]
     if request.method=='POST':
         L=request.form
-        for e in mag_dispo:
-            if e in L:
-                mag_visit.append(e)
-        return mag_visit[1]
-    return render_template('nouvelleAmplet.html', magasins=mag_dispo)
+        for e in L:
+            mag_choisis_id.append(e)
+        print(L)
+    return render_template('nouvelleAmplet.html', mag_dispo=mag_dispo, mag_dispo_noms=mag_dispo_noms,user=current_user)

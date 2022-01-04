@@ -15,13 +15,13 @@
     <div>
         Sélectionnez un ou plusieurs magasins de votre ville que vous allez visiter:
         <form action='nouvelleAmplet' method='POST'>
-            <br> {% for mag in magasins %}
-            <input type="checkbox" id="{{mag}}" name="{{mag}}">
-            <label for="{{mag}}">{{mag}}</label><br> {% endfor %}
+            <br> {% for mag in mag_dispo %}
+            <input type="checkbox" id="{{mag.id}}" name="{{mag.id}}">
+            <label for="{{mag.id}}">{{mag.nom}}</label><br> {% endfor %}
 
             <br> Distance maximale avec les bénéficiaires potentiels :<br>
             <input type="range" value="24" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
-            <input type="number"> </input>
+            <input type="number"> </input><br>
             <input type="submit">
         </form>
     </div>
