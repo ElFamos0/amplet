@@ -1,4 +1,5 @@
 from sqlalchemy.sql.expression import and_
+from utils.cast import conversion
 from db import *
 from models import *
 from flask_login import current_user, login_required
@@ -38,17 +39,25 @@ def navette():
             allgood = False
         if allgood: #si il n'y pas d'erreur on ajoute item après item 
             for item in items: #vérifie si les valeurs entrés ne dépassent pas certaines valeurs
-                if item["produit"] not in listeproduits or 0 > int(item["quantite"]) > 40 or item["quantite"]=="":
+                produit, qte, unite = item["produit"], conversion(item["quantite"], int, 0), item["unite"]
+
+                if produit not in listeproduits:
+                    print("1")
                     continue
-                idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
-                produit = produits_amp.Produits_amp(id_amp=navette.id,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],id_user=current_user.id)
-                if participation_valide == False: #afin que le form ne comptabilise qu'une seule participation à une amplet
+                if 0 > qte > 40 :
+                    print("2")
+                    continue
+                
+                idproduit = produits.Produits.query.filter(produits.Produits.nom==produit).first()
+                produit = produits_amp.Produits_amp(id_amp=navette.id,id_produit=idproduit.id,quantite=qte,unite=unite,id_user=current_user.id)
+                if participation_valide == False: # afin que le form ne comptabilise qu'une seule participation à une amplet
                     participation = participants_amp.Participants_amp(id_amp=navette.id,id_user=current_user.id,valide=1)
                     db.session.add(participation)
                     participation_valide = True
                 db.session.add(produit)
-                db.session.commit()
-                return render_template("succes.html", user=current_user,succesnavette=True)
+            db.session.commit()
+            print("comited")
+            return render_template("succes.html", user=current_user,succesnavette=True)
 
     listenavettes = amplet.Amplets.query.filter_by(navette=True, ferme=False).all()
     for i in range(len(listenavettes)-1,-1,-1):# on gère l'affichage des amplets de type navette disponibles pour chaque utilisateurs

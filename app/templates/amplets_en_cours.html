@@ -52,60 +52,55 @@
 
         <div class="affichage">
 
-            {{ "Aucune amplet ne répond à vos critères !" if amplets|length==0 else "" }}
-            
-            {% for amp in amplets %}
-                    <div class="amplet_item">
+            {{ "Aucune amplet ne répond à vos critères !" if amplets|length==0 else "" }} {% for amp in amplets %}
+            <div class="amplet_item">
 
-                         <div class = "a_head">
-                            <h5 class ="a_titre">Amplet du {{amp.debut}}</h5>
-                            
-                            <form  method="POST" action='/inscription_amplet'>
-                                <button type = "submit" class = "a_button" name = "amp_id" value = {{amp.id_amp}} > S'inscrire</button>
-                            </form>
+                <div class="a_head">
+                    <h5 class="a_titre">Amplet du {{amp.debut}}</h5>
 
-                        </div>
+                    <a href="/i/{{amp.id}}" class="a_button"> S'inscrire</a>
 
-                        <div class = "a_body">
-                                
-                            <div class="a_cont">
-                            <p> Place{{ "s" if amp.places >1 else "" }} restante{{ "s" if amp.places >1 else "" }} : {{(amp.places)}}  </p>  
-                            <p> Code postal : {{amp.cp}} </p>
-                            <p> Coursier : {% if amp.navette != "NULL" %} Navette {% endif %} {% if amp.id_cours!="Navette" %}  <a href="/p/{{amp.id_cours}}"> {{amp.coursier}}</a> {% endif %} </p>
-                            </div>
+                </div>
 
-                            <div class = "a_cont"> 
-                                
-                                <div class= "a_text">
-                                Participant{{ "s" if amp.participants|length>1 else ""}} :
-                                </div>
-                                <div class="a_liste"> 
+                <div class="a_body">
 
-                                    {% if amp.participants|length==0 %} <div class= 'a_liste_item'>  Aucun </div> {% endif %}
-
-                                    {% for p in amp.participants %}
-                                    <div class= "a_liste_item">  {{p}} </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-
-                            <div class = "a_cont"> 
-                                
-                                <div class= "a_text">
-                                Magasin{{ "s" if amp.l_magasins|length>1 else ""}} visité{{ "s" if amp.l_magasins|length>1 else ""}} :
-                                </div>
-                                <div class="a_liste"> 
-                                    
-                                    {% for m in amp.l_magasins %}
-                                    <div class= "a_liste_item">  {{m}} </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            
-
-                        </div>
-
+                    <div class="a_cont">
+                        <p> Place{{ "s" if amp.places >1 else "" }} restante{{ "s" if amp.places >1 else "" }} : {{(amp.places)}} </p>
+                        <p> Code postal : {{amp.cp}} </p>
+                        <p> Coursier : {% if amp.navette != "NULL" %} Navette {% endif %} {% if amp.id_cours!="Navette" %} <a href="/p/{{amp.id_cours}}"> {{amp.coursier}}</a> {% endif %} </p>
                     </div>
+
+                    <div class="a_cont">
+
+                        <div class="a_text">
+                            Participant{{ "s" if amp.participants|length>1 else ""}} :
+                        </div>
+                        <div class="a_liste">
+
+                            {% if amp.participants|length==0 %}
+                            <div class='a_liste_item'> Aucun </div> {% endif %} {% for p in amp.participants %}
+                            <div class="a_liste_item"> {{p}} </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="a_cont">
+
+                        <div class="a_text">
+                            Magasin{{ "s" if amp.l_magasins|length>1 else ""}} visité{{ "s" if amp.l_magasins|length>1 else ""}} :
+                        </div>
+                        <div class="a_liste">
+
+                            {% for m in amp.l_magasins %}
+                            <div class="a_liste_item"> {{m}} </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
             {% endfor %}
 
         </div>

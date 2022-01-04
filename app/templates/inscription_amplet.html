@@ -17,7 +17,7 @@
     <br>
     <br>
     <br>
-    <form class=option method="POST" action = "/send_inscription_amplet">
+    <form class=option method="POST" action="/si/{{amp.id}}">
         <h6>Inscription sur l'amplet de {{amp.coursier}} du {{amp.debut}}</h6>
 
         <table>
@@ -34,7 +34,7 @@
                     <td>
                         <select name="produit{{i}}">
                         {% for produit in produits %}
-                            <option value="{{produit}}">{{produit}}</option>
+                            <option value="{{produit.nom}}">{{produit.nom}}</option>
                         {% endfor %}
                         <option value="null" selected="selected"></option>
                         </select>
@@ -53,21 +53,13 @@
                 {% endfor %}
             </tbody>
         </table>
-        <input type = 'hidden' name = "amp_id" value ="{{ampid}}">
-        <input type="submit" value="Envoyer"> 
-        {%if not noproblem %}
+        <input type="submit" value="Envoyer"> {% for mesg in get_flashed_messages() %}
         <div class="alert alert-danger" role="alert">
-            Merci de ne pas mettre plus d'une fois le même article
+            {{ mesg }}
         </div>
-        {% endif %}
-
-        {%if dejainsc %}
-        <div class="alert alert-danger" role="alert">
-            Vous vous êtes déjà inscrit à cet amplet !
-        </div>
-        {% endif %}
-    <br>
-    <br>
+        {% endfor %}
+        <br>
+        <br>
         <p>Afin que votre demande/vote se déroule dans les meilleures conditions merci de ne pas choisir de produits sans quantités ou de quantités sans produits. Ces demandes seraient alors ignorés de votre commande</p>
     </form>
 

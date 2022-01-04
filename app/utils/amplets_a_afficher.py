@@ -7,7 +7,7 @@ def amplet_dict(amp_id) :
 
     amp = amplet.Amplets.query.get(amp_id)
 
-    ampl = {'id_amp' : amp.id}
+    ampl = {'id' : amp.id}
 
     cours = users.User.query.add_entity(amplet.Amplets).join(amplet.Amplets).filter(amplet.Amplets.id == amp.id,amplet.Amplets.id_coursier==users.User.id).first()
     if cours is None :
@@ -58,7 +58,7 @@ def amplet_dict(amp_id) :
     ampl['debut'] = d
     ampl['date'] = amp.date_depart
 
-    return(ampl)
+    return ampl
 
 def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
 

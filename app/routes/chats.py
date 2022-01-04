@@ -29,6 +29,9 @@ def handle_connection():
 def handle_message(msg):
     target = msg['target']
     content = msg['content']
+    if target == current_user.id or content == "" or target == "":
+        return
+    print(target)
     timestamp = now()
     db.session.add(chat.Chat(id_emetteur=current_user.id,id_amp=target,timestamps=timestamp,contenu=content))
     db.session.commit()
