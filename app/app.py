@@ -22,6 +22,7 @@ if setup:
     db.session.add(adresses.Adresse(numero = 3,rue = "Rue Delattre de Tassigny",ville = "Laquenexy",codepostal = 57530))
     db.session.add(adresses.Adresse(numero = 1,rue = "Rue du Chapitre",ville = "Woippy",codepostal = 57140))
     db.session.add(adresses.Adresse(numero = 8,rue = "Rue de Metz",ville = "Gravelotte",codepostal = 57130))
+    db.session.add(adresses.Adresse(numero = 59,rue = "Avenue du Général Mangin",ville = "Nancy",codepostal = 54000))
 
     db.session.commit()
 
@@ -39,6 +40,7 @@ if setup:
     db.session.add(marchands.Marchands(nom= 'Chez Jupux',id_adresse=lad_id[3],type="Crémier",multiplicateur=1.0))
     db.session.add(marchands.Marchands(nom= 'Chez Tomczak',id_adresse=lad_id[4],type="Maître Sauceur",multiplicateur=1.0))
     db.session.add(marchands.Marchands(nom= 'Chez LV',id_adresse=lad_id[5],type="Primeur",multiplicateur=1.0))
+    db.session.add(marchands.Marchands(nom= 'Chez Malo',id_adresse=lad_id[6],type="Primeur",multiplicateur=1.0))
     db.session.add(admin)
     db.session.add(guest)
     db.session.add(third)
@@ -82,6 +84,16 @@ if setup:
 
     db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[2],id_marchand = lm_id[2]))
 
+
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[0]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[1]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[2]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[3]))
+
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[1]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[2]))
+    db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[3]))
+
     db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse 50 cL",prix = 500))
     db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 50 cL",prix = 500))
     db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 25 cL",prix = 300))
@@ -94,6 +106,11 @@ if setup:
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Pomme de terre",prix=450))
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Orange",prix=450))
     db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Carotte",prix=450))
+
+    db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Tomate",prix=450))
+    db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Pomme de terre",prix=450))
+    db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Orange",prix=450))
+    db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Carotte",prix=450))
 
     db.session.add(participants_amp.Participants_amp(id_amp=la_id[2], id_user=lu_id[0], valide=1))
     db.session.add(participants_amp.Participants_amp(id_amp=la_id[0], id_user=lu_id[2], valide=1))
