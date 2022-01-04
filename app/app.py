@@ -56,6 +56,9 @@ if setup:
     db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660))
     db.session.add(amplet.Amplets(navette=True,date_depart=1640940200000,date_arrivee=1640806800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
     db.session.add(amplet.Amplets(navette=True,date_depart=1640990200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1650990200000,date_arrivee=1650893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1660990200000,date_arrivee=1660893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+
     db.session.commit()
 
 
