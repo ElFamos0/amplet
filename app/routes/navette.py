@@ -48,6 +48,7 @@ def navette():
                     participation_valide = True
                 db.session.add(produit)
                 db.session.commit()
+                return render_template("succès.html", user=current_user,succesnavette=True)
 
     listenavettes = amplet.Amplets.query.filter_by(navette=True, ferme=False).all()
     for i in range(len(listenavettes)-1,-1,-1):# on gère l'affichage des amplets de type navette disponibles pour chaque utilisateurs
