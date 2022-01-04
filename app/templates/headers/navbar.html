@@ -1,15 +1,17 @@
 <header class="p-3 mb-3 border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                <pre class="justify-content-center mb-md-0 ">Amplet   </pre>
+            <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 text-dark text-decoration-none">
+                <pre class="justify-content-center px-4 mb-md-0 ">Amplet</pre>
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 link-secondary">Présentation</a></li>
-                <li><a href="/navette" class="nav-link px-2 link-dark">Navette Amplet</a></li>
-                <li><a href="/nouvelleAmplet" class="nav-link px-2 link-dark">Créer une Amplet</a></li>
-                <li><a href="/amplets_en_cours" class="nav-link px-2 link-dark">Les prochaines amplets</a></li>
+                <li><a href="/navette" class="nav-link px-4 link-dark">Navette Amplet</a></li>
+                <li><a href="/nouvelleAmplet" class="nav-link px-4 link-dark">Créer une Amplet</a></li>
+                {% if user.is_Mayor %}
+                <li><a href="/nouvelleNavette" class="nav-link px-4 link-dark">Créer une Navette</a></li>
+                {% endif %}
+                <li><a href="/amplets_en_cours" class="nav-link px-4 link-dark">Les prochaines amplets</a></li>
             </ul>
 
             {% if user.is_authenticated %}

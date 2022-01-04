@@ -9,6 +9,7 @@ __all__ = [
     "commande",
     "recherche_users",
     "nouvelleAmplet",
+    "nouvelleNavette",
     "amplets_en_cours",
     "inscription_amplet",
     "send_inscription_amplet",
