@@ -31,6 +31,9 @@ Tristan :
 | 28 décembre | 29 décembre | écriture du rapport (sha1 et socketio) |
 | 30 décembre | 1 janvier | écriture du rapport (performance et tests) |
 | 1 janvier | 1 janvier | ajout de la table adresse ainsi que de la récupération des coordonnées |
+| 2 janvier | 3 janvier | modification du comportement entre utilisateurs loggé ou non |
+| 3 janvier | 3 janvier | création de la barre de recherche d'utilisateurs |
+| 4 janvier | 4 janvier | réglage sur l'envoi d'inscription sur une amplet |
 
 
 Jules :

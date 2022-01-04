@@ -50,5 +50,3 @@ Tristan : Doit faire, sur le serveur, un système qui permet de fermer les votes
 Tristan et Malo ont avancé sur la partie technique du rapport notamment la section performance et test mais également la partie développement. LV va s’occuper de la partie gestion de projet et de corriger les fautes.
 
 La matrice RACI a été actualisée et le schéma E/A aussi. Il faudra régler le problème entre adresse et coordonnées pour qu’elle soit à nouveau en 2NF.
-
-### Prochaine réunion le 2/01/2021 **(sans Tristan)**
