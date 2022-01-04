@@ -3,7 +3,7 @@ from models import *
 from flask import render_template, redirect, url_for, session, flash
 from flask_login import login_user, logout_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField
 from wtforms.validators import InputRequired, Email, Length, ValidationError
 
 ##############################
@@ -20,6 +20,10 @@ class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[InputRequired(), Email(message="Email invalide"), Length(max=100)], render_kw={"placeholder": "exemple@gmail.com"})
     username = StringField("Username", validators=[InputRequired(), Length(max=50)], render_kw={"placeholder": "Pseudo"})
     password = PasswordField("Password", validators=[InputRequired(), Length(min=4, max=50)], render_kw={"placeholder": "Mot de passe"})
+    numero = IntegerField("Numero",validators=[InputRequired()],render_kw={"placeholder": "Numéro de rue"})
+    rue = StringField("rue",validators=[InputRequired()], render_kw={"placeholder": "Nom de rue"})
+    ville = StringField("ville",validators=[InputRequired()], render_kw={"placeholder": "Nom de la ville"})
+    codepostal = IntegerField("codepostal",validators=[InputRequired()],render_kw={"placeholder": "Code Postal de la ville"})
     submit = SubmitField("S'inscrire")
 
     def validate_username(self, username):
@@ -36,8 +40,10 @@ class RegisterForm(FlaskForm):
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        new_user = users.User(username=form.username.data, email=form.email.data)
+        new_adresse = adresses.Adresse(numero=form.numero.data,rue=form.rue.data,ville=form.ville.data,codepostal=form.codepostal.data)
+        new_user = users.User(username=form.username.data, email=form.email.data,id_adresse=new_adresse.id)
         new_user.set_password(form.password.data)
+        db.session.add(new_adresse)
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
