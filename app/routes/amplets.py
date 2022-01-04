@@ -180,14 +180,14 @@ def send_inscription_amplet() :
             db.session.commit()
 
 
-    return render_template("succès.html", user=current_user)
+    return render_template("succès.html", user=current_user, succesnavette=False)
 
 
 @app.route('/succès')
 @login_required
 def succès() :
 
-    return render_template('succès.html',user=current_user)
+    return render_template('succès.html',user=current_user, succesnavette=False)
 
 
 

@@ -15,14 +15,24 @@
     <div class = "container">
 
         <h1 class = "titre1">Votre inscription a été enregistrée avec succès ! </h1>
-
+        {% if succesnavette==False %}
         <form action = "/amplets_en_cours" method = "GET">
 
             <input class = "bouton1" type ="submit" value = "Retour"> 
             
         </form>
-
     </div>
+    {% else %}
+    <div class = "container">
+
+        <h1 class = "titre1">Votre inscription a été enregistrée avec succès ! </h1>
+        <form action = "/navette" method = "GET">
+
+            <input class = "bouton1" type ="submit" value = "Retour"> 
+            
+        </form>
+    </div>
+    {% endif %}
 
     <style>
         .container{
