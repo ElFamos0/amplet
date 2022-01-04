@@ -57,9 +57,9 @@ def send_inscription_amplet(id) :
             if skip:
                 continue
 
-            if unite == "kg" and 0 < qte < 10:
+            if unite == "kg" and 0 > qte > 10:
                 continue
-            if unite == "g" and 0 < qte < 10000:
+            if unite == "g" and 0 > qte > 10000:
                 continue
             if unite == "unite" and qte > 0:
                 continue
