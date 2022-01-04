@@ -52,7 +52,7 @@ def navette():
                 idproduit = produits.Produits.query.filter(produits.Produits.nom==produit).first()
                 produit = produits_amp.Produits_amp(id_amp=navette.id,id_produit=idproduit.id,quantite=qte,unite=unite,id_user=current_user.id)
                 if participation_valide == False: # afin que le form ne comptabilise qu'une seule participation à une amplet
-                    participation = participants_amp.Participants_amp(id_amp=navette.id,id_user=current_user.id,valide=1)
+                    participation = participants_amp.Participants_amp(id_amp=navette.id,id_user=current_user.id,valide=0)
                     db.session.add(participation)
                     participation_valide = True
                 db.session.add(produit)
