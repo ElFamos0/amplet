@@ -8,5 +8,6 @@ __all__ = [
     "navette",
     "amplets",
     "commande",
-    "recherche_users"
+    "recherche_users",
+    "nouvelleAmplet"
 ]
