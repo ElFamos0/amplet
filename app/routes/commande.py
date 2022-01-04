@@ -37,18 +37,23 @@ def commande():
     cours_id_participants = []
     cours_valide_participants = []
     cours_nom_participants = []
+    cours_places_amp_tot = []
+    cours_valide_participants_acceptes = []
     coursier = amplet.Amplets.query.filter_by(id_coursier = current_user.id).all()
     if coursier:
         for i in range(len(coursier)):
             cours_id_amp.append(coursier[i].id)
+            cours_places_amp_tot.append(coursier[i].places_dispo)
             cours_id_participants.append([e.id_user for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1]) if e.valide!=2])
             cours_valide_participants.append([e.valide for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1]) if e.valide!=2])
+            cours_valide_participants_acceptes.append([e.valide for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1]) if e.valide==1])
             cours_nom_participants.append([users.User.query.filter_by(id = e).first().username for e in cours_id_participants[-1]])
         m = len(coursier)
         list_len = [len(e) for e in cours_id_participants]
+        cours_places_amp_occ = [len(e) for e in cours_valide_participants_acceptes]
 
     # + une fois que Jules aura fait le classement, les produits des commandes navettes qui sont dispo dans les masagasins selectionnés
 
     
     return render_template("commande.html",user=current_user,n=n,m=m,inscr_id_amp=inscr_id_amp, inscr_valide=inscr_valide,inscr_id_coursier=inscr_id_coursier,inscr_nom_coursier=inscr_nom_coursier, 
-    cours_id_amp=cours_id_amp, cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,list_len=list_len)
+    cours_id_amp=cours_id_amp,cours_places_amp_occ=cours_places_amp_occ, cours_places_amp_tot=cours_places_amp_tot,cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,list_len=list_len)

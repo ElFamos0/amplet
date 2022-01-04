@@ -27,7 +27,7 @@
           ================================<br>
           Amplet numéro {{i+1}}<br><br>
           ID : {{cours_id_amp[i]}}<br><br>
-          Participants :<br>
+          Participants : {{cours_places_amp_occ[i]}}/{{cours_places_amp_tot[i]}}<br>
           {% for j in range(list_len[i]) %}
             {% if cours_valide_participants[i][j]==1 %}
               <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
