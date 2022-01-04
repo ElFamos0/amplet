@@ -33,17 +33,20 @@ def navette():
         for item in items:      
             if item["produit"] != "null":
                 listeverif.append(item["produit"])
-        if len(set(listeverif))!=len(listeverif):
+        if len(set(listeverif)) != len(listeverif):
             allgood = False
         if allgood: #si il n'y pas d'erreur on ajoute item après item 
             for item in items: #vérifie si les valeurs entrés ne dépassent pas certaines valeurs
                 produit, qte, unite = item["produit"], conversion(item["quantite"], int, 0), item["unite"]
 
                 if produit not in listeproduits:
-                    print("1")
                     continue
-                if 0 > qte > 40 :
-                    print("2")
+                
+                if unite == "kg" and 0 < qte < 10:
+                    continue
+                if unite == "g" and 0 < qte < 10000:
+                    continue
+                if unite == "unite" and qte > 0:
                     continue
                 
                 idproduit = produits.Produits.query.filter(produits.Produits.nom==produit).first()

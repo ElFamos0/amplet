@@ -4,6 +4,7 @@ from flask_login import login_required
 from flask_login import current_user
 from flask import render_template, request, redirect, flash
 from utils.amplets_a_afficher import amplet_dict
+from utils.cast import conversion
 
 @app.route('/si/<string:id>', methods=['POST'])
 @login_required
@@ -47,11 +48,25 @@ def send_inscription_amplet(id) :
         
     if allgood and participation_valide:
         for item in items:
-            if item["produit"] not in listeproduits or 0 > int(item["quantite"]) > 40 or item["quantite"]=="":
+            produit, qte, unite = item["produit"], conversion(item["quantite"], int, 0), item["unite"]
+            skip = True
+            for p in listeproduits:
+                if produit == p["nom"]:
+                    skip = False
+                    break
+            if skip:
                 continue
-            idproduit = produits.Produits.query.filter(produits.Produits.nom==item["produit"]).first()
-            produit = produits_amp.Produits_amp(id_amp=ampl,id_produit=idproduit.id,quantite=int(item["quantite"]),unite=item["unite"],id_user=current_user.id)
-            if participation_valide == False: #afin que le form ne comptabilise qu'une seule participation à une amplet
+
+            if unite == "kg" and 0 < qte < 10:
+                continue
+            if unite == "g" and 0 < qte < 10000:
+                continue
+            if unite == "unite" and qte > 0:
+                continue
+            
+            idproduit = produits.Produits.query.filter(produits.Produits.nom==produit).first()
+            produit = produits_amp.Produits_amp(id_amp=ampl, id_produit=idproduit.id, quantite=qte, unite=unite, id_user=current_user.id)
+            if participation_valide: #afin que le form ne comptabilise qu'une seule participation à une amplet
                 participation = participants_amp.Participants_amp(id_amp=ampl,id_user=current_user.id,valide= 0)
                 db.session.add(participation)
                 participation_valide = True

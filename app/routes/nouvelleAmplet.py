@@ -14,5 +14,4 @@ def nouvelleAmplet():
         L=request.form
         for e in L:
             mag_choisis_id.append(e)
-        print(L)
     return render_template('nouvelleAmplet.html', mag_dispo=mag_dispo, mag_dispo_noms=mag_dispo_noms,user=current_user)
