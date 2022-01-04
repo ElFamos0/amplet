@@ -19,7 +19,7 @@
         {% endfor %}
       </div>
       <div class="col-sm">
-        Les navettes sur lesquelles je suis inscrit :
+        Les produits que j'ai commandé sur la navette :
       </div>
       <div class="col-sm">
         Les Amplets que je propose :<br><br>
@@ -29,12 +29,17 @@
           ID : {{cours_id_amp[i]}}<br><br>
           Participants :<br>
           {% for j in range(list_len[i]) %}
-          <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
-          Status : 
-          {% if cours_valide_participants[i][j]=="En attente" %}
-          test
-          {% endif %}
-          {{cours_valide_participants[i][j]}}<br><br>
+            {% if cours_valide_participants[i][j]==1 %}
+              <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
+              Status : Accepté<br>
+            {% endif %}
+          {% endfor %}<br>
+          {% for j in range(list_len[i]) %}
+            {% if cours_valide_participants[i][j]==0 %}
+              <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
+              Status : En attente<br>
+              Accepter Refuser
+            {% endif %}
           {% endfor %}<br>
         {% endfor %}
       </div>
