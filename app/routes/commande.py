@@ -95,13 +95,13 @@ def commande():
             cours_quantite_produits_participants.append([[f[0].quantite for f in e] for e in cours_produits_participants])
             cours_unite_produits_participants.append([[f[0].unite for f in e] for e in cours_produits_participants])
         cours_list_len2 = [[len(f) for f in e] for e in cours_id_produits_participants]
-
     # nav_id_marchands_choisis = ['6884198245245927426','6884198245245927426'] 
     nav_id_marchands_choisis = []
     """A RECUP A PARTIR DU VOTE"""
     nav_voeux = produits_amp.Produits_amp.query.filter_by(id_user=current_user.id)
     nav_id = nav_voeux.group_by(produits_amp.Produits_amp.id_amp).all()
     nav_id = [e.id_amp for e in nav_id]
+    nav_ferme = []
     nav_id_produits_choisis = []
     nav_prix_produits_choisis = []
     nav_nom_produits_choisis = []
@@ -149,6 +149,7 @@ def commande():
         nav_unite_produits_choisis.append([e[0].unite for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis[i]])
         nav_unite_produits_pas_choisis.append([e[0].unite for e in prod_choisis if e[1].id_marchand not in nav_id_marchands_choisis[i]])
         nav_date.append(timestamp.timestamp_to_date(amplet.Amplets.query.filter_by(id=nav_id[i]).first().date_depart,format='True'))
+        nav_ferme.append(amplet.Amplets.query.filter_by(id=nav_id[i]))
     nav_list_len = [len(e) for e in nav_id_produits_choisis]
     nav_list_len2 = [len(e) for e in nav_nom_produits_pas_choisis]
     nav_totaux = [sum([nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100 for j in range(nav_list_len[i])]) for i in range (p)]
@@ -159,5 +160,5 @@ def commande():
     inscr_totaux=inscr_totaux,inscr_list_len=inscr_list_len,inscr_id_produits=inscr_id_produits,inscr_nom_produits=inscr_nom_produits,inscr_quantite_produits=inscr_quantite_produits,inscr_unite_produits=inscr_unite_produits,inscr_prix_produits=inscr_prix_produits,
     cours_id_amp=cours_id_amp,cours_places_amp_occ=cours_places_amp_occ, cours_places_amp_tot=cours_places_amp_tot,cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,cours_list_len=cours_list_len,
     cours_list_len2=cours_list_len2,cours_nom_produits_participants=cours_nom_produits_participants,cours_quantite_produits_participants=cours_quantite_produits_participants,cours_unite_produits_participants=cours_unite_produits_participants,
-    nav_id=nav_id,nav_list_len=nav_list_len,nav_totaux=nav_totaux,nav_id_produits_choisis=nav_id_produits_choisis,nav_prix_produits_choisis=nav_prix_produits_choisis,nav_nom_produits_choisis=nav_nom_produits_choisis,nav_quantite_produits_choisis=nav_quantite_produits_choisis,nav_unite_produits_choisis=nav_unite_produits_choisis,nav_date=nav_date,
+    nav_id=nav_id,nav_ferme=nav_ferme,nav_list_len=nav_list_len,nav_totaux=nav_totaux,nav_id_produits_choisis=nav_id_produits_choisis,nav_prix_produits_choisis=nav_prix_produits_choisis,nav_nom_produits_choisis=nav_nom_produits_choisis,nav_quantite_produits_choisis=nav_quantite_produits_choisis,nav_unite_produits_choisis=nav_unite_produits_choisis,nav_date=nav_date,
     nav_list_len2=nav_list_len2,nav_id_produits_pas_choisis=nav_id_produits_pas_choisis,nav_nom_produits_pas_choisis=nav_nom_produits_pas_choisis,nav_quantite_produits_pas_choisis=nav_quantite_produits_pas_choisis,nav_unite_produits_pas_choisis=nav_unite_produits_pas_choisis)
