@@ -149,7 +149,7 @@ def commande():
         nav_unite_produits_choisis.append([e[0].unite for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis[i]])
         nav_unite_produits_pas_choisis.append([e[0].unite for e in prod_choisis if e[1].id_marchand not in nav_id_marchands_choisis[i]])
         nav_date.append(timestamp.timestamp_to_date(amplet.Amplets.query.filter_by(id=nav_id[i]).first().date_depart,format='True'))
-        nav_ferme.append(amplet.Amplets.query.filter_by(id=nav_id[i]))
+        nav_ferme.append(amplet.Amplets.query.filter_by(id=nav_id[i]).first().ferme)
     nav_list_len = [len(e) for e in nav_id_produits_choisis]
     nav_list_len2 = [len(e) for e in nav_nom_produits_pas_choisis]
     nav_totaux = [sum([nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100 for j in range(nav_list_len[i])]) for i in range (p)]

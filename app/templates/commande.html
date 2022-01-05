@@ -53,19 +53,38 @@
                     <div class="titre1">Navette du {{nav_date[i]}}</div>
                 </div>
                 <div class="amplet_body p-3">
-                    {% for j in range(nav_list_len[i]) %}
-                    <div class="container border border-secondary bg-dark text-light">
-                        <div class="text-light text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
-                        <div class="text-light">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€</div>
-                        <h4 data-tooltip="Le marchand a été accepté !" class="align-middle text-light"><i class="far fa-check-circle float-right"></i></h4>
-                    </div>
-                    {% endfor %} {% for j in range(nav_list_len2[i]) %}
-                    <div class="container border border-secondary bg-dark text-light">
-                        <div class="text-light text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
-                        <div class="text-light">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€</div>
-                        <h4 data-tooltip="Le marchand a été refusé !" class="align-middle"><i class="fas fa-times-circle"></i></h4>
-                    </div>
-                    {% endfor %}
+                    {% if nav_ferme[i] %}
+                        {% for j in range(nav_list_len[i]) %}
+                        <div class="container border border-secondary bg-dark text-light">
+                            <div class="text-light text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
+                            <div class="text-light">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€</div>
+                            <h4 data-tooltip="Le marchand a été accepté !" class="align-middle text-light"><i class="far fa-check-circle float-right"></i></h4>
+                        </div>
+                        {% endfor %} 
+                        {% for j in range(nav_list_len2[i]) %}
+                        <div class="container border border-secondary bg-dark text-light">
+                            <div class="text-light text-center"><b>{{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} de {{nav_nom_produits_pas_choisis[i][j]}}</b></div>
+                            <div class="text-light">Sous-total : {{nav_prix_produits_pas_choisis[i][j]*nav_quantite_produits_pas_choisis[i][j]/100}}€</div>
+                            <h4 data-tooltip="Aucun marchand proposant ce produit n'a été sélectionné..." class="align-middle"><i class="fas fa-times-circle"></i></h4>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if not nav_ferme[i] %}
+                        {% for j in range(nav_list_len[i]) %}
+                        <div class="container border border-secondary bg-dark text-light">
+                            <div class="text-light text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
+                            <div class="text-light">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€</div>
+                            <h4 data-tooltip="En attente de la clôture du vote." class="align-middle text-light"><i class="far fa-check-circle float-right"></i></h4>
+                        </div>
+                        {% endfor %} 
+                        {% for j in range(nav_list_len2[i]) %}
+                        <div class="container border border-secondary bg-dark text-light">
+                            <div class="text-light text-center"><b>{{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} de {{nav_nom_produits_pas_choisis[i][j]}}</b></div>
+                            <div class="text-light">Sous-total : {{nav_prix_produits_pas_choisis[i][j]*nav_quantite_produits_pas_choisis[i][j]/100}}€</div>
+                            <h4 data-tooltip="En attente de la clôture du vote." class="align-middle"><i class="fas fa-times-circle"></i></h4>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
                     <div class="amplet_item">Total : {{nav_totaux[i]}}€ </div>
                 </div>
             </div>
