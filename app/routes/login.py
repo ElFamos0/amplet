@@ -34,7 +34,7 @@ class RegisterForm(FlaskForm):
     def validate_email(self, email):
         existing_user_email = users.User.query.filter_by(email=email.data).first()
         if existing_user_email:
-            raise ValidationError("Cette addresse email est déjà utilisé par un autre utilisateur merci d'en choisir une autre")
+            raise ValidationError("Cette addresse email est déjà utilisée par un autre utilisateur merci d'en choisir une autre")
 
 @app.route('/register', methods=['GET','POST'])
 def register():

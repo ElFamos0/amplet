@@ -58,7 +58,7 @@ def nouvelleNavette():
 
         if len(marchands_choisis) == 0:
             error = True
-            flash("Veuillez selectionner au moins un marchand.")
+            flash("Veuillez sélectionner au moins un marchand.")
 
         if not error:
             nouvelle_navette = amplet.Amplets(id_coursier=current_user.id\
@@ -74,6 +74,6 @@ def nouvelleNavette():
                 db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_navette.id))
             db.session.commit()
             #lance_vote_automatique(nouvelle_navette.id)
-            return render_template('info.html', user=current_user, msg="Vous avez créer votre nouvelle Navette !", retour="/")
+            return render_template('info.html', user=current_user, msg="Vous avez créé votre nouvelle Navette !", retour="/")
 
     return render_template('nouvelleNavette.html', mag_dispo=mag_dispo, user=current_user)

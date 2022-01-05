@@ -82,4 +82,4 @@ def send_inscription_amplet(id) :
             db.session.add(produit)
         db.session.commit()
 
-    return render_template('info.html', user=current_user, msg="Vous avez bien été inscris !", retour="/amplets_en_cours")
+    return render_template('info.html', user=current_user, msg="Vous avez bien été inscrit !", retour="/amplets_en_cours")

@@ -23,7 +23,7 @@ def inscription_amplet(id) :
     mon_amplet = amplet.Amplets.query.filter(amplet.Amplets.id==ampl).first().id_coursier == current_user.id
 
     if participants_amp.Participants_amp.query.filter_by(id_amp=ampl,id_user=current_user.id).first() is not None:
-        flash("Vous vous êtes déjà inscrit à cet amplet !")
+        flash("Vous vous êtes déjà inscrit à cette amplet !")
     if request.form.get('err') is not None:
         flash("Merci de ne pas mettre plus d'une fois le même article.")
     if mon_amplet :

@@ -94,7 +94,7 @@ def navette(navid):
                     db.session.add(participation)
                     participation_valide = False
             db.session.commit()
-            return render_template("info.html", user=current_user,msg="Votre vote pour la navette a été pris en compte merci de regarder le statut de votre commande dans mes amplets", retour="/")
+            return render_template("info.html", user=current_user,msg="Votre vote pour la navette a été pris en compte merci de regarder le statut de votre commande dans Mes Amplets", retour="/")
         else:
             if len(listeverif) > 0:
                 flash("Merci de ne pas mettre plus d'une fois le même article.")
