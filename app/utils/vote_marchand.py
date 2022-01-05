@@ -38,9 +38,13 @@ def vote(id_amplet:str):
         if idm not in listedejavu:
             dicttype[idm] = p[2].type
             listedejavu.append(idm)
-            dicomarchand[idm] = p[2].multiplicateur
+            if not p[2].votes is None:
+                dicomarchand[idm] = p[2].votes
+            else:
+                dicomarchand[idm] = p[2].multiplicateur
         else:
-            dicomarchand[idm] += p[2].multiplicateur
+            if p[2].votes is None:
+                dicomarchand[idm] += p[2].multiplicateur
     vue = dicomarchand.items()
     liste = list(vue)
     listetrie = trifusion(liste)
@@ -50,4 +54,4 @@ def vote(id_amplet:str):
         if not dicttype[listetrie[i][0]] in listetype:
             liste_marchand.append(listetrie[i][0])
             listetype.append(dicttype[listetrie[i][0]])
-    return (liste_marchand,dicomarchand)
+        return (liste_marchand,dicomarchand)
