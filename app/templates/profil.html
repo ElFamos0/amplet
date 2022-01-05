@@ -24,7 +24,7 @@
                                 <div class="mt-3">
                                     <h4>{{user.username}}</h4>
                                     <p class="text-secondary mb-1">{{user.email}}</p>
-                                    <p class="text-muted font-size-sm">{{user.code_postal}}</p>
+                                    <p class="text-muted font-size-sm">{{stringadresse}}</p>
                                     {% if chat %}
                                     <button onclick="requestID('{{user.id}}')" class="btn btn-primary">Message</button> {% endif %}
                                 </div>
@@ -58,7 +58,7 @@
                                     <h6 class="mb-0">Adresse</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    {{user.code_postal}}
+                                    {{stringadresse}}
                                 </div>
                             </div>
                             {% if not chat %}
