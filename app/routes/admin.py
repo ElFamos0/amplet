@@ -52,7 +52,9 @@ def adminpage():
         if request.method=='POST':
             dateD = request.form.get("dateD")
             dateA = request.form.get("dateA")
-            navamplet = amplet.Amplets(navette=True,date_depart=dateD,date_arrivee=dateA,places_dispo=5,id_coursier=87)
+            places_d = request.form.get("places_dispo")
+            id_coursier_navette = users.User.query.filter_by(username='JeSuisLaNavette').first().id
+            navamplet = amplet.Amplets(navette=True,date_depart=dateD,date_arrivee=dateA,places_dispo=places_d,id_coursier=id_coursier_navette,ferme=False,delai_fermeture_depart=6666666)
             db.session.add(navamplet)
             db.session.commit()
             return render_template("admin.html")
