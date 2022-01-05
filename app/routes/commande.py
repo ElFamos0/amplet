@@ -57,6 +57,7 @@ def commande():
         n = len(inscriptions)
         inscr_totaux = [sum([inscr_prix_produits[i][j]*inscr_quantite_produits[i][j]/100 for j in range(inscr_list_len[i])]) for i in range (n)]
     cours_id_amp = []
+    cours_strstatut_amp = []
     cours_list_len=[]
     cours_id_participants = []
     cours_valide_participants = []
@@ -80,6 +81,7 @@ def commande():
             cours_valide_participants_acceptes.append([e.valide for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1]) if e.valide==1])
             cours_nom_participants.append([users.User.query.filter_by(id = e).first().username for e in cours_id_participants[-1]])
         m = len(coursier)
+        cours_strstatut_amp = ["Fermée" if (amplet.Amplets.query.filter_by(id=idd).first().ferme) else "Ouverte" for idd in cours_id_amp ]
         cours_list_len = [len(e) for e in cours_id_participants]
         cours_places_amp_occ = [len(e) for e in cours_valide_participants_acceptes]
         for i in range(len(coursier)):
@@ -157,7 +159,7 @@ def commande():
     # print('\n\n\n')
     return render_template("commande.html",user=current_user,n=n,m=m,p=p,inscr_id_amp=inscr_id_amp, inscr_valide=inscr_valide,inscr_id_coursier=inscr_id_coursier,inscr_nom_coursier=inscr_nom_coursier, 
     inscr_totaux=inscr_totaux,inscr_list_len=inscr_list_len,inscr_id_produits=inscr_id_produits,inscr_nom_produits=inscr_nom_produits,inscr_quantite_produits=inscr_quantite_produits,inscr_unite_produits=inscr_unite_produits,inscr_prix_produits=inscr_prix_produits,
-    cours_id_amp=cours_id_amp,cours_places_amp_occ=cours_places_amp_occ, cours_places_amp_tot=cours_places_amp_tot,cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,cours_list_len=cours_list_len,
+    cours_id_amp=cours_id_amp,cours_strstatut_amp=cours_strstatut_amp,cours_places_amp_occ=cours_places_amp_occ, cours_places_amp_tot=cours_places_amp_tot,cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,cours_list_len=cours_list_len,
     cours_list_len2=cours_list_len2,cours_nom_produits_participants=cours_nom_produits_participants,cours_quantite_produits_participants=cours_quantite_produits_participants,cours_unite_produits_participants=cours_unite_produits_participants,
     nav_id=nav_id,nav_ferme=nav_ferme,nav_list_len=nav_list_len,nav_totaux=nav_totaux,nav_id_produits_choisis=nav_id_produits_choisis,nav_prix_produits_choisis=nav_prix_produits_choisis,nav_nom_produits_choisis=nav_nom_produits_choisis,nav_quantite_produits_choisis=nav_quantite_produits_choisis,nav_unite_produits_choisis=nav_unite_produits_choisis,nav_date=nav_date,
     nav_list_len2=nav_list_len2,nav_id_produits_pas_choisis=nav_id_produits_pas_choisis,nav_nom_produits_pas_choisis=nav_nom_produits_pas_choisis,nav_quantite_produits_pas_choisis=nav_quantite_produits_pas_choisis,nav_unite_produits_pas_choisis=nav_unite_produits_pas_choisis)

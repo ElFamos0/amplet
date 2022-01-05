@@ -111,12 +111,15 @@
 
         <div class="main_container">
             <div class="main_title">
-                Les Amplets que je propose :
+                Les Amplets que je propose :<br><br>
             </div>
             {% for i in range(m) %}
             <div class="amplet">
                 <div class="amplet_title">
-                    <div class="titre1">Amplet numéro {{i+1}}</div>
+                    <div class="titre1">Amplet numéro {{i+1}} : {{cours_strstatut_amp[i]}}</div>
+                    {% if cours_strstatut_amp[i]=='Ouverte' %}
+                    <a href="/f/{{cours_id_amp[i]}}" class="btn btn-success btn-md"><i class="fas fa-check-circle"></i> Fermer l'Amplet </a>
+                    {% endif %}
                 </div>
                 <div class="amplet_body">
                     <div class="amplet_item">ID : {{cours_id_amp[i]}} </div>
