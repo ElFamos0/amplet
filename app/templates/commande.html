@@ -12,9 +12,17 @@
       <div class="col-sm">
         Les Amplets sur lesquelles je suis inscrit :<br><br>
         {% for i in range(n) %}
+        ================================<br>
         <b>Amplet numéro {{i+1}}</b><br>
         ID : {{inscr_id_amp[i]}}<br>
-        Coursier : <a href="/p/{{inscr_id_coursier[i]}}" >{{inscr_nom_coursier[i]}}</a><br>
+        Coursier : <a href="/p/{{inscr_id_coursier[i]}}" >{{inscr_nom_coursier[i]}}</a><br><br>
+        Liste des produits que j'ai commandés :<br>
+        {% for j in range(inscr_list_len[i]) %}
+        ---------------<br>
+        {{inscr_quantite_produits[i][j]}} {{inscr_unite_produits[i][j]}} de {{inscr_nom_produits[i][j]}}<br>
+        Sous-total : {{inscr_prix_produits[i][j]*inscr_quantite_produits[i][j]/100}}€<br><br>
+        {% endfor %}
+        Total : {{inscr_totaux[i]}}€<br><br>
         Statut : {{inscr_valide[i]}}<br><br>
         {% endfor %}
       </div>
