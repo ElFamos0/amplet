@@ -4,8 +4,7 @@ from flask_login import login_required
 from flask_login import current_user
 from flask import render_template, abort
 from utils.timestamp import now
-from utils.vote_marchand import vote
-from utils.update_multiplicateur import update_multiplicateur
+from utils.creation_navette import ferme_navette
 
 ##############################
 ######## VOTE ADMIN  #########
@@ -31,9 +30,5 @@ def lance_navette(id):
     if navette.date_arrivee < now():
         return render_template('info.html', user=current_user, msg="Cette navette est déjà arrivé.", retour="/admin/navettes")
 
-    liste_marchand, dic_marchand = vote(id)
-    print(liste_marchand, dic_marchand)
-    update_multiplicateur(liste_marchand, dic_marchand)
-    navette.ferme = True
-    db.session.commit()
+    ferme_navette(id)
     return render_template('info.html', user=current_user, msg="Le vote à été lancé !", retour="/admin/navettes")
