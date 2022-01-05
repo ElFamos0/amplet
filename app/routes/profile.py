@@ -10,7 +10,9 @@ from flask_login import login_required, current_user
 @app.route("/p")
 @login_required
 def own_profile():
-    return render_template("profil.html", user=current_user, chat=False)
+    adresse = adresses.Adresse.query.filter_by(id = current_user.id_adresse).first()
+    stringadresse = f"{adresse.numero} {adresse.rue} {adresse.ville} {adresse.codepostal}"
+    return render_template("profil.html", user=current_user, chat=False, stringadresse=stringadresse)
 
 
 @app.route("/p/<string:id>")
@@ -18,13 +20,15 @@ def own_profile():
 def profil(id):
     "page profil de base n'importe qui peut y accèder du moment qu'il a accès à l'id de l'utilisateur"
     usr = users.User.query.get(id)
+    adresse = adresses.Adresse.query.filter_by(id = usr.id_adresse).first()
+    stringadresse = f"Dans les alentours de {adresse.ville} {adresse.codepostal}"
     if usr == None:
         return '404'
     chat = True
     if id == current_user.id:
         chat = False
     print(chat)
-    return render_template("profil.html", user=usr, chat=chat)
+    return render_template("profil.html", user=usr, chat=chat, stringadresse=stringadresse)
 
 @app.route("/pe",methods=['GET','POST'])
 @login_required
@@ -39,10 +43,17 @@ def profilmodif():
         adressemodif = adresses.Adresse.query.filter_by(id=current_user.id_adresse).first()
         if not users.User.query.filter_by(username=username).first():
             utilisateur = users.User.query.get(current_user.id)
-            print(username)
             utilisateur.username = username
             db.session.commit()
-            print("commit lol")
+        if not users.User.query.filter_by(email=email).first():
+            utilisateur = users.User.query.get(current_user.id)
+            utilisateur.email = email
+            db.session.commit()
+        adressemodif.numero = numero
+        adressemodif.rue = rue
+        adressemodif.ville = ville
+        adressemodif.codepostal = codepostal
+        db.session.commit()
             
 
         
