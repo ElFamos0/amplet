@@ -2,7 +2,7 @@ from db import *
 from models import *
 from flask_login import login_required
 from flask_login import current_user
-from flask import render_template, request, flash
+from flask import render_template, request, flash, abort
 from datetime import date, datetime
 from time import mktime
 from utils.timestamp import now
@@ -12,6 +12,8 @@ from utils.creation_navette import lance_vote_automatique
 @app.route('/nouvelleNavette', methods=['GET','POST'])
 @login_required
 def nouvelleNavette():
+    if not current_user.is_Mayor():
+        abort(404)
     mag_dispo=marchands.Marchands.query.all()
     d2 = date.today().strftime("%Y-%m-%d")
     if request.method=='POST':

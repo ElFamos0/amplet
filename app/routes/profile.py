@@ -14,7 +14,6 @@ def own_profile():
     stringadresse = f"{adresse.numero} {adresse.rue} {adresse.ville} {adresse.codepostal}"
     return render_template("profil.html", user=current_user, chat=False, stringadresse=stringadresse)
 
-
 @app.route("/p/<string:id>")
 @login_required
 def profil(id):
@@ -55,7 +54,5 @@ def profilmodif():
         adressemodif.codepostal = codepostal
         db.session.commit()
             
-
-        
     adressereelle = adresses.Adresse.query.filter_by(id=current_user.id_adresse).first()
     return render_template("profilmodif.html",user=current_user,adressereelle=adressereelle)

@@ -57,10 +57,10 @@ if setup:
     db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
     db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[1],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
     db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660,dist_max = 50))
-    db.session.add(amplet.Amplets(navette=True,date_depart=1641031200000,date_arrivee=1641038400000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
-    db.session.add(amplet.Amplets(navette=True,date_depart=1641128400000,date_arrivee=1641135600000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
-    db.session.add(amplet.Amplets(navette=True,date_depart=1641225600000,date_arrivee=1641232800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
-    db.session.add(amplet.Amplets(navette=True,date_depart=1641322800000,date_arrivee=1641330000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1641031200000,date_arrivee=1641038400000,places_dispo=5,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1641128400000,date_arrivee=1641135600000,places_dispo=5,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1641225600000,date_arrivee=1641232800000,places_dispo=5,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1641322800000,date_arrivee=1641330000000,places_dispo=5,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
 
     db.session.commit()
 

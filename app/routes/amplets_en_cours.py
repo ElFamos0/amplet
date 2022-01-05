@@ -9,7 +9,7 @@ from utils.recherche_par import recherche_par
 from utils.amplets_a_afficher import amplets_a_afficher
 
 ##############################
-########### AMPLETS  ###########
+########### AMPLETS  #########
 ##############################
 
 @app.route('/amplets_en_cours', methods=['GET','POST'])

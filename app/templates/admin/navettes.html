@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Amplet</title>
+    {% include 'headers/imports.html' %}
+    <link href="{{url_for('static',filename='css/amplet_en_cours.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="b-example-divider"></div>
+
+    {% include 'headers/navbar.html' %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <h3 class="text-center">Forcer le début du vote sur une navette</h3>
+            <div class="col-8 mt-3 border border-secondary rounded-3">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nom de la Navette</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for navette in navettes %}
+                        <tr>
+                            <th scope="row">{{navette.id}}</th>
+                            <td>{{navette.nom_amplet()}}</td>
+                            <td><a href="/admin/navettes/{{navette.id}}/lance" class="btn btn-success text-center">Lancer le vote</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
