@@ -15,13 +15,13 @@ def nouvelleAmplet():
     mag_dispo=marchands.Marchands.query.all()
     if request.method=='POST':
         marchands_choisis = request.form.getlist('marchands[]')
-        rayon = request.form.get("rayon") or 20
+        rayon = conversion(request.form.get("rayon"), int, 20)
         datedebut = request.form.get("startdate", d2) or d2
         heuredebut = request.form.get("starthour")
         datefin = request.form.get("enddate", d2) or d2
         heurefin = request.form.get("endhour")
-        delai = conversion(request.form.get("delai"), int)
-        places = request.form.get("places")
+        delai = conversion(request.form.get("delai"), int, 2)
+        places = conversion(request.form.get("places"), int, 1)
 
         debut_stamp = mktime(datetime.strptime(datedebut,"%Y-%m-%d").timetuple()) * 1000 + conversion(heuredebut, int, 0)*60*60*1000
         fin_stamp = mktime(datetime.strptime(datefin,"%Y-%m-%d").timetuple()) * 1000 + conversion(heurefin, int, 0)*60*60*1000
@@ -41,11 +41,15 @@ def nouvelleAmplet():
             error = True
             flash("L'amplet doit se terminer au moins 3h après le début d'une Amplet.")
 
-        if not heuredebut or not heurefin or heurefin > heuredebut+7*24*60*60*1000 or heuredebut > now()+7*24*60*60*1000:
+        if fin_stamp > debut_stamp+7*24*60*60*1000 or debut_stamp > now()+7*24*60*60*1000:
+            error = True
+            flash("L'amplet ne doit pas durer plus d'une semaine.")
+
+        if not heuredebut or not heurefin:
             error = True
             flash("Veuillez renseigner l'heure de début et/ou l'heure de fin.")
 
-        if not delai or heurefin-delai*60*60*1000 < heuredebut or delai < 0:
+        if not delai or fin_stamp-delai*60*60*1000 < debut_stamp or delai < 1:
             error = True
             flash("Veuillez renseigner le délai d'avant départ.")
 
