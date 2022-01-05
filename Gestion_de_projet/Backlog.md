@@ -48,3 +48,25 @@ Jules :
 |  |  | Prise en compte des votes pour choisir la navette + création de l’amplet associée |
 |  |  | Modification du multiplicateur (poids) des commerçants pour les votes |
 |  |  | Envoi d’un mail automatique à la fin d’une amplet, et fermeture automatique des amplets après un certain temps |
+
+Louis-Vincent :
+
+| Début | Fin | Tâche |
+| --- | --- | --- |
+| 25 novembre | 29 novembre | Proposition du principe d'Amplet et définition du projet après la validation par le groupe  |
+| 16 décembre | 23 décembre | Tenue à jour du WBS avec Jules |
+| 23 décembre | 6 janvier | Tenue à jour dans la mesure du possible du schéma de la DB |
+| 1 janvier | 3 janvier | Affichage des différentes Amplet sur lesquelles l'utilisateur s'est inscrit |
+| 1 janvier | 3 janvier | Affichage des différentes Amplet proposées par l'utilisateur |
+| 4 janvier | 4 janvier | Gestion des refus et des validations des inscriptions sur les Amplets entre particuliers et affichage du statut |
+| 4 janvier | 4 janvier | Gestion de la capacité et affichage des places disponibles dans Mes Amplests |
+| 4 janvier | 5 janvier | Implémentation de nouvelleAmplet et nouvelleNavette qui créé une Amplet avec tous les marchands disponibles |
+| 4 janvier | 5 janvier | Affichage des produits commandés sur les différentes navettes par l'utilisateur |
+| 4 janvier | 5 janvier | Affectation d'un statut aux produits commandés sur la navette en utilisant les marchands élus par le vote automatique |
+| 5 janvier | 5 janvier | Calcul et affichage des sous-totaux et totaux pour les commandes sur les navettes et les Amplets des particuliers |
+| 5 janvier | 5 janvier | Récapitulatif des produits qui n'ont pas été sélectionnés pour les navettes |
+| 5 janvier | 5 janvier | Affichage des produits demandés par les participants aux Amplets dont l'utilisateur est le coursier |
+| 5 janvier | 5 janvier | Récapitulatif des produits commandés pour les Amplets dans lesquels l'utilisateur est incrit |
+| 5 janvier | 5 janvier | Gestion de la temporalité : les navettes pas encore fermées sont affichées 'en attente' dans Mes Amplets |
+| 5 janvier | 5 janvier | Implémentation de la possibilité pour l'utilisateur de fermer une Amplet dans Mes Amplets |
+| 5 janvier | 5 janvier | Actualisation des points de l'utilisateur qui ferme une Amplet |
