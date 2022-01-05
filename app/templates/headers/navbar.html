@@ -6,7 +6,9 @@
             <li><a href="/nouvelleAmplet" class="nav-link px-4 link-dark"><i class="fas fa-luggage-cart"></i> Créer une Amplet</a></li>
             {% if user.is_authenticated %} {% if user.is_Mayor() %}
             <li><a href="/nouvelleNavette" class="nav-link px-4 link-dark"><i class="fas fa-space-shuttle"></i> Créer une Navette</a></li>
+            <li><a href="/admin/navettes" class="nav-link px-4 link-dark"><i class="fas fa-space-shuttle"></i> Gérer les Navettes</a></li>
             {% endif %} {% endif %}
+            <li><a href="/amplets_en_cours" class="nav-link px-4 link-dark"><i class="fas fa-luggage-cart"></i> Les prochaines Amplets</a></li>
         </ul>
 
         {% if user.is_authenticated %}
