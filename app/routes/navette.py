@@ -19,7 +19,7 @@ def navette_main():
         if count > 0: #on vérifie que il y a au moins une navette disponible
             listenavettes.pop(i)
     if listenavettes == []:
-        return render_template("erreur.html",user=current_user,erreur = "Il n'y a pas de navette disponible pour le moment !")
+        return render_template("info.html",user=current_user, msg = "Il n'y a pas de navette disponible pour le moment !", retour="/")
     return redirect(f"/navette/{listenavettes[0].id}")
 
 @app.route("/navette/<string:navid>", methods=['GET','POST'])
@@ -94,7 +94,7 @@ def navette(navid):
                     db.session.add(participation)
                     participation_valide = False
             db.session.commit()
-            return render_template("succes.html", user=current_user,succesnavette=True)
+            return render_template("info.html", user=current_user,msg="Votre vote pour la navette a été pris en compte merci de regarder le statut de votre commande dans mes amplets", retour="/")
         else:
             if len(listeverif) > 0:
                 flash("Merci de ne pas mettre plus d'une fois le même article.")
