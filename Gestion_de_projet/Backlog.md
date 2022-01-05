@@ -71,5 +71,6 @@ Louis-Vincent :
 | 5 janvier | 5 janvier | Implémentation de la possibilité pour l'utilisateur de fermer une Amplet dans Mes Amplets |
 | 5 janvier | 5 janvier | Actualisation des points de l'utilisateur qui ferme une Amplet |
 | 5 janvier | 5 janvier | Relecture de l'entièreté du code pour corriger les fautes de français | 
+| 5 janvier | 5 janvier | Création de la DB de test finale avec Jules |
 |  |  | Rédaction de la partie gestion de projet du rapport |
 |  |  | Relecture de l'entièreté du rapport pour corriger les fautes de français | 
