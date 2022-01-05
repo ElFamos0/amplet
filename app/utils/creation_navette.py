@@ -1,6 +1,6 @@
 import threading
 from time import sleep
-from app.models import marchands
+from models import *
 from utils.vote_marchand import vote
 from utils.update_multiplicateur import update_multiplicateur
 from utils.timestamp import until
