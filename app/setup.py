@@ -80,47 +80,47 @@ for i in l_m :
     lm_id.append(i.id)
 
 
-db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse",prix = 500))
+db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse",prix = 500)) #0
 db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide",prix = 500))
 db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide entière",prix = 300))
-db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse suprême",prix = 1000))
+db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse suprême",prix = 1000)) 
 
-db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Crème épaisse",prix = 500))
+db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Crème épaisse",prix = 500)) #4
 db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Crème liquide",prix = 500))
 
 
-db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Blanche",prix = 500))
+db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Blanche",prix = 500)) #6
 db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Andalouse",prix = 500))
 db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Bolognaise",prix = 300))
 db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Burger",prix = 200))
 
-db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Tomate",prix=450))
+db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Tomate",prix=450)) #10
 db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Pomme de terre",prix=450))
 db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Orange",prix=450))
 db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Carotte",prix=450))
 
-db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Fraise",prix=450))
+db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Fraise",prix=450)) #14
 db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Pas Paille",prix=50))
 db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Pomme",prix=250))
 db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Orange",prix=750))
 db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Citron",prix=350))
 
-db.session.add(produits.Produits(id_marchand=lm_id[5],nom = "Pomme de terre",prix=450))
+db.session.add(produits.Produits(id_marchand=lm_id[5],nom = "Pomme de terre",prix=450)) #18
 db.session.add(produits.Produits(id_marchand=lm_id[5],nom = "Pomme de terre de qualité",prix=650))
 
-db.session.add(produits.Produits(id_marchand=lm_id[6],nom = "Essuie-glaces",prix=1450))
+db.session.add(produits.Produits(id_marchand=lm_id[6],nom = "Essuie-glaces",prix=1450)) #20
 db.session.add(produits.Produits(id_marchand=lm_id[6],nom = "Pneu",prix=3650))
 db.session.add(produits.Produits(id_marchand=lm_id[6],nom = "Pneu hiver",prix=4650))
 
-db.session.add(produits.Produits(id_marchand=lm_id[7],nom = "Chaussures bof",prix=4450))
+db.session.add(produits.Produits(id_marchand=lm_id[7],nom = "Chaussures bof",prix=4450)) #23
 db.session.add(produits.Produits(id_marchand=lm_id[7],nom = "Ballon crevé",prix=350))
 db.session.add(produits.Produits(id_marchand=lm_id[7],nom = "Masque percé",prix=450))
 
-db.session.add(produits.Produits(id_marchand=lm_id[8],nom = "Chaussures bof",prix=4450))
+db.session.add(produits.Produits(id_marchand=lm_id[8],nom = "Chaussures bof",prix=4450)) #26
 db.session.add(produits.Produits(id_marchand=lm_id[8],nom = "Chaussures bien",prix=8450))
 db.session.add(produits.Produits(id_marchand=lm_id[8],nom = "Ballon",prix=950))
 
-db.session.add(produits.Produits(id_marchand=lm_id[9],nom = "Adaptateur",prix=3499))
+db.session.add(produits.Produits(id_marchand=lm_id[9],nom = "Adaptateur",prix=3499)) #29
 db.session.add(produits.Produits(id_marchand=lm_id[9],nom = "Siège Gaming",prix=18350))
 db.session.add(produits.Produits(id_marchand=lm_id[9],nom = "Tablette Graphique",prix=19950))
 
@@ -136,7 +136,7 @@ db.session.add(amplet.Amplets(navette=True,date_depart=1641312000000,date_arrive
 db.session.add(amplet.Amplets(navette=True,date_depart=1643040000000,date_arrivee=1643043600000,places_dispo=100,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
 db.session.add(amplet.Amplets(navette=True,date_depart=1643040000000,date_arrivee=1643043600000,places_dispo=100,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
 db.session.add(amplet.Amplets(navette=True,date_depart=1643184000000,date_arrivee=1643189800000,places_dispo=100,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
-db.session.add(amplet.Amplets(navette=True,date_depart=1643205600000,date_arrivee=1643205600000,places_dispo=100,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660,dist_max = 50))
+db.session.add(amplet.Amplets(navette=True,date_depart=1643205600000,date_arrivee=1643205600000,places_dispo=100,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660))
 
 
 db.session.commit()
@@ -155,14 +155,175 @@ for i in l_p :
 db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[0],id_marchand = lm_id[0]))
 db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[0],id_marchand = lm_id[3]))
 
-
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[0],id_user = lu_id[5],valide=1))
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[0],id_user = lu_id[4],valide=1))
 
 db.session.add(produits_amp.Produits_amp(id_amp = la_id[0], id_user = lu_id[5], id_produit= lp_id[0],quantite = 5,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[0], id_user = lu_id[5], id_produit= lp_id[1],quantite = 3,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[0], id_user = lu_id[5], id_produit= lp_id[11],quantite = 1,unite = "kg"))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[0], id_user = lu_id[4], id_produit= lp_id[3],quantite = 3,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[0], id_user = lu_id[4], id_produit= lp_id[12],quantite = 5,unite = "kg"))
 
 
 
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[1],id_marchand = lm_id[9]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[1],id_marchand = lm_id[5]))
+
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[1],id_user = lu_id[3],valide=0))
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[1],id_user = lu_id[4],valide=0))
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[1],id_user = lu_id[5],valide=2))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[1], id_user = lu_id[3], id_produit= lp_id[19],quantite = 5,unite = "kg"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[1], id_user = lu_id[3], id_produit= lp_id[30],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[1], id_user = lu_id[3], id_produit= lp_id[31],quantite = 1,unite = "unite"))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[1], id_user = lu_id[4], id_produit= lp_id[29],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[1], id_user = lu_id[4], id_produit= lp_id[18],quantite = 5,unite = "kg"))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[1], id_user = lu_id[5], id_produit= lp_id[19],quantite = 9,unite = "kg"))
+
+
+
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[2],id_marchand = lm_id[5]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[2],id_marchand = lm_id[4]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[2],id_marchand = lm_id[3]))
+
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[3],valide=1))
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[6],valide=1))
+
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[2], id_user = lu_id[3], id_produit= lp_id[15],quantite = 5,unite = "kg"))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[2], id_user = lu_id[6], id_produit= lp_id[19],quantite = 1,unite = "kg"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[2], id_user = lu_id[6], id_produit= lp_id[18],quantite = 5,unite = "kg"))
+
+
+
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[9]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[8]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[3],id_marchand = lm_id[7]))
+
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[3],id_user = lu_id[4],valide=1))
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[3],id_user = lu_id[5],valide=1))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[3], id_user = lu_id[4], id_produit= lp_id[23],quantite = 1,unite = "unite"))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[3], id_user = lu_id[5], id_produit= lp_id[27],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[3], id_user = lu_id[5], id_produit= lp_id[28],quantite = 2,unite = "unite"))
+
+
+
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[9]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[5]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[2]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[0]))
+
+
+
+
+
+
+
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[4],valide=0))
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[5],id_user = lu_id[5],valide=0))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[5], id_user = lu_id[4], id_produit= lp_id[12],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[5], id_user = lu_id[4], id_produit= lp_id[16],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[5], id_user = lu_id[4], id_produit= lp_id[9],quantite = 1,unite = "unite"))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[5], id_user = lu_id[5], id_produit= lp_id[14],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[5], id_user = lu_id[5], id_produit= lp_id[13],quantite = 2,unite = "unite"))
+
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[2],votes = 1))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[3],votes = 2))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[4],votes = 2))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[8]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[9]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[5],id_marchand = lm_id[0]))
+
+
+
+
+
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[2]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[3]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[4]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[8]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[9]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[0]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[1]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[5]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[6]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[6],id_marchand = lm_id[7]))
+
+
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[6],id_user = lu_id[3],valide=0))
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[6],id_user = lu_id[4],valide=0))
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[6],id_user = lu_id[5],valide=0))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[12],quantite = 4,unite = "kg"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[16],quantite = 4,unite = "kg"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[9],quantite = 1,unite = "unite"))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[3], id_produit= lp_id[14],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[3], id_produit= lp_id[19],quantite = 2,unite = "kg"))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[30],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[7],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[23],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[27],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[26],quantite = 1,unite = "unite"))
+
+
+
+
+
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[7],id_marchand = lm_id[0]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[7],id_marchand = lm_id[1]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[7],id_marchand = lm_id[2]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[7],id_marchand = lm_id[3]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[7],id_marchand = lm_id[4]))
+
+
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[7],id_user = lu_id[3],valide=0))
+
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[12],quantite = 4,unite = "kg"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[16],quantite = 4,unite = "kg"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[0],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[4],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[1],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[5],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[3],quantite = 2,unite = "unite"))
+
+
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[8],id_marchand = lm_id[0]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[8],id_marchand = lm_id[1]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[8],id_marchand = lm_id[2]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[8],id_marchand = lm_id[3]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[8],id_marchand = lm_id[4]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[8],id_marchand = lm_id[5]))
+
+
+
+
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[0]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[1]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[2]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[3]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[4]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[5]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[6]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[7]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[8]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[9],id_marchand = lm_id[9]))
+
+db.session.commit()
+
+
+
+""" ANCIEN SETUP DES AMPLETS
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[1],id_user = lu_id[2],valide=1))
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[1],valide=1))
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[2],valide=1))
@@ -188,6 +349,5 @@ db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id
 
 
 db.session.add(participants_amp.Participants_amp(id_amp=la_id[2], id_user=lu_id[0], valide=1))
-db.session.add(participants_amp.Participants_amp(id_amp=la_id[0], id_user=lu_id[2], valide=1))
+db.session.add(participants_amp.Participants_amp(id_amp=la_id[0], id_user=lu_id[2], valide=1)) """
 
-db.session.commit()
