@@ -13,7 +13,8 @@ def ferme_navette(id):
         return
     liste_marchand, dic_marchand = vote(id)
     for key in dic_marchand.keys():
-        marchand = marchands.Marchands.query.get(key)
+        marchand = marchands_amp.Marchands_amp.query.filter_by(id_amp=id,id_marchand=key).first()
+        print(key)
         marchand.votes = dic_marchand[key]
     update_multiplicateur(liste_marchand, dic_marchand)
     amp.ferme = True

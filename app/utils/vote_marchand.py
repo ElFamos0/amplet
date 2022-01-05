@@ -38,12 +38,13 @@ def vote(id_amplet:str):
         if idm not in listedejavu:
             dicttype[idm] = p[2].type
             listedejavu.append(idm)
-            if not p[2].votes is None:
-                dicomarchand[idm] = p[2].votes
+            mamp = marchands_amp.Marchands_amp.query.filter_by(id_amp=id_amplet, id_marchand=idm).first()
+            if not mamp.votes is None:
+                dicomarchand[idm] = mamp.votes
             else:
                 dicomarchand[idm] = p[2].multiplicateur
         else:
-            if p[2].votes is None:
+            if mamp.votes is None:
                 dicomarchand[idm] += p[2].multiplicateur
     vue = dicomarchand.items()
     liste = list(vue)
@@ -54,4 +55,5 @@ def vote(id_amplet:str):
         if not dicttype[listetrie[i][0]] in listetype:
             liste_marchand.append(listetrie[i][0])
             listetype.append(dicttype[listetrie[i][0]])
+        print(liste_marchand,dicomarchand)
         return (liste_marchand,dicomarchand)
