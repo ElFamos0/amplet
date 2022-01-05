@@ -28,8 +28,13 @@
           {% for j in range(nav_list_len[i]) %}
             Nom du produit : {{nav_nom_produits_choisis[i][j]}}<br>
             Un marchand proposant ce produit a été élu !<br>
-            Vous avez commandé {{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}}<br>
+            Vous en avez commandé {{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}}<br>
             Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€<br><br>
+          {% endfor %}
+          {% for j in range(nav_list_len2[i]) %}
+            Nom du produit : {{nav_nom_produits_pas_choisis[i][j]}}<br>
+            Aucun marchand proposant ce produit n'a été élu...<br>
+            Vous en aviez commandé {{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}}<br><br>
           {% endfor %}
           Total : {{nav_totaux[i]}}€<br>
         {% endfor %}
