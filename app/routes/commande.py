@@ -75,10 +75,13 @@ def commande():
     nav_totaux = []
     p = len(nav_id)
     for i in range(p):
+        print('\n\n')
+        print(vote(nav_id[i]))
+        print('\n\n')
         nav_id_marchands_choisis.append(vote(nav_id[i])[0])
-        print('\n\n\n')
+        print('\n\n')
         print(nav_id_marchands_choisis)
-        print('\n\n\n')
+        print('\n\n')
         prod_choisis = produits_amp.Produits_amp\
             .query.add_entity(produits.Produits)\
             .join(produits.Produits, produits_amp.Produits_amp.id_produit==produits.Produits.id)\
@@ -98,7 +101,7 @@ def commande():
     nav_list_len = [len(e) for e in nav_id_produits_choisis]
     nav_totaux = [sum([nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100 for j in range(nav_list_len[i])]) for i in range (p)]
     # print('\n\n\n')
-    # print(nav_id)
+    # print(nav_id_marchands_choisis)
     # print('\n\n\n')
     return render_template("commande.html",user=current_user,n=n,m=m,p=p,inscr_id_amp=inscr_id_amp, inscr_valide=inscr_valide,inscr_id_coursier=inscr_id_coursier,inscr_nom_coursier=inscr_nom_coursier, 
     cours_id_amp=cours_id_amp,cours_places_amp_occ=cours_places_amp_occ, cours_places_amp_tot=cours_places_amp_tot,cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,cours_list_len=cours_list_len,
