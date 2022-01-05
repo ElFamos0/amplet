@@ -7,7 +7,7 @@ from routes.commande import commande
 
 @app.route('/f/<string:id_ampl>/')
 @login_required
-def fermerAmplet(id_ampl,id_part):
+def fermerAmplet(id_ampl):
     amp = amplet.Amplets.query.filter_by(id = id_ampl).first()
     if amp and current_user.id==amp.id_coursier:
         amp.ferme=1
