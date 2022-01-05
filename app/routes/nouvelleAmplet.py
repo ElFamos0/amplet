@@ -3,7 +3,7 @@ from models import *
 from flask_login import login_required
 from flask_login import current_user
 from flask import render_template, request
-from datetime import date, datetime
+from datetime import datetime
 from time import mktime
 from utils.timestamp import now
 
@@ -13,7 +13,6 @@ def nouvelleAmplet():
     mag_dispo=marchands.Marchands.query.all()
     mag_dispo_noms=[e.nom for e in mag_dispo]
     mag_choisis_id=[]
-    date_now = now()
     if request.method=='POST':
         L=request.form
         for e in L:
