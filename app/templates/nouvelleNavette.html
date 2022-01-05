@@ -18,9 +18,9 @@
         <div class="text-center col-12 align-self-center">
             <div class="container border rounded-3 border-secondary">
                 <h5 class="text-center">Choisissez les marchands :</h5>
-                <div class="row">
+                <div class="row justify-content-center">
                     {% for mag in mag_dispo %}
-                    <div class="text-center col-12 align-self-center">
+                    <div class="text-center col-2 align-self-center">
                         <input type="checkbox" id="{{mag.id}}" name="{{mag.id}}" value="mag">
                         <label for="{{mag.id}}">{{mag.nom}}</label>
                     </div>
@@ -38,29 +38,33 @@
                     <div class="row">
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="startdate">Jour de départ : </label>
-                            <input type="date" name="startdate" value=""/>
+                            <input type="date" name="startdate" value="" />
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="starthour">Heure de départ : </label>
-                            <input type="number" name="starthour" min="0" max="23" value="12"/>
+                            <input type="number" name="starthour" min="0" max="23" value="12" />
                             <label for="starthour">h</label>
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="enddate">Jour de fin : </label>
-                            <input type="date" name="enddate" value=""/>
+                            <input type="date" name="enddate" value="" />
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="endhour">Heure de fin : </label>
-                            <input type="number" name="endhour" min="0" max="23" value="12"/>
+                            <input type="number" name="endhour" min="0" max="23" value="12" />
                             <label for="endhour">h</label>
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="endhour">Fermer les votes </label>
-                            <input type="number" name="endhour" min="1" max="6" value="2"/>
+                            <input type="number" name="endhour" min="1" max="6" value="2" />
                             <label for="endhour">h avant le départ.</label>
                         </div>
                     </div>
-                    <input type="submit" class="btn mt-3 btn-primary btn-lg" value="Valider"/>
+                    <input type="submit" class="btn mt-3 btn-primary btn-lg" value="Valider" /> {% for mesg in get_flashed_messages() %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ mesg }}
+                    </div>
+                    {% endfor %}
                 </form>
             </div>
         </div>

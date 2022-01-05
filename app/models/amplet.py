@@ -19,7 +19,7 @@ class Amplets(db.Model):
     def nom_amplet(self):
         return f'{self.id} - {timestamp.timestamp_to_date(self.date_depart, format=True)}'
 
-    def __init__(self, navette, date_depart, date_arrivee, places_dispo, id_coursier, delai_fermeture_depart, ferme,dist_max = 40100):
+    def __init__(self, date_depart, date_arrivee, places_dispo, id_coursier, delai_fermeture_depart, ferme, navette=False, dist_max = 40100):
         self.id = next(gen)
         self.navette = navette
         self.date_depart = date_depart

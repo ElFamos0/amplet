@@ -14,65 +14,72 @@
         <h1 class="mt-2 text-center">Créer une amplet</h1>
     </div>
 
-    <div class="row mt-5">
-        <div class="text-center col-12 align-self-center">
-            <div class="container border rounded-3 border-secondary">
-                <h5 class="text-center">Choisissez les marchands :</h5>
-                <div class="row">
-                    {% for mag in mag_dispo %}
-                    <div class="text-center col-12 align-self-center">
-                        <input type="checkbox" id="{{mag.id}}" name="{{mag.id}}" value="mag">
-                        <label for="{{mag.id}}">{{mag.nom}}</label>
+    <form action="nouvelleAmplet" method="POST">
+        <div class="row mt-5">
+            <div class="text-center col-12 align-self-center">
+                <div class="container border rounded-3 border-secondary">
+                    <h5 class="text-center">Choisissez les marchands :</h5>
+                    <div class="row justify-content-center">
+                        {% for mag in mag_dispo %}
+                        <div class="text-center col-2 align-self-center">
+                            <input type="checkbox" id="{{mag.id}}" name="marchands[]" value="{{mag.id}}">
+                            <label for="{{mag.id}}">{{mag.nom}}</label>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row mt-5">
-        <div class="text-center col-12 align-self-center">
-            <div class="container border rounded-3 border-secondary">
-                <h5 class="text-center">Remplissez les informations :</h5>
-                <form method="POST">
+        <div class="row mt-5">
+            <div class="text-center col-12 align-self-center">
+                <div class="container border rounded-3 border-secondary">
+                    <h5 class="text-center">Remplissez les informations :</h5>
                     <div class="row">
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="rayon">Rayons : </label>
                             <input type="range" value="20" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
-                            <input type="number" name="rayon" value="20" min="1" max="100" > </input>
+                            <input type="number" name="rayon" value="20" min="1" max="100"> </input>
                             <label for="rayon">km </label>
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="startdate">Jour de départ : </label>
-                            <input type="date" name="startdate" value=""/>
+                            <input type="date" name="startdate" value="" />
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="starthour">Heure de départ : </label>
-                            <input type="number" name="starthour" min="0" max="23" value="12"/>
+                            <input type="number" name="starthour" min="0" max="23" value="12" />
                             <label for="starthour">h</label>
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="enddate">Jour de fin : </label>
-                            <input type="date" name="enddate" value=""/>
+                            <input type="date" name="enddate" value="" />
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="endhour">Heure de fin : </label>
-                            <input type="number" name="endhour" min="0" max="23" value="12"/>
+                            <input type="number" name="endhour" min="0" max="23" value="12" />
                             <label for="endhour">h</label>
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
-                            <label for="endhour">Fermer les votes </label>
-                            <input type="number" name="endhour" min="1" max="6" value="2"/>
-                            <label for="endhour">h avant le départ.</label>
+                            <label for="delai">Fermer les votes </label>
+                            <input type="number" name="delai" min="1" max="6" value="2" />
+                            <label for="delai">h avant le départ.</label>
                         </div>
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="places">Places disponibles : </label>
-                            <input type="number" name="places" min="1" max="6" value="2"/>
+                            <input type="number" name="places" min="1" max="6" value="2" />
                         </div>
                     </div>
-                    <input type="submit" class="btn mt-3 btn-primary btn-lg" value="Valider"/>
-                </form>
+                    <input type="submit" class="btn mt-3 btn-primary btn-lg" value="Valider" />
+                    <div class="text-center mt-3 col-12 align-self-center">
+                        {% for mesg in get_flashed_messages() %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ mesg }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </body>
