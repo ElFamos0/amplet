@@ -52,23 +52,18 @@
                 <div class="amplet_title">
                     <div class="titre1">Navette du {{nav_date[i]}}</div>
                 </div>
-                <div class="amplet_body">
+                <div class="amplet_body p-3">
                     {% for j in range(nav_list_len[i]) %}
-                    <div class="amplet_list">
-                        <div class="amplet_list_title">
-                            <div class="titre2"> Nom du produit : {{nav_nom_produits_choisis[i][j]}} </div>
-                        </div>
-                        <div class="amplet_list_item">Un marchand proposant ce produit a été élu ! </div>
-                        <div class="amplet_list_item">Vous en avez commandé {{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} </div>
-                        <div class="amplet_list_item">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€ </div>
+                    <div class="container border border-secondary bg-dark text-light">
+                        <div class="text-light text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
+                        <div class="text-light">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€</div>
+                        <h4 data-tooltip="Le marchand a été accepté !" class="align-middle text-light"><i class="far fa-check-circle float-right"></i></h4>
                     </div>
                     {% endfor %} {% for j in range(nav_list_len2[i]) %}
-                    <div class="amplet_list">
-                        <div class="amplet_list_title">
-                            <div class="titre2">Nom du produit : {{nav_nom_produits_pas_choisis[i][j]}} </div>
-                        </div>
-                        <div class="amplet_list_item">Aucun marchand proposant ce produit n'a été élu... </div>
-                        <div class="amplet_list_item">Vous en aviez commandé {{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} </div>
+                    <div class="container border border-secondary bg-dark text-light">
+                        <div class="text-light text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
+                        <div class="text-light">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€</div>
+                        <h4 data-tooltip="Le marchand a été refusé !" class="align-middle"><i class="fas fa-times-circle"></i></h4>
                     </div>
                     {% endfor %}
                     <div class="amplet_item">Total : {{nav_totaux[i]}}€ </div>
@@ -143,6 +138,32 @@
             {% endfor %}
         </div>
     </div>
+
+    <script>
+        var style = document.createElement('style');
+        document.head.appendChild(style);
+
+        var matchingElements = [];
+        var allElements = document.getElementsByTagName('*');
+        for (var i = 0, n = allElements.length; i < n; i++) {
+            var attr = allElements[i].getAttribute('data-tooltip');
+            if (attr) {
+                allElements[i].addEventListener('mouseover', hoverEvent);
+            }
+        }
+
+        function hoverEvent(event) {
+            event.preventDefault();
+            x = event.x - this.offsetLeft;
+            y = event.y - this.offsetTop;
+            console.log(this);
+            // Make it hang below the cursor a bit.
+            y += 10;
+
+            style.innerHTML = '*[data-tooltip]::after { color:black; left: ' + x + 'px; top: ' + y + 'px  }'
+            console.log(this);
+        }
+    </script>
 </body>
 
 </html>

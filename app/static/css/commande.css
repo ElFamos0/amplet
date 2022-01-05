@@ -32,9 +32,7 @@
     font-weight: bold;
 }
 
-
 .amplet {
-    
     margin: 0.5em;
     width: 100%;
     background: rgb(255, 255, 255);
@@ -46,7 +44,7 @@
     border-color: rgb(183, 183, 185);
 }
 
-.amplet_title{
+.amplet_title {
     border-bottom: 1px solid;
     border-color: rgb(183, 183, 185);
     background-color: rgb(255, 255, 255);
@@ -58,7 +56,6 @@
 }
 
 .titre1 {
-
     text-align: center;
     display: block;
     margin-left: 5px;
@@ -67,7 +64,7 @@
     font-weight: bold;
 }
 
-.amplet_body{
+.amplet_body {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
@@ -85,7 +82,7 @@
     background: rgb(255, 255, 255);
 }
 
-.amplet_list{
+.amplet_list {
     margin-bottom: 10px;
     margin-left: 15px;
     width: 90%;
@@ -97,7 +94,7 @@
     border-color: rgb(211, 211, 211);
 }
 
-.amplet_list_title{
+.amplet_list_title {
     margin-top: 5px;
     margin-bottom: 5px;
     width: 100%;
@@ -108,9 +105,8 @@
     justify-content: space-between;
     display: flex;
 }
-    
-.titre2 {
 
+.titre2 {
     margin-top: 5px;
     margin-bottom: 5px;
     text-align: center;
@@ -120,7 +116,7 @@
     width: 100%;
 }
 
-.amplet_list_item{
+.amplet_list_item {
     padding: 0.2em;
     margin-bottom: 5px;
     width: 90%;
@@ -145,7 +141,7 @@
     background-color: rgb(247, 191, 165);
 }
 
-.buttons{
+.buttons {
     padding: 0.2em;
     margin-bottom: 5px;
     width: 100%;
@@ -155,4 +151,35 @@
     display: flex;
 }
 
+*[data-tooltip] {
+    position: relative;
+    color: black;
+}
 
+*[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 150px;
+    pointer-events: none;
+    opacity: 0;
+    -webkit-transition: opacity .15s ease-in-out;
+    -moz-transition: opacity .15s ease-in-out;
+    -ms-transition: opacity .15s ease-in-out;
+    -o-transition: opacity .15s ease-in-out;
+    transition: opacity .15s ease-in-out;
+    display: block;
+    font-size: 12px;
+    line-height: 16px;
+    background: #fefdcd;
+    padding: 2px 2px;
+    border: 1px solid #c0c0c0;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.4);
+    color: black;
+}
+
+*[data-tooltip]:hover::after {
+    opacity: 1;
+    color: black;
+}

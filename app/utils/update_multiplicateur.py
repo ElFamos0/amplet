@@ -12,11 +12,12 @@ def update_multiplicateur(liste_id_marchand,dic_marchand) :
             march.multiplicateur = 1
         else :
             l_non_select.append(march)
-            vote_tot += dic_marchand[march.id]
+            if march.id in dic_marchand:
+                vote_tot += dic_marchand[march.id]
         
     for march in l_non_select :
-
-        march.multiplicateur *= (1 + dic_marchand[march.id]/vote_tot)
+        if march.id in dic_marchand:
+            march.multiplicateur *= (1 + dic_marchand[march.id]/vote_tot)
     
     db.session.commit()
 
