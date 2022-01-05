@@ -67,11 +67,10 @@ def nouvelleAmplet():
 
         if not error:
             nouvelle_amplet = amplet.Amplets(id_coursier=current_user.id\
-            ,date_depart=datedebut\
-            ,date_arrivee=datefin\
+            ,date_depart=debut_stamp\
+            ,date_arrivee=fin_stamp\
             ,places_dispo=places\
             ,delai_fermeture_depart=delai\
-            ,ferme=0\
             ,dist_max=rayon)
             db.session.add(nouvelle_amplet)
             for e in marchands_choisis:
