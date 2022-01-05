@@ -3,6 +3,7 @@ from db import *
 from models import *
 from flask_login import current_user
 from flask import render_template
+from utils import *
 
 ##############################
 ########## COMMANDE  #########
@@ -51,7 +52,7 @@ def commande():
         m = len(coursier)
         cours_list_len = [len(e) for e in cours_id_participants]
         cours_places_amp_occ = [len(e) for e in cours_valide_participants_acceptes]
-    nav_id_marchands_choisis = [] 
+    nav_id_marchands_choisis = ['6884198245245927426','6884198245245927426'] 
     """A RECUP A PARTIR DU VOTE"""
     nav_voeux = produits_amp.Produits_amp.query.filter_by(id_user=current_user.id)
     nav_id = nav_voeux.group_by(produits_amp.Produits_amp.id_amp).all()
@@ -73,10 +74,12 @@ def commande():
         nav_prix_produits_choisis.append([e[1].prix for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis])
         nav_nom_produits_choisis.append([e[1].nom for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis])
         nav_quantite_produits_choisis.append([e[0].quantite for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis])
+        print('\n\n\n')
+        print(nav_quantite_produits_choisis)
+        print('\n\n\n')
         nav_unite_produits_choisis.append([e[0].unite for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis])
-        nav_date.append(amplet.Amplets.query.filter_by(id=f).first().date_depart)
+        nav_date.append(timestamp.timestamp_to_date(amplet.Amplets.query.filter_by(id=f).first().date_depart,format='True'))
     nav_list_len = [len(e) for e in nav_id_produits_choisis]
-    
     
     # print('\n\n\n')
     # print(nav_id)

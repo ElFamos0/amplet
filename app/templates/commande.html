@@ -21,9 +21,15 @@
       <div class="col-sm">
 
 
-        Les produits que j'ai commandé sur la navette :
-        {% for i in range(m) %}
-
+        Les produits que j'ai commandé sur les navettes :<br>
+        {% for i in range(p) %}
+        Navette du {{nav_date[i]}}<br>
+          {% for j in range(nav_list_len[i]) %}
+            Nom du produit : {{nav_nom_produits_choisis[i][j]}}<br>
+            Vous avez commandé {{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}}<br>
+            Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€<br>
+            <br>
+          {% endfor %}
         {% endfor %}
       </div>
       <div class="col-sm">
