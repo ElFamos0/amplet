@@ -7,6 +7,7 @@ from datetime import date, datetime
 from time import mktime
 from utils.timestamp import now
 from utils.cast import conversion
+from utils.creation_navette import lance_vote_automatique
 
 @app.route('/nouvelleNavette', methods=['GET','POST'])
 @login_required
@@ -69,7 +70,8 @@ def nouvelleNavette():
             db.session.add(nouvelle_navette)
             for e in marchands_choisis:
                 db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_navette.id))
-            db.session.commit()        
+            db.session.commit()
+            lance_vote_automatique(nouvelle_navette.id)
             return render_template('info.html', user=current_user, msg="Vous avez créer votre nouvelle Navette !", retour="/")
 
     return render_template('nouvelleNavette.html', mag_dispo=mag_dispo, user=current_user)

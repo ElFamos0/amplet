@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Mes Amplets</title>
     {% include 'headers/imports.html' %}
@@ -10,146 +11,137 @@
     {% include 'headers/navbar.html' %}
 
     <div class="m_body">
-      <div class="main_container">
-        <div class = "main_title">
-        Les Amplets sur lesquelles je suis inscrit :
-       </div>
-       
-        {% for i in range(n) %}
-        <div class = "amplet">
-          <div class = "amplet_title">
-            <div class = "titre1">Amplet numéro {{i+1}} </div>
-          </div>
-          <div class = "amplet_body">
-          
-            <div class = "amplet_item">ID : {{inscr_id_amp[i]}}  </div>
-            <div class = "amplet_item">Coursier : <a href="/p/{{inscr_id_coursier[i]}}" >{{inscr_nom_coursier[i]}}</a> </div>
-           <div class = "amplet_list">
-             <div class = amplet_list_title>
-              <div class = "titre2">Liste des produits que j'ai commandés : </div>
+        <div class="main_container">
+            <div class="main_title">
+                Les Amplets sur lesquelles je suis inscrit :
             </div>
-             {% for j in range(inscr_list_len[i]) %}
-            <div class = amplet_list_item>
-              {{inscr_quantite_produits[i][j]}} {{inscr_unite_produits[i][j]}} de {{inscr_nom_produits[i][j]}}<br>
-              Sous-total : {{inscr_prix_produits[i][j]*inscr_quantite_produits[i][j]/100}}€
+
+            {% for i in range(n) %}
+            <div class="amplet">
+                <div class="amplet_title">
+                    <div class="titre1">Amplet numéro {{i+1}} </div>
+                </div>
+                <div class="amplet_body">
+
+                    <div class="amplet_item">ID : {{inscr_id_amp[i]}} </div>
+                    <div class="amplet_item">Coursier : <a href="/p/{{inscr_id_coursier[i]}}">{{inscr_nom_coursier[i]}}</a> </div>
+                    <div class="amplet_list">
+                        <div class=a mplet_list_title>
+                            <div class="titre2">Liste des produits que j'ai commandés : </div>
+                        </div>
+                        {% for j in range(inscr_list_len[i]) %}
+                        <div class=a mplet_list_item>
+                            {{inscr_quantite_produits[i][j]}} {{inscr_unite_produits[i][j]}} de {{inscr_nom_produits[i][j]}}<br> Sous-total : {{inscr_prix_produits[i][j]*inscr_quantite_produits[i][j]/100}}€
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="amplet_item">Total : {{inscr_totaux[i]}}€</div>
+                    <div class="amplet_item">Statut : {{inscr_valide[i]}}</div>
+                </div>
             </div>
             {% endfor %}
+        </div>
+
+
+        <div class="main_container">
+            <div class="main_title">
+                Les produits que j'ai commandé sur les navettes :
             </div>
-            <div class = "amplet_item">Total : {{inscr_totaux[i]}}€</div>
-            <div class = "amplet_item">Statut : {{inscr_valide[i]}}</div>
-         </div>
-        </div>
-        {% endfor %}
-      </div>
-
-
-      <div class="main_container">
-        <div class = "main_title">
-          Les produits que j'ai commandé sur les navettes :
-        </div>
-        {% for i in range(p) %}
-        <div class = "amplet">
-          <div class = "amplet_title">
-            <div class = "titre1">Navette du {{nav_date[i]}}</div>
-          </div>
-          <div class = "amplet_body">
-          {% for j in range(nav_list_len[i]) %}
-            <div class = "amplet_list">
-              <div class = "amplet_list_title">
-                <div class = "titre2"> Nom du produit : {{nav_nom_produits_choisis[i][j]}} </div>
-              </div>
-              <div class = "amplet_list_item">Un marchand proposant ce produit a été élu ! </div>
-              <div class = "amplet_list_item">Vous en avez commandé {{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} </div>
-              <div class = "amplet_list_item">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€ </div>
-            </div>
-          {% endfor %}
-          {% for j in range(nav_list_len2[i]) %}
-            <div class = "amplet_list">
-              <div class = "amplet_list_title">
-                <div class = "titre2">Nom du produit : {{nav_nom_produits_pas_choisis[i][j]}} </div>
-             </div>
-              <div class = "amplet_list_item">Aucun marchand proposant ce produit n'a été élu... </div>
-              <div class = "amplet_list_item">Vous en aviez commandé {{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} </div>
-            </div>
-          {% endfor %}
-            <div class = "amplet_item">Total : {{nav_totaux[i]}}€ </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
-
-      <div class="main_container">
-        <div class = "main_title">
-        Les Amplets que je propose :
-        </div>
-        {% for i in range(m) %}
-        <div class = "amplet">
-          <div class = "amplet_title">
-          <div class = "titre1">Amplet numéro {{i+1}}</div>
-          </div>
-          <div class = "amplet_body">
-            <div class = "amplet_item">ID : {{cours_id_amp[i]}} </div>
-
-        {% if cours_places_amp_occ[i] %}
-            <div class = "amplet_list">
-              <div class = "amplet_list_title">
-                <div class = "titre2">Participants : {{cours_places_amp_occ[i]}}/{{cours_places_amp_tot[i]}} </div>
-              </div>
-          {% for j in range(cours_list_len[i]) %}
-              
-            {% if cours_valide_participants[i][j]==1 %}
-            <div class = "amplet_list_item">
-              <div class = "amplet_list">
-                <div class = "amplet_list_title"> <div class = "titre2">
-                <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
-                 Liste des produits demandés : </div>
-               </div>
-              {% for k in range(cours_list_len2[i][j]) %}
-                <div class = "amplet_list_item">
-                {{cours_quantite_produits_participants[i][j][k]}} {{cours_unite_produits_participants[i][j][k]}} de {{cours_nom_produits_participants[i][j][k]}}
+            {% for i in range(p) %}
+            <div class="amplet">
+                <div class="amplet_title">
+                    <div class="titre1">Navette du {{nav_date[i]}}</div>
                 </div>
-              {% endfor %}
-              <div class = "amplet_list_item">Statut : Accepté </div>
-              </div>
-            </div>
-            {% endif %}
-             
-          {% endfor %}
-          {% for j in range(cours_list_len[i]) %}
-            {% if cours_valide_participants[i][j]==0 %}
-              <div class = "amplet_list_item">
-                <div class = "amplet_list">
-                  <div class = "amplet_list_title"> <div class = "titre2">
-                   <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
-                    Liste des produits demandés : </div>
-                 </div>
-              {% for k in range(cours_list_len2[i][j]) %}
-                 <div class = "amplet_list_item">
-                {{cours_quantite_produits_participants[i][j][k]}} {{cours_unite_produits_participants[i][j][k]}} de {{cours_nom_produits_participants[i][j][k]}}
+                <div class="amplet_body">
+                    {% for j in range(nav_list_len[i]) %}
+                    <div class="amplet_list">
+                        <div class="amplet_list_title">
+                            <div class="titre2"> Nom du produit : {{nav_nom_produits_choisis[i][j]}} </div>
+                        </div>
+                        <div class="amplet_list_item">Un marchand proposant ce produit a été élu ! </div>
+                        <div class="amplet_list_item">Vous en avez commandé {{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} </div>
+                        <div class="amplet_list_item">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€ </div>
+                    </div>
+                    {% endfor %} {% for j in range(nav_list_len2[i]) %}
+                    <div class="amplet_list">
+                        <div class="amplet_list_title">
+                            <div class="titre2">Nom du produit : {{nav_nom_produits_pas_choisis[i][j]}} </div>
+                        </div>
+                        <div class="amplet_list_item">Aucun marchand proposant ce produit n'a été élu... </div>
+                        <div class="amplet_list_item">Vous en aviez commandé {{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} </div>
+                    </div>
+                    {% endfor %}
+                    <div class="amplet_item">Total : {{nav_totaux[i]}}€ </div>
                 </div>
-              {% endfor %}
-               <div class = "amplet_list_item"> Statut : En attente </div>
-                <div class = "buttons"> 
-              
-                  <form action ="/a/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}" method = "GET"> <input type="submit" class="a_button1" value ="Accepter"/>  </form> 
-                  <form action ="/r/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}" method = "GET"> <input type="submit" class="a_button2" value ="Refuser"/>   </form>
-
-                 </div>
-               </div>
-              </div>
-            {% endif %}
-          {% endfor %}
-          </div>
-          {% else %}
-
-          <div class = "amplet_item"> Aucun participant </div>
-
-          {% endif %}
-          </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-      </div>
+
+
+        <div class="main_container">
+            <div class="main_title">
+                Les Amplets que je propose :
+            </div>
+            {% for i in range(m) %}
+            <div class="amplet">
+                <div class="amplet_title">
+                    <div class="titre1">Amplet numéro {{i+1}}</div>
+                </div>
+                <div class="amplet_body">
+                    <div class="amplet_item">ID : {{cours_id_amp[i]}} </div>
+
+                    {% if cours_places_amp_occ[i] %}
+                    <div class="amplet_list">
+                        <div class="amplet_list_title">
+                            <div class="titre2">Participants : {{cours_places_amp_occ[i]}}/{{cours_places_amp_tot[i]}} </div>
+                        </div>
+                        {% for j in range(cours_list_len[i]) %} {% if cours_valide_participants[i][j]==1 %}
+                        <div class="amplet_list_item">
+                            <div class="amplet_list">
+                                <div class="amplet_list_title">
+                                    <div class="titre2">
+                                        <a href="/p/{{cours_id_participants[i][j]}}">{{cours_nom_participants[i][j]}}</a><br> Liste des produits demandés : </div>
+                                </div>
+                                {% for k in range(cours_list_len2[i][j]) %}
+                                <div class="amplet_list_item">
+                                    {{cours_quantite_produits_participants[i][j][k]}} {{cours_unite_produits_participants[i][j][k]}} de {{cours_nom_produits_participants[i][j][k]}}
+                                </div>
+                                {% endfor %}
+                                <div class="amplet_list_item">Statut : Accepté </div>
+                            </div>
+                        </div>
+                        {% endif %} {% endfor %} {% for j in range(cours_list_len[i]) %} {% if cours_valide_participants[i][j]==0 %}
+                        <div class="amplet_list_item">
+                            <div class="amplet_list">
+                                <div class="amplet_list_title">
+                                    <div class="titre2">
+                                        <a href="/p/{{cours_id_participants[i][j]}}">{{cours_nom_participants[i][j]}}</a><br> Liste des produits demandés : </div>
+                                </div>
+                                {% for k in range(cours_list_len2[i][j]) %}
+                                <div class="amplet_list_item">
+                                    {{cours_quantite_produits_participants[i][j][k]}} {{cours_unite_produits_participants[i][j][k]}} de {{cours_nom_produits_participants[i][j][k]}}
+                                </div>
+                                {% endfor %}
+                                <div class="amplet_list_item"> Statut : En attente </div>
+                                <div class="buttons">
+
+                                    <a href="/a/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}" class="btn btn-success btn-md"><i class="fas fa-check-circle"></i> Accepter </a>
+                                    <a href="/r/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}" class="btn btn-danger btn-md"><i class="fas fa-times-circle"></i> Refuser</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %} {% endfor %}
+                    </div>
+                    {% else %}
+
+                    <div class="amplet_item"> Aucun participant </div>
+
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 

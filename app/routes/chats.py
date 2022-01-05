@@ -31,7 +31,6 @@ def handle_message(msg):
     content = msg['content']
     if target == current_user.id or content == "" or target == "":
         return
-    print(target)
     timestamp = now()
     db.session.add(chat.Chat(id_emetteur=current_user.id,id_amp=target,timestamps=timestamp,contenu=content))
     db.session.commit()
@@ -74,7 +73,6 @@ def handle_contact(data):
 @socketio.on('chats')
 @authenticated_only
 def handle_chat(data):
-    print('chats')
     if data["id"] == "all":
         q1 = db.session.query(chat.Chat.id_amp.label('id')).filter_by(id_emetteur=current_user.id)
         q2 = db.session.query(chat.Chat.id_emetteur.label('id')).filter_by(id_amp=current_user.id)
