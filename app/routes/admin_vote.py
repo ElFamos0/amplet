@@ -26,9 +26,9 @@ def lance_navette(id):
         abort(404)
     navette = amplet.Amplets.query.get(id)
     if navette.ferme:
-        return render_template('info.html', user=current_user, msg="Cette navette est déjà fermé.", retour="/admin/navettes")
+        return render_template('info.html', user=current_user, msg="Cette navette est déjà fermée.", retour="/admin/navettes")
     if navette.date_arrivee < now():
-        return render_template('info.html', user=current_user, msg="Cette navette est déjà arrivé.", retour="/admin/navettes")
+        return render_template('info.html', user=current_user, msg="Cette navette est déjà arrivée.", retour="/admin/navettes")
 
     ferme_navette(id)
     return render_template('info.html', user=current_user, msg="Le vote à été lancé !", retour="/admin/navettes")
