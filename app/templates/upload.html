@@ -15,15 +15,15 @@
     <div class="container">
         <div class="main-body">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="{{personne.avatar_url()}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                <img src="{{user.avatar_url()}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="150px" height="150px">
                                 <div class="mt-3">
-                                    <h4>{{personne.username}}</h4>
-                                    <p class="text-secondary mb-1">ID : {{personne.id}}</p>
-                                    <p class="text-secondary mb-1">{{personne.email}}</p>
+                                    <h4>{{user.username}}</h4>
+                                    <p class="text-secondary mb-1">ID : {{user.id}}</p>
+                                    <p class="text-secondary mb-1">{{user.email}}</p>
                                     <p class="text-muted font-size-sm">Secteur</p>
                                     <button class="btn btn-primary">Message</button>
                                 </div>
@@ -31,15 +31,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="upload">Choisis ton avatar</label>
-                            <input type="file" class="form-control-file" id="upload" name="file" accept="image/png, image/jpeg">
-                            <input type="submit" class="btn-sm btn-primary" value="Submit">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="col-12 align-self-center">
+                        <h5 class="text-center">Choisissez votre avatar :</h5>
+                        <div class="row">
+                            <div class="text-center mt-3 col-12 align-self-center">
+                                <input type="file" class="form-control-file" id="upload" name="file" accept="image/png, image/jpeg">
+                            </div>
+                            <div class="text-center mt-3 col-12 align-self-center">
+                                <input type="submit" class="btn-sm btn-primary" value="Changer d'avatar">
+                            </div>
+                            <div class="text-center mt-3 col-12 align-self-center">
+                                {% for mesg in get_flashed_messages() %}
+                                <div class="alert alert-danger" role="alert">
+                                {{ mesg }}
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
