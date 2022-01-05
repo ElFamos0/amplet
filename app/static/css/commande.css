@@ -64,6 +64,17 @@
     font-weight: bold;
 }
 
+
+.titre3 {
+    text-align: center;
+    display: block;
+    margin-left: 5px;
+    margin-top: 22px;
+    font-size: 1.35em;
+    width: 100%;
+    font-weight: bold;
+}
+
 .amplet_body {
     margin-top: 10px;
     margin-bottom: 10px;
