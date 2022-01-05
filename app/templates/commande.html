@@ -100,7 +100,9 @@
                         </div>
                     </div>
                     {% endfor %} {% endif %}
+                    {% if nav_ferme[i] %}
                     <div class="amplet_item">Total : {{nav_totaux[i]}}€ </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
