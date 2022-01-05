@@ -61,6 +61,8 @@ def adminpage():
             id_coursier_navette = users.User.query.filter_by(username='JeSuisLaNavette').first().id
             navamplet = amplet.Amplets(navette=True,date_depart=dateD_timestamp,date_arrivee=dateA_timestamp,places_dispo=places_d,id_coursier=id_coursier_navette,ferme=False,delai_fermeture_depart=6666666)
             db.session.add(navamplet)
+            for e in marchands.Marchands.query.all():
+                db.session.add(marchands_amp.Marchands_amp(id_marchand=e.id,id_amp=navamplet.id))
             db.session.commit()
             return render_template("admin.html")
         return render_template("admin.html")
