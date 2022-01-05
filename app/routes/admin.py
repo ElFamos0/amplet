@@ -54,7 +54,7 @@ def adminpage():
         if request.method=='POST':
             dateD = request.form.get("dateD")
             heureD = request.form.get("heureD")
-            dateD_timestamp = int(mktime(datetime.strptime(dateD,"%Y-%m-%d").timetuple()) * 1000) + (int(heureD)*60*60*1000)
+            dateD_timestamp = int(mktime(datetime.strptime(dateD,"%Y-%m-%d").timetuple()) * 1000) + ((int(heureD)+1)*60*60*1000)
             dateA = request.form.get("dateA")
             dateA_timestamp = int(mktime(datetime.strptime(dateA,"%Y-%m-%d").timetuple()) * 1000)
             places_d = request.form.get("places_dispo")

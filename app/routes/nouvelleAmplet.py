@@ -29,7 +29,7 @@ def nouvelleAmplet():
             date_dep=now()
             date_dep_ts=date_dep + (int(heure_dep)*60*60*1000)
         else:
-            date_dep_ts = int(mktime(datetime.strptime(date_dep,"%Y-%m-%d").timetuple()) * 1000) + (int(heure_dep)*60*60*1000)
+            date_dep_ts = int(mktime(datetime.strptime(date_dep,"%Y-%m-%d").timetuple()) * 1000) + ((int(heure_dep)+1)*60*60*1000)
         delai_ferm = int(L['delai_ferm'])*60*60*1000
         places_dispo = L['places_dispo']
         newAmp = amplet.Amplets(id_coursier=current_user.id, navette=0, date_depart=date_dep_ts, date_arrivee=date_dep_ts+1, places_dispo=places_dispo, delai_fermeture_depart=delai_ferm, ferme=0)
