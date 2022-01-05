@@ -70,3 +70,5 @@ Louis-Vincent :
 | 5 janvier | 5 janvier | Gestion de la temporalité : les navettes pas encore fermées sont affichées 'en attente' dans Mes Amplets |
 | 5 janvier | 5 janvier | Implémentation de la possibilité pour l'utilisateur de fermer une Amplet dans Mes Amplets |
 | 5 janvier | 5 janvier | Actualisation des points de l'utilisateur qui ferme une Amplet |
+|  |  | Rédaction de la partie gestion de projet du rapport |
+|  |  | Relecture de l'entièreté du rapport pour corriger les fautes de français | 
