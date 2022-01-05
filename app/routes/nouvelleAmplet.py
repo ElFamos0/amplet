@@ -65,20 +65,18 @@ def nouvelleAmplet():
             error = True
             flash("Veuillez selectionner au moins un marchand.")
 
-        
-        nouvelle_amplet = amplet.Amplets(id_coursier=current_user.id\
+        if not error:
+            nouvelle_amplet = amplet.Amplets(id_coursier=current_user.id\
             ,date_depart=datedebut\
             ,date_arrivee=datefin\
             ,places_dispo=places\
             ,delai_fermeture_depart=delai\
             ,ferme=0\
             ,dist_max=rayon)
-        db.session.add(nouvelle_amplet)
-        for e in marchands_choisis:
-            db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_amplet.id))
-        db.session.commit()
-
-        if not error:        
+            db.session.add(nouvelle_amplet)
+            for e in marchands_choisis:
+                db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_amplet.id))
+            db.session.commit()        
             return render_template('info.html', user=current_user, msg="Vous avez créer votre nouvelle Amplet !", retour="/")
 
     return render_template('nouvelleAmplet.html', mag_dispo=mag_dispo, user=current_user)
