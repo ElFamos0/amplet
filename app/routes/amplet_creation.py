@@ -2,29 +2,26 @@ from db import *
 from models import *
 from flask_login import login_required
 from flask_login import current_user
-from flask import render_template, request, flash, abort
+from flask import render_template, request, flash
 from datetime import date, datetime
 from time import mktime
 from utils.timestamp import now
 from utils.cast import conversion
-from utils.creation_navette import lance_vote_automatique
 
-@app.route('/nouvelleNavette', methods=['GET','POST'])
+@app.route('/nouvelleAmplet', methods=['GET','POST'])
 @login_required
-def nouvelleNavette():
-    if not current_user.is_Mayor():
-        abort(404)
-    mag_dispo=marchands.Marchands.query.all()
+def nouvelleAmplet():
     d2 = date.today().strftime("%Y-%m-%d")
+    mag_dispo=marchands.Marchands.query.all()
     if request.method=='POST':
-        rayon = 40100
         marchands_choisis = request.form.getlist('marchands[]')
+        rayon = conversion(request.form.get("rayon"), int, 20)
         datedebut = request.form.get("startdate", d2) or d2
         heuredebut = request.form.get("starthour")
         datefin = request.form.get("enddate", d2) or d2
         heurefin = request.form.get("endhour")
         delai = conversion(request.form.get("delai"), int, 2)
-        places = 100
+        places = conversion(request.form.get("places"), int, 1)
 
         debut_stamp = mktime(datetime.strptime(datedebut,"%Y-%m-%d").timetuple()) * 1000 + conversion(heuredebut, int, 0)*60*60*1000
         fin_stamp = mktime(datetime.strptime(datefin,"%Y-%m-%d").timetuple()) * 1000 + conversion(heurefin, int, 0)*60*60*1000
@@ -42,11 +39,11 @@ def nouvelleNavette():
 
         if fin_stamp <= debut_stamp+3*60*60*1000: # Minimum 3h
             error = True
-            flash("Les votes pour la navette doivent se terminer au moins 3h après le début d'une Amplet.")
+            flash("L'amplet doit se terminer au moins 3h après le début d'une Amplet.")
 
-        if fin_stamp > debut_stamp+7*24*60*60*1000:
+        if fin_stamp > debut_stamp+7*24*60*60*1000 or debut_stamp > now()+7*24*60*60*1000:
             error = True
-            flash("La navette ne doit pas durer plus d'une semaine.")
+            flash("L'amplet ne doit pas durer plus d'une semaine.")
 
         if not heuredebut or not heurefin:
             error = True
@@ -56,24 +53,29 @@ def nouvelleNavette():
             error = True
             flash("Veuillez renseigner le délai d'avant départ.")
 
+        if not places or places > 5 or places < 0:
+            error = True
+            flash("Veuillez renseigner les places disponibles.")
+
+        if rayon < 0 or rayon > 100:
+            error = True
+            flash("Veuillez renseigner un rayon.")
+
         if len(marchands_choisis) == 0:
             error = True
             flash("Veuillez sélectionner au moins un marchand.")
 
         if not error:
-            nouvelle_navette = amplet.Amplets(id_coursier=current_user.id\
-            ,navette=True
+            nouvelle_amplet = amplet.Amplets(id_coursier=current_user.id\
             ,date_depart=debut_stamp\
             ,date_arrivee=fin_stamp\
             ,places_dispo=places\
             ,delai_fermeture_depart=delai\
-            ,ferme=0\
             ,dist_max=rayon)
-            db.session.add(nouvelle_navette)
+            db.session.add(nouvelle_amplet)
             for e in marchands_choisis:
-                db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_navette.id))
-            db.session.commit()
-            #lance_vote_automatique(nouvelle_navette.id)
-            return render_template('info.html', user=current_user, msg="Vous avez créé votre nouvelle Navette !", retour="/")
+                db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_amplet.id))
+            db.session.commit()        
+            return render_template('info.html', user=current_user, msg="Vous avez créé votre nouvelle Amplet !", retour="/")
 
-    return render_template('nouvelleNavette.html', mag_dispo=mag_dispo, user=current_user)
+    return render_template('amplet/nouvelleAmplet.html', mag_dispo=mag_dispo, user=current_user)

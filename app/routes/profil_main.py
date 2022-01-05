@@ -12,7 +12,7 @@ from flask_login import login_required, current_user
 def own_profile():
     adresse = adresses.Adresse.query.filter_by(id = current_user.id_adresse).first()
     stringadresse = f"{adresse.numero} {adresse.rue} {adresse.ville} {adresse.codepostal}"
-    return render_template("profil.html", user=current_user, chat=False, stringadresse=stringadresse)
+    return render_template("profil/profil.html", user=current_user, chat=False, stringadresse=stringadresse)
 
 @app.route("/p/<string:id>")
 @login_required
@@ -27,7 +27,7 @@ def profil(id):
     if id == current_user.id:
         chat = False
     print(chat)
-    return render_template("profil.html", user=usr, chat=chat, stringadresse=stringadresse)
+    return render_template("profil/profil.html", user=usr, chat=chat, stringadresse=stringadresse)
 
 @app.route("/pe",methods=['GET','POST'])
 @login_required
@@ -55,4 +55,4 @@ def profilmodif():
         db.session.commit()
             
     adressereelle = adresses.Adresse.query.filter_by(id=current_user.id_adresse).first()
-    return render_template("profilmodif.html",user=current_user,adressereelle=adressereelle)
+    return render_template("profil/profilmodif.html",user=current_user,adressereelle=adressereelle)

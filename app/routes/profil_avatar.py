@@ -27,7 +27,7 @@ def upload_pp():
             f.save(f"{folder}/{next(gen)}.png")
         else:
             flash("Veuillez envoyer un fichier.")
-    return render_template('upload.html', user=current_user)
+    return render_template('profil/upload.html', user=current_user)
 
 if __name__=="__main__":
     app.run(debug=True)

@@ -56,19 +56,15 @@ def amplets_en_cours() :
         for i in liste_type :
             liste_typebis.append((i,False))
 
-    
     debut_stamp = mktime(datetime.strptime(debut,"%Y-%m-%d").timetuple()) * 1000 # On convertit en timestamp
     fin_stamp = mktime(datetime.strptime(fin,"%Y-%m-%d").timetuple()) * 1000 # On convertit en timestamp
 
     liste_amplet= amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis,current_user)
 
     if recherche[0] == 'Proximité' :
-
         id_adresse =  users.User.query.get(current_user.id).id_adresse
-
     else :
         id_adresse = 0
-
     liste_amplet = recherche_par(liste_amplet,recherche[0],id_adresse)
-  
-    return render_template('amplets_en_cours.html',user=current_user,type_magasins = liste_typebis,debut = debut,fin = fin,recherche = recherche,amplets=liste_amplet)
+
+    return render_template('amplet/amplets_en_cours.html',user=current_user,type_magasins = liste_typebis,debut = debut,fin = fin,recherche = recherche,amplets=liste_amplet)

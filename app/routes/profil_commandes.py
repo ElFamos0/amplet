@@ -4,7 +4,7 @@ from models import *
 from flask_login import current_user
 from flask import render_template
 from utils.vote_marchand import *
-from utils import *
+from utils.timestamp import *
 
 ##############################
 ########## COMMANDE  #########
@@ -150,16 +150,44 @@ def commande():
         # print('\n\n\n')
         nav_unite_produits_choisis.append([e[0].unite for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis[i]])
         nav_unite_produits_pas_choisis.append([e[0].unite for e in prod_choisis if e[1].id_marchand not in nav_id_marchands_choisis[i]])
-        nav_date.append(timestamp.timestamp_to_date(amplet.Amplets.query.filter_by(id=nav_id[i]).first().date_depart,format='True'))
+        nav_date.append(timestamp_to_date(amplet.Amplets.query.filter_by(id=nav_id[i]).first().date_depart,format='True'))
         nav_ferme.append(amplet.Amplets.query.filter_by(id=nav_id[i]).first().ferme)
     nav_list_len = [len(e) for e in nav_id_produits_choisis]
     nav_list_len2 = [len(e) for e in nav_nom_produits_pas_choisis]
     nav_totaux = [sum([nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100 for j in range(nav_list_len[i])]) for i in range (p)]
     # print('\n\n\n')
     # print('\n\n\n')
-    return render_template("commande.html",user=current_user,n=n,m=m,p=p,inscr_id_amp=inscr_id_amp, inscr_valide=inscr_valide,inscr_id_coursier=inscr_id_coursier,inscr_nom_coursier=inscr_nom_coursier, 
+    return render_template("profil/commande.html",user=current_user,n=n,m=m,p=p,inscr_id_amp=inscr_id_amp, inscr_valide=inscr_valide,inscr_id_coursier=inscr_id_coursier,inscr_nom_coursier=inscr_nom_coursier, 
     inscr_totaux=inscr_totaux,inscr_list_len=inscr_list_len,inscr_id_produits=inscr_id_produits,inscr_nom_produits=inscr_nom_produits,inscr_quantite_produits=inscr_quantite_produits,inscr_unite_produits=inscr_unite_produits,inscr_prix_produits=inscr_prix_produits,
     cours_id_amp=cours_id_amp,cours_strstatut_amp=cours_strstatut_amp,cours_places_amp_occ=cours_places_amp_occ, cours_places_amp_tot=cours_places_amp_tot,cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,cours_list_len=cours_list_len,
     cours_list_len2=cours_list_len2,cours_nom_produits_participants=cours_nom_produits_participants,cours_quantite_produits_participants=cours_quantite_produits_participants,cours_unite_produits_participants=cours_unite_produits_participants,
     nav_id=nav_id,nav_ferme=nav_ferme,nav_list_len=nav_list_len,nav_totaux=nav_totaux,nav_id_produits_choisis=nav_id_produits_choisis,nav_prix_produits_choisis=nav_prix_produits_choisis,nav_nom_produits_choisis=nav_nom_produits_choisis,nav_quantite_produits_choisis=nav_quantite_produits_choisis,nav_unite_produits_choisis=nav_unite_produits_choisis,nav_date=nav_date,
     nav_list_len2=nav_list_len2,nav_id_produits_pas_choisis=nav_id_produits_pas_choisis,nav_nom_produits_pas_choisis=nav_nom_produits_pas_choisis,nav_quantite_produits_pas_choisis=nav_quantite_produits_pas_choisis,nav_unite_produits_pas_choisis=nav_unite_produits_pas_choisis)
+
+@app.route('/a/<string:id_ampl>/<string:id_part>')
+@login_required
+def accepter_participation(id_ampl,id_part):
+    curr_amp = participants_amp.Participants_amp.query.filter_by(id_user = id_part, id_amp=id_ampl).first()
+    curr_amp_id = curr_amp.id_amp
+    amp = amplet.Amplets.query.filter_by(id = curr_amp_id).first()
+    cours_id = amp.id_coursier
+    if curr_amp and current_user.id==cours_id:
+        curr_amp.valide=1
+        db.session.commit()
+        return commande()
+    else:
+        return render_template('info.html', user=current_user, msg="Vous n'avez pas l'autorisation de modifier le statut de cette Amplet ou elle n'existe pas", retour="/commande")
+
+@app.route('/r/<string:id_ampl>/<string:id_part>')
+@login_required
+def refuser_participation(id_ampl,id_part):
+    curr_amp = participants_amp.Participants_amp.query.filter_by(id_user = id_part, id_amp=id_ampl).first()
+    curr_amp_id = curr_amp.id_amp
+    amp = amplet.Amplets.query.filter_by(id = curr_amp_id).first()
+    cours_id = amp.id_coursier
+    if curr_amp and current_user.id==cours_id:
+        curr_amp.valide=2
+        db.session.commit()
+        return commande()
+    else:        
+        return render_template('info.html', user=current_user, msg="Vous n'avez pas l'autorisation de modifier le statut de cette Amplet ou elle n'existe pas", retour="/commande")

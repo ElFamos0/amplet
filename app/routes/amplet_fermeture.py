@@ -4,7 +4,7 @@ from db import *
 from models import *
 from flask_login import current_user
 from flask import render_template
-from routes.commande import commande
+from routes.profil_commandes import commande
 
 @app.route('/f/<string:id_ampl>/')
 @login_required

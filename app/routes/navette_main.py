@@ -32,7 +32,7 @@ def navette(navid):
         if count > 0: #on vérifie que il y a au moins une navette disponible
             listenavettes.pop(i)
     if listenavettes == []:
-        return render_template("erreur.html", user=current_user, erreur = "Il n'y a pas de navette disponible pour le moment !")
+        return render_template("info.html", user=current_user, msg = "Il n'y a pas de navette disponible pour le moment !", retour="/")
     if navid not in [n.id for n in listenavettes]:
         return redirect(f"/navette/{listenavettes[0].id}")
 
@@ -101,4 +101,4 @@ def navette(navid):
             else:
                 flash("Merci de renseigner au moins un article.")
 
-    return render_template("navette.html",user=current_user, produits=listeproduits, navettes=listenavettes, navid=navid) #chargement de la page
+    return render_template("navette/navette.html",user=current_user, produits=listeproduits, navettes=listenavettes, navid=navid) #chargement de la page
