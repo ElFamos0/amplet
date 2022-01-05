@@ -15,5 +15,6 @@ __all__ = [
     "send_inscription_amplet",
     "404",
     "accepter_participation",
-    "refuser_participation"
+    "refuser_participation",
+    "trajet"
 ]
