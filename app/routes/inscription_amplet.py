@@ -19,9 +19,14 @@ def inscription_amplet(id) :
         prod = produits.Produits.query.add_entity(marchands.Marchands).join(marchands.Marchands).filter(marchands.Marchands.id == id_mag,produits.Produits.id_marchand == marchands.Marchands.id)
         listeproduits += [{"nom":p[0].nom,"marchand": p[1].nom} for p in prod]
     
+
+    mon_amplet = amplet.Amplets.query.filter(amplet.Amplets.id==ampl).first().id_coursier == current_user.id
+
     if participants_amp.Participants_amp.query.filter_by(id_amp=ampl,id_user=current_user.id).first() is not None:
         flash("Vous vous êtes déjà inscrit à cet amplet !")
-    if not request.form.get('err') is None:
+    if request.form.get('err') is not None:
         flash("Merci de ne pas mettre plus d'une fois le même article.")
+    if mon_amplet :
+        flash("Vous ne pouvez pas vous inscrire sur votre amplet !")
     return render_template('inscription_amplet.html', user=current_user, produits=listeproduits, amp = am)
  

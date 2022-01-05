@@ -28,23 +28,34 @@ def send_inscription_amplet(id) :
                 "unite": request.form.get(f"unite{i}"),
                 })  
         #Cette partie ci-dessous me permet de faire toute les comparaisons nécessaire au bon fonctionnement du form
-    participation_valide = not participants_amp.Participants_amp.query.filter(participants_amp.Participants_amp.id_amp==ampl,participants_amp.Participants_amp.id_user==current_user.id).first() is not None #afin que le form ne comptabilise qu'une seule participation à une amplet
+    participation_valide = participants_amp.Participants_amp.query.filter(participants_amp.Participants_amp.id_amp==ampl,participants_amp.Participants_amp.id_user==current_user.id).first() is None #afin que le form ne comptabilise qu'une seule participation à une amplet
     listeverif = []
+    print(current_user)
+    mon_amplet = amplet.Amplets.query.filter(amplet.Amplets.id==ampl).first().id_coursier == current_user.id
     
     for item in items:      
         if item["produit"] != "null":
-            listeverif.append(item["produit"])
-    allgood = len(set(listeverif)) == len(listeverif) and len(listeverif) > 0
+            if item["quantite"].isdigit() and int(item["quantite"]) > 0 :
+                listeverif.append(item["produit"])
+    allgood1 = len(set(listeverif)) == len(listeverif)
+    allgood2 = len(listeverif) > 0
+    allgood = allgood1 and allgood2
 
-    if not (participation_valide and allgood) :
-        if participants_amp.Participants_amp.query.filter_by(id_amp=ampl, id_user=current_user.id).first() is not None:
-            flash("Vous vous êtes déjà inscrit à cet amplet.")
-        if not allgood:
-            if len(listeverif) > 0:
-                flash("Merci de ne pas mettre plus d'une fois le même article.")
-            else:
-                flash("Merci de renseigner au moins un article.")
+    if mon_amplet :
+        flash("Vous ne pouvez pas vous inscrire sur votre amplet !")
         return render_template('inscription_amplet.html', user=current_user, produits=listeproduits, amp = am)
+    if not participation_valide:
+        flash("Vous vous êtes déjà inscrit à cet amplet !")
+        return render_template('inscription_amplet.html', user=current_user, produits=listeproduits, amp = am)
+    if not allgood1:
+        flash("Merci de ne pas mettre plus d'une fois le même article.")
+        return render_template('inscription_amplet.html', user=current_user, produits=listeproduits, amp = am)
+    if not allgood2:
+        flash("Merci de mettre au moins un article.")
+        return render_template('inscription_amplet.html', user=current_user, produits=listeproduits, amp = am)
+    
+    
+    
         
     if allgood and participation_valide:
         for item in items:
@@ -57,13 +68,14 @@ def send_inscription_amplet(id) :
             if skip:
                 continue
 
-            if unite == "kg" and 0 > qte > 10:
+            if unite == "kg" and (0 >= qte or qte > 10):
                 continue
-            if unite == "g" and 0 > qte > 10000:
+            if unite == "g" and (0 >= qte or qte > 10000):
                 continue
-            if unite == "unite" and qte > 0:
+            if unite == "unite" and qte <= 0:
                 continue
             
+            print(conversion(item["quantite"], int, 0))
             idproduit = produits.Produits.query.filter(produits.Produits.nom==produit).first()
             produit = produits_amp.Produits_amp(id_amp=ampl, id_produit=idproduit.id, quantite=qte, unite=unite, id_user=current_user.id)
             if participation_valide: #afin que le form ne comptabilise qu'une seule participation à une amplet
