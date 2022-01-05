@@ -22,7 +22,7 @@ def hello_world():
     content += "<p>AMPLET</p>"
     content += "<br/>"
     for amplit in amplet.Amplets.query.all():
-        content += f"ID AMPLET : {amplit.id} - DATE DEPART : {timestamp.timestamp_to_date(amplit.date_arrivee,format=True)} - DATE ARRIVE : {timestamp.timestamp_to_date(amplit.date_depart,format=True)} - PLACES DISPO (MAX) : {amplit.places_dispo} - ID COURSIER : {amplit.id_coursier}"
+        content += f"ID AMPLET : {amplit.id} - DATE DEPART : {timestamp.timestamp_to_date(amplit.date_depart,format=True)} - DATE ARRIVE : {timestamp.timestamp_to_date(amplit.date_arrivee,format=True)} - PLACES DISPO (MAX) : {amplit.places_dispo} - ID COURSIER : {amplit.id_coursier}"
         content += "<br/>"
     content += "<br>"
     content += "<p>COMMANDES</p>"

@@ -35,13 +35,11 @@ if setup:
         lad_id.append(i.id)
 
     admin = users.User(username='admin', email='admin@test.com', id_adresse=lad_id[0], points=54, role=666)
-    guest = users.User(username='guest', email='guest@test.com', id_adresse=lad_id[1], points=38, role=38)
+    guest = users.User(username='navette', email='guest@test.com', id_adresse=lad_id[1], points=38, role=1)
     third = users.User(username='third', email='third@test.com', id_adresse=lad_id[2])
-    JeSuisLaNavette = users.User(username='navette', email='navette@test.com', id_adresse=lad_id[0], points=0, role=666)
     admin.set_password('oof')
     guest.set_password('oof')
     third.set_password('oof')
-    JeSuisLaNavette.set_password('oof')
     db.session.add(marchands.Marchands(nom= 'Chez Jupux',id_adresse=lad_id[3],type="Crémier",multiplicateur=1.0))
     db.session.add(marchands.Marchands(nom= 'Chez Tomczak',id_adresse=lad_id[4],type="Maître Sauceur",multiplicateur=1.0))
     db.session.add(marchands.Marchands(nom= 'Chez LV',id_adresse=lad_id[5],type="Primeur",multiplicateur=1.0))
@@ -49,7 +47,6 @@ if setup:
     db.session.add(admin)
     db.session.add(guest)
     db.session.add(third)
-    db.session.add(JeSuisLaNavette)
     db.session.commit()
 
     l_u = users.User.query.all()
@@ -60,10 +57,10 @@ if setup:
     db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
     db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[1],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
     db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660,dist_max = 50))
-    db.session.add(amplet.Amplets(navette=True,date_depart=1640940200000,date_arrivee=1640806800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
-    db.session.add(amplet.Amplets(navette=True,date_depart=1640990200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
-    db.session.add(amplet.Amplets(navette=True,date_depart=1650990200000,date_arrivee=1650893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
-    db.session.add(amplet.Amplets(navette=True,date_depart=1660990200000,date_arrivee=1660893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1641031200000,date_arrivee=1641038400000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1641128400000,date_arrivee=1641135600000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1641225600000,date_arrivee=1641232800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=True,date_depart=1641322800000,date_arrivee=1641330000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
 
     db.session.commit()
 
