@@ -154,7 +154,6 @@ def commande():
     nav_list_len2 = [len(e) for e in nav_nom_produits_pas_choisis]
     nav_totaux = [sum([nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100 for j in range(nav_list_len[i])]) for i in range (p)]
     # print('\n\n\n')
-    # print(nav_id_marchands_choisis)
     # print('\n\n\n')
     return render_template("commande.html",user=current_user,n=n,m=m,p=p,inscr_id_amp=inscr_id_amp, inscr_valide=inscr_valide,inscr_id_coursier=inscr_id_coursier,inscr_nom_coursier=inscr_nom_coursier, 
     inscr_totaux=inscr_totaux,inscr_list_len=inscr_list_len,inscr_id_produits=inscr_id_produits,inscr_nom_produits=inscr_nom_produits,inscr_quantite_produits=inscr_quantite_produits,inscr_unite_produits=inscr_unite_produits,inscr_prix_produits=inscr_prix_produits,
