@@ -46,6 +46,11 @@ def commande():
     cours_places_amp_tot = []
     cours_valide_participants_acceptes = []
     cours_places_amp_occ = []
+    cours_id_produits_participants = []
+    cours_quantite_produits_participants = []
+    cours_unite_produits_participants = []
+    cours_nom_produits_participants = []
+    cours_list_len2 = []
     coursier = amplet.Amplets\
         .query.filter_by(id_coursier = current_user.id).all()
     if coursier:
@@ -59,6 +64,20 @@ def commande():
         m = len(coursier)
         cours_list_len = [len(e) for e in cours_id_participants]
         cours_places_amp_occ = [len(e) for e in cours_valide_participants_acceptes]
+        for i in range(len(coursier)):
+            cours_produits_participants = [produits_amp.Produits_amp\
+                                        .query.add_entity(produits.Produits)\
+                                        .join(produits.Produits,produits_amp.Produits_amp.id_produit==produits.Produits.id)\
+                                        .filter(produits_amp.Produits_amp.id_amp==cours_id_amp[i],produits_amp.Produits_amp.id_user==id).all() for id in cours_id_participants[i]]
+            # print('\n\n\n')
+            # print(cours_produits_participants)
+            # print('\n\n\n')
+            cours_id_produits_participants.append([[f[0].id_produit for f in e] for e in cours_produits_participants])
+            cours_nom_produits_participants.append([[f[1].nom for f in e] for e in cours_produits_participants])
+            cours_quantite_produits_participants.append([[f[0].quantite for f in e] for e in cours_produits_participants])
+            cours_unite_produits_participants.append([[f[0].unite for f in e] for e in cours_produits_participants])
+        cours_list_len2 = [[len(f) for f in e] for e in cours_id_produits_participants]
+
     # nav_id_marchands_choisis = ['6884198245245927426','6884198245245927426'] 
     nav_id_marchands_choisis = []
     """A RECUP A PARTIR DU VOTE"""
@@ -101,9 +120,9 @@ def commande():
         temp_nom = [e[1].nom for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis[i]]
         nav_nom_produits_choisis.append(temp_nom)
         nav_nom_produits_pas_choisis.append(list(set([e for e in [e[1].nom for e in prod_choisis] if e not in temp_nom])))
-        print('\n\n\n')
-        print(nav_nom_produits_pas_choisis)
-        print('\n\n\n')
+        # print('\n\n\n')
+        # print(nav_nom_produits_pas_choisis)
+        # print('\n\n\n')
         nav_quantite_produits_choisis.append([e[0].quantite for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis[i]])
         nav_quantite_produits_pas_choisis.append([e[0].quantite for e in prod_choisis if e[1].id_marchand not in nav_id_marchands_choisis[i]])
         # print('\n\n\n')
@@ -120,5 +139,6 @@ def commande():
     # print('\n\n\n')
     return render_template("commande.html",user=current_user,n=n,m=m,p=p,inscr_id_amp=inscr_id_amp, inscr_valide=inscr_valide,inscr_id_coursier=inscr_id_coursier,inscr_nom_coursier=inscr_nom_coursier, 
     cours_id_amp=cours_id_amp,cours_places_amp_occ=cours_places_amp_occ, cours_places_amp_tot=cours_places_amp_tot,cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,cours_list_len=cours_list_len,
+    cours_list_len2=cours_list_len2,cours_nom_produits_participants=cours_nom_produits_participants,cours_quantite_produits_participants=cours_quantite_produits_participants,cours_unite_produits_participants=cours_unite_produits_participants,
     nav_id=nav_id,nav_list_len=nav_list_len,nav_totaux=nav_totaux,nav_id_produits_choisis=nav_id_produits_choisis,nav_prix_produits_choisis=nav_prix_produits_choisis,nav_nom_produits_choisis=nav_nom_produits_choisis,nav_quantite_produits_choisis=nav_quantite_produits_choisis,nav_unite_produits_choisis=nav_unite_produits_choisis,nav_date=nav_date,
     nav_list_len2=nav_list_len2,nav_id_produits_pas_choisis=nav_id_produits_pas_choisis,nav_nom_produits_pas_choisis=nav_nom_produits_pas_choisis,nav_quantite_produits_pas_choisis=nav_quantite_produits_pas_choisis,nav_unite_produits_pas_choisis=nav_unite_produits_pas_choisis)

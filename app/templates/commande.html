@@ -48,15 +48,25 @@
           Participants : {{cours_places_amp_occ[i]}}/{{cours_places_amp_tot[i]}}<br>
           {% for j in range(cours_list_len[i]) %}
             {% if cours_valide_participants[i][j]==1 %}
-              <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
-              Statut : Accepté<br>
+            ---------------<br>
+              <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br><br>
+              Liste des produits demandés :<br>
+              {% for k in range(cours_list_len2[i][j]) %}
+                {{cours_quantite_produits_participants[i][j][k]}} {{cours_unite_produits_participants[i][j][k]}} de {{cours_nom_produits_participants[i][j][k]}}<br>
+              {% endfor %}
+              <br>Statut : Accepté<br>
             {% endif %}
           {% endfor %}<br>
           {% for j in range(cours_list_len[i]) %}
             {% if cours_valide_participants[i][j]==0 %}
-              <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br>
-              Statut : En attente<br>
-              <a href="/a/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}">Accepter</a> <a href="/r/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}">Refuser</a>
+            ---------------<br>
+              <a href="/p/{{cours_id_participants[i][j]}}" >{{cours_nom_participants[i][j]}}</a><br><br>
+              Liste des produits demandés :<br>
+              {% for k in range(cours_list_len2[i][j]) %}
+                {{cours_quantite_produits_participants[i][j][k]}} {{cours_unite_produits_participants[i][j][k]}} de {{cours_nom_produits_participants[i][j][k]}}<br>
+              {% endfor %}
+              <br>Statut : En attente<br>
+              <a href="/a/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}">Accepter</a> / <a href="/r/{{cours_id_amp[i]}}/{{cours_id_participants[i][j]}}">Refuser</a>
             {% endif %}
           {% endfor %}<br>
         {% endfor %}
