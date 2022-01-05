@@ -10,45 +10,27 @@
 
 <body>
     <div class="b-example-divider"></div>
-
-    {% include 'headers/navbar.html' %}
-    {% if succesnavette==False %}
-    <div class = "container">
-
-        <h1 class = "titre1">Votre inscription a été enregistrée avec succès ! </h1>
-        
-        <form action = "/amplets_en_cours" method = "GET">
-
-            <input class = "bouton1" type ="submit" value = "Retour"> 
-            
+    <div class="container">
+        <h1 class="titre1">{{msg}}</h1>
+        <form action="{{retour}}" method="GET">
+            <input class="bouton1" type="submit" value="Retour">
         </form>
     </div>
-    {% else %}
-    <div class = "container">
-
-        <h1 class = "titre1">Votre inscription a été enregistrée avec succès ! </h1>
-        <form action = "/navette" method = "GET">
-
-            <input class = "bouton1" type ="submit" value = "Retour"> 
-            
-        </form>
-    </div>
-    {% endif %}
 
     <style>
-        .container{
-            width:100%;
+        .container {
+            width: 100%;
             flex-direction: column;
             justify-content: flex-start;
             display: flex;
         }
-
-        .titre1{
+        
+        .titre1 {
             text-align: center;
             margin-bottom: 40px;
         }
-
-        .bouton1{
+        
+        .bouton1 {
             padding: 0.5em;
             padding-left: 2em;
             padding-right: 2em;
@@ -57,13 +39,7 @@
             border-radius: 8px;
             background-color: rgb(255, 255, 255);
         }
-
     </style>
-
-
-
-    
-
 </body>
 
 </html>

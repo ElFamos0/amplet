@@ -22,5 +22,5 @@ def refuser_participation(id_ampl,id_part):
         curr_amp.valide=2
         db.session.commit()
         return commande()
-    else:
-        return render_template('erreur.html', erreur="Vous n'avez pas l'autorisation de modifier le statut de cette Amplet ou elle n'existe pas",user=current_user)
+    else:        
+        return render_template('info.html', user=current_user, msg="Vous n'avez pas l'autorisation de modifier le statut de cette Amplet ou elle n'existe pas", retour="/commande")

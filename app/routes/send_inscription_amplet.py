@@ -54,9 +54,6 @@ def send_inscription_amplet(id) :
         flash("Merci de mettre au moins un article.")
         return render_template('inscription_amplet.html', user=current_user, produits=listeproduits, amp = am)
     
-    
-    
-        
     if allgood and participation_valide:
         for item in items:
             produit, qte, unite = item["produit"], conversion(item["quantite"], int, 0), item["unite"]
@@ -85,5 +82,4 @@ def send_inscription_amplet(id) :
             db.session.add(produit)
         db.session.commit()
 
-
-    return redirect("/succes")
+    return render_template('info.html', user=current_user, msg="Vous avez bien été inscris !", retour="/amplets_en_cours")

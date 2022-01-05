@@ -13,7 +13,7 @@ __all__ = [
     "amplets_en_cours",
     "inscription_amplet",
     "send_inscription_amplet",
-    "succes",
+    "404",
     "accepter_participation",
     "refuser_participation"
 ]
