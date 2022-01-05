@@ -41,7 +41,7 @@ def nouvelleNavette():
             error = True
             flash("Les votes pour la navette doivent se terminer au moins 3h après le début d'une Amplet.")
 
-        if fin_stamp > debut_stamp+7*24*60*60*1000 or debut_stamp > now()+7*24*60*60*1000:
+        if fin_stamp > debut_stamp+7*24*60*60*1000:
             error = True
             flash("La navette ne doit pas durer plus d'une semaine.")
 
@@ -60,8 +60,8 @@ def nouvelleNavette():
         if not error:
             nouvelle_navette = amplet.Amplets(id_coursier=current_user.id\
             ,navette=True
-            ,date_depart=datedebut\
-            ,date_arrivee=datefin\
+            ,date_depart=debut_stamp\
+            ,date_arrivee=fin_stamp\
             ,places_dispo=places\
             ,delai_fermeture_depart=delai\
             ,ferme=0\
