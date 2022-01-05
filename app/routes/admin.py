@@ -3,6 +3,8 @@ from models import *
 from flask_login import login_required, current_user
 from flask import render_template, request
 from utils import vote_marchand
+from datetime import datetime
+from time import mktime
 
 ##############################
 ########### ADMIN  ###########
@@ -51,10 +53,13 @@ def adminpage():
     if current_user.username == "admin":
         if request.method=='POST':
             dateD = request.form.get("dateD")
+            heureD = request.form.get("heureD")
+            dateD_timestamp = int(mktime(datetime.strptime(dateD,"%Y-%m-%d").timetuple()) * 1000) + (int(heureD)*60*60*1000)
             dateA = request.form.get("dateA")
+            dateA_timestamp = int(mktime(datetime.strptime(dateA,"%Y-%m-%d").timetuple()) * 1000)
             places_d = request.form.get("places_dispo")
             id_coursier_navette = users.User.query.filter_by(username='JeSuisLaNavette').first().id
-            navamplet = amplet.Amplets(navette=True,date_depart=dateD,date_arrivee=dateA,places_dispo=places_d,id_coursier=id_coursier_navette,ferme=False,delai_fermeture_depart=6666666)
+            navamplet = amplet.Amplets(navette=True,date_depart=dateD_timestamp,date_arrivee=dateA_timestamp,places_dispo=places_d,id_coursier=id_coursier_navette,ferme=False,delai_fermeture_depart=6666666)
             db.session.add(navamplet)
             db.session.commit()
             return render_template("admin.html")

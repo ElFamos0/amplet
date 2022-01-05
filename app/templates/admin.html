@@ -10,12 +10,13 @@
 <body>
     <h1>Hello master</h1>
     <p>Création d'amplet Navette : </p>
-    <p>Format dd-mm-aaaa (pitié je vais mettre le truc a jupux plus tard)</p>
     <form method="POST">
     Date départ<br>
-    <input type='text' name="dateD"><br>
+    <input type='date' name="dateD"><br>
+    Heure départ<br>
+    <input type='number' name='heureD' min='0' max='23'><br>
     Date arrivée<br>
-    <input type='text' name="dateA"><br>
+    <input type='date' name="dateA"><br>
     Places dispo<br>
     <input type='number' name='places_dispo' min='1' max='100'><br>
     <input type="submit">
