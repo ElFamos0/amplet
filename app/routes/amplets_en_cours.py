@@ -60,7 +60,7 @@ def amplets_en_cours() :
     debut_stamp = mktime(datetime.strptime(debut,"%Y-%m-%d").timetuple()) * 1000 # On convertit en timestamp
     fin_stamp = mktime(datetime.strptime(fin,"%Y-%m-%d").timetuple()) * 1000 # On convertit en timestamp
 
-    liste_amplet= amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis)
+    liste_amplet= amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis,current_user)
 
     if recherche[0] == 'Proximité' :
 

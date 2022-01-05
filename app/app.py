@@ -16,8 +16,10 @@ db.create_all() # Creates the tables if necessary
 
 # Setup ####################################
 if setup:
-    db.session.add(adresses.Adresse(numero = 34,rue = "Rue des Tilleuls",ville = "Metz",codepostal = 57070))
-    db.session.add(adresses.Adresse(numero = 1,rue = "Rue Emile Knoepfler",ville = "Mey",codepostal = 57070))
+    adresse1 = adresses.Adresse(numero = 34,rue = "Rue des Tilleuls",ville = "Metz",codepostal = 57070)
+    adresse2 = adresses.Adresse(numero = 1,rue = "Rue Emile Knoepfler",ville = "Mey",codepostal = 57070)
+    db.session.add(adresse1)
+    db.session.add(adresse2)
     db.session.add(adresses.Adresse(numero = 37,rue = "Rue Alfred Krieger",ville = "Metz",codepostal = 57070))
     db.session.add(adresses.Adresse(numero = 3,rue = "Rue Delattre de Tassigny",ville = "Laquenexy",codepostal = 57530))
     db.session.add(adresses.Adresse(numero = 1,rue = "Rue du Chapitre",ville = "Woippy",codepostal = 57140))
@@ -25,6 +27,7 @@ if setup:
     db.session.add(adresses.Adresse(numero = 59,rue = "Avenue du Général Mangin",ville = "Nancy",codepostal = 54000))
 
     db.session.commit()
+
 
     l_ad = adresses.Adresse.query.all()
     lad_id = []
@@ -54,9 +57,9 @@ if setup:
     for i in l_u :
         lu_id.append(i.id)
     
-    db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666))
-    db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[1],ferme = False,delai_fermeture_depart = 6666666))
-    db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660))
+    db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
+    db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[1],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
+    db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660,dist_max = 50))
     db.session.add(amplet.Amplets(navette=True,date_depart=1640940200000,date_arrivee=1640806800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
     db.session.add(amplet.Amplets(navette=True,date_depart=1640990200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
     db.session.add(amplet.Amplets(navette=True,date_depart=1650990200000,date_arrivee=1650893800000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666660))
