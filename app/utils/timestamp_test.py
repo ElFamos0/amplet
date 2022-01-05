@@ -11,5 +11,3 @@ def test_timestamp():
     assert date == "21/02/2001 - 22h00" #my birthday tbh
     date = timestamp_to_date(1340794133000, format=True)
     assert date == "27/06/2012 - 10h48"
-
-test_timestamp()
