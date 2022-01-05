@@ -57,8 +57,8 @@ def nouvelleNavette():
             error = True
             flash("Veuillez selectionner au moins un marchand.")
 
-        
-        nouvelle_navette = amplet.Amplets(id_coursier=current_user.id\
+        if not error:
+            nouvelle_navette = amplet.Amplets(id_coursier=current_user.id\
             ,navette=True
             ,date_depart=datedebut\
             ,date_arrivee=datefin\
@@ -66,12 +66,10 @@ def nouvelleNavette():
             ,delai_fermeture_depart=delai\
             ,ferme=0\
             ,dist_max=rayon)
-        db.session.add(nouvelle_navette)
-        for e in marchands_choisis:
-            db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_navette.id))
-        db.session.commit()
-
-        if not error:        
+            db.session.add(nouvelle_navette)
+            for e in marchands_choisis:
+                db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_navette.id))
+            db.session.commit()        
             return render_template('info.html', user=current_user, msg="Vous avez créer votre nouvelle Navette !", retour="/")
 
     return render_template('nouvelleNavette.html', mag_dispo=mag_dispo, user=current_user)
