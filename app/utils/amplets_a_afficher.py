@@ -48,14 +48,18 @@ def amplet_dict(amp_id) :
     magas = marchands.Marchands.query.add_entity(marchands_amp.Marchands_amp).join(marchands_amp.Marchands_amp).filter(marchands_amp.Marchands_amp.id_amp == amp.id,marchands_amp.Marchands_amp.id_marchand==marchands.Marchands.id)
     liste_m = []
     l_type = []
-        
+    l_type_m = []
     for m in magas :
         #print(m)
         liste_m.append(m[0].nom)
         if m[0].type not in l_type :
             l_type.append(m[0].type)
+        l_type_m.append([m[0].nom,m[0].type])
     ampl['l_magasins'] = liste_m
     ampl['l_type'] = l_type
+    ampl['l_type_m'] = l_type_m
+    
+
 
     d = timestamp_to_date(amp.date_depart,True)
     ampl['debut'] = d

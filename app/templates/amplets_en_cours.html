@@ -93,8 +93,8 @@
                         </div>
                         <div class="a_liste">
 
-                            {% for m in amp.l_magasins %}
-                            <div class="a_liste_item"> {{m}} </div>
+                            {% for m in amp.l_type_m %}
+                            <div class="a_liste_item" > <div title="{{m[1]}}"> {{m[0]}} </div></div>
                             {% endfor %}
                         </div>
                     </div>
