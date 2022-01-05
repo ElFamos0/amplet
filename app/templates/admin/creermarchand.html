@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Amplet</title>
+    {% include 'headers/imports.html' %}
+    <link href="{{url_for('static',filename='css/amplet_en_cours.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="b-example-divider"></div>
+
+    {% include 'headers/navbar.html' %}
+
+    <div class="row mt-5">
+        <div class="text-center col-12 align-self-center">
+            <h2 class="text-center mt-3 mb-3">Créer un marchand</h2>
+
+            <div class="container border rounded-3 border-secondary">
+                <form method='POST' action=''>
+                    <h5 class="text-center mt-3">Remplissez les informations :</h5>
+                    <div class="row">
+                        <div class="text-center mt-3 col-12 align-self-center">
+                            <label for="startdate">Nom du Marchand : </label>
+                            <input type="text" name="nom" value="" />
+                        </div>
+                        <div class="row mt-3">
+                            <div class="text-center mt-1 col-12 align-self-center">
+                                <label for="numero">Numéro de rue : </label>
+                                <input type="number" name="numero" value="" />
+                            </div>
+                            <div class="text-center mt-1 col-12 align-self-center">
+                                <label for="rue">Nom de rue : </label>
+                                <input type="text" name="rue" value="" />
+                            </div>
+                            <div class="text-center mt-1 col-12 align-self-center">
+                                <label for="ville">Ville : </label>
+                                <input type="text" name="ville" value="" />
+                            </div>
+                            <div class="text-center mt-1 col-12 align-self-center">
+                                <label for="codepostal">Code Postal : </label>
+                                <input type="number" name="codepostal" value="" />
+                            </div>
+                        </div>
+                        <div class="text-center mt-3 col-12 align-self-center">
+                            <label for="startdate">Type du Marchand : </label>
+                            <input type="text" name="type" value="" />
+                        </div>
+                    </div>
+                    <input type="submit" class="btn mt-3 btn-primary btn-lg" value="Valider" />
+                    <div class="text-center mt-3 col-12 align-self-center">
+                        {% for mesg in get_flashed_messages() %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ mesg }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

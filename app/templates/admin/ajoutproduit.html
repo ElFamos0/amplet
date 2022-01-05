@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Amplet</title>
+    {% include 'headers/imports.html' %}
+    <link href="{{url_for('static',filename='css/amplet_en_cours.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="b-example-divider"></div>
+
+    {% include 'headers/navbar.html' %}
+
+    <div class="row mt-5">
+        <div class="text-center col-12 align-self-center">
+            <h6>Sélectionnez le marchand</h6>
+            <select class="mb-4" id="marchand" name="marchand" onchange="window.location='/admin/ajout_produit_marchand/'+this.value">
+                {% for marchand in marchands %}
+                {% if mid == marchand.id %}
+                <option value="{{marchand.id}}" selected="selected">{{marchand.nom}}</option>
+                {% else %}
+                <option value="{{marchand.id}}">{{marchand.nom}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+
+            <div class="container border rounded-3 border-secondary">
+                <form method='POST' action=''>
+                    <h5 class="text-center mt-3">Remplissez les informations :</h5>
+                    <div class="row">
+                        <div class="text-center mt-3 col-12 align-self-center">
+                            <label for="nom">Nom du produit : </label>
+                            <input type="text" name="nom" value="" />
+                        </div>
+                        <div class="text-center mt-3 col-12 align-self-center">
+                            <label for="prix">Prix du produit : </label>
+                            <input type="number" name="prix" min="0" value="" />
+                            <label for="prix">€</label>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn mt-3 btn-primary btn-lg" value="Valider" />
+                    <div class="text-center mt-3 col-12 align-self-center">
+                        {% for mesg in get_flashed_messages() %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ mesg }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

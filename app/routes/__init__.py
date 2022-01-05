@@ -18,5 +18,6 @@ __all__ = [
     "refuser_participation",
     "fermerAmplet",
     "trajet",
-    "admin_vote"
+    "admin_vote",
+    "creermarchand"
 ]

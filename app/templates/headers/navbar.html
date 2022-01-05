@@ -7,6 +7,9 @@
             {% if user.is_authenticated %} {% if user.is_Mayor() %}
             <li><a href="/nouvelleNavette" class="nav-link px-4 link-dark"><i class="fas fa-space-shuttle"></i> Créer une Navette</a></li>
             <li><a href="/admin/navettes" class="nav-link px-4 link-dark"><i class="fas fa-space-shuttle"></i> Gérer les Navettes</a></li>
+            {% endif %} {% endif %} {% if user.is_authenticated %} {% if user.is_Admin() or user.is_Mayor() %}
+            <li><a href="/admin/creer_marchand" class="nav-link px-4 link-dark"><i class="fas fa-user"></i> Créer un Marchand</a></li>
+            <li><a href="/admin/ajout_produit_marchand" class="nav-link px-4 link-dark"><i class="fas fa-user"></i> Ajouter un produit à un Marchand</a></li>
             {% endif %} {% endif %}
             <li><a href="/amplets_en_cours" class="nav-link px-4 link-dark"><i class="fas fa-luggage-cart"></i> Les prochaines Amplets</a></li>
         </ul>
