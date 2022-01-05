@@ -45,6 +45,8 @@ def vote(id_amplet:str):
     liste = list(vue)
     listetrie = trifusion(liste)
     for i in range(len(listetrie)-1,-1,-1):
+        if len(liste_marchand):
+            break
         if not dicttype[listetrie[i][0]] in listetype:
             liste_marchand.append(listetrie[i][0])
             listetype.append(dicttype[listetrie[i][0]])
