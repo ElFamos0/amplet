@@ -22,7 +22,7 @@ def nouvelleAmplet():
         print("\n\n\n")
         print(L)
         print("\n\n\n")
-        dist_max = L['dist_max']
+        dis_max = L['dist_max']
         date_dep = L['date_depart']
         heure_dep = L['heure_depart']
         if date_dep=="":
@@ -32,7 +32,7 @@ def nouvelleAmplet():
             date_dep_ts = int(mktime(datetime.strptime(date_dep,"%Y-%m-%d").timetuple()) * 1000) + ((int(heure_dep)+1)*60*60*1000)
         delai_ferm = int(L['delai_ferm'])*60*60*1000
         places_dispo = L['places_dispo']
-        newAmp = amplet.Amplets(id_coursier=current_user.id, navette=0, date_depart=date_dep_ts, date_arrivee=date_dep_ts+1, places_dispo=places_dispo, delai_fermeture_depart=delai_ferm, ferme=0)
+        newAmp = amplet.Amplets(id_coursier=current_user.id, navette=0, date_depart=date_dep_ts, date_arrivee=date_dep_ts+1, places_dispo=places_dispo, delai_fermeture_depart=delai_ferm, ferme=0,dist_max = dis_max)
         db.session.add(newAmp)
         for e in mag_choisis_id:
             db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=newAmp.id))

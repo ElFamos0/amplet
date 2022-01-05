@@ -11,7 +11,7 @@ def distance(adresse1,adresse2) :
     y2 = adresse2.coordy
     disty = y1-y2
 
-    return (distx**2 + disty**2)**(0.5)
+    return ((distx**2 + disty**2)**(0.5))/1000
 
 
 

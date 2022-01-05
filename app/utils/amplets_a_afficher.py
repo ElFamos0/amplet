@@ -1,12 +1,14 @@
 from db import *
 from models import *
 from utils.timestamp import now, timestamp_to_date
+from utils.recherche_par import distance
+from utils.cast import conversion
 
 
 def amplet_dict(amp_id) :
 
     amp = amplet.Amplets.query.get(amp_id)
-
+    
     ampl = {'id' : amp.id}
 
     cours = users.User.query.add_entity(amplet.Amplets).join(amplet.Amplets).filter(amplet.Amplets.id == amp.id,amplet.Amplets.id_coursier==users.User.id).first()
@@ -22,6 +24,7 @@ def amplet_dict(amp_id) :
 
     ampl['coursier'] = coursier
     ampl['id_cours'] = id_cours
+    ampl['dist_max'] = amp.dist_max
 
     participants = users.User.query.add_entity(participants_amp.Participants_amp).join(participants_amp.Participants_amp).filter(participants_amp.Participants_amp.id_amp == amp.id,participants_amp.Participants_amp.id_user==users.User.id,participants_amp.Participants_amp.valide==1)
     liste_p = []
@@ -60,7 +63,7 @@ def amplet_dict(amp_id) :
 
     return ampl
 
-def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
+def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis,current_user) :
 
     amps = amplet.Amplets.query.all()
     liste_amplet = []
@@ -68,11 +71,20 @@ def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis) :
         
         ampl = amplet_dict(amp.id)
 
+        ardesse_user = adresses.Adresse.query.get(current_user.id_adresse)
+        
+        id_adcours = users.User.query.get(ampl['id_cours']).id_adresse
+        adresse_cours = adresses.Adresse.query.get(id_adcours)
+
+        dist = distance(ardesse_user,adresse_cours)
+        max_dist = conversion(ampl['dist_max'],int,40100)
+
+
         places = ampl['places']
         l_type = ampl['l_type']
 
         valide = True
-        if amp.ferme or amp.date_depart < debut_stamp or amp.date_depart > fin_stamp or places <= 0 or amp.navette :
+        if amp.ferme or amp.date_depart < debut_stamp or amp.date_depart > fin_stamp or places <= 0 or amp.navette or dist > max_dist:
             valide = False
             #print("date")
         for mag_typ in liste_typebis : 
