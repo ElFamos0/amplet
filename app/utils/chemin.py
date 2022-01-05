@@ -83,7 +83,8 @@ def calcultrajet(listepoint):
     return trajet
 
 
-     
+def pluscourtcheminexhaustifb(listepoint:list):
+    return f"je suis arrivé jusque la {listepoint}"
  
 
 #print(creationgraph([(5,6),(3,2),(8,7),(6,9),(0,0)]))  

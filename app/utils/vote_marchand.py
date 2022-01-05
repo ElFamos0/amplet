@@ -55,5 +55,5 @@ def vote(id_amplet:str):
         if not dicttype[listetrie[i][0]] in listetype:
             liste_marchand.append(listetrie[i][0])
             listetype.append(dicttype[listetrie[i][0]])
-        print(liste_marchand,dicomarchand)
+    print(liste_marchand,dicomarchand)
     return (liste_marchand,dicomarchand)
