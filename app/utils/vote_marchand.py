@@ -56,4 +56,4 @@ def vote(id_amplet:str):
             liste_marchand.append(listetrie[i][0])
             listetype.append(dicttype[listetrie[i][0]])
         print(liste_marchand,dicomarchand)
-        return (liste_marchand,dicomarchand)
+    return (liste_marchand,dicomarchand)
