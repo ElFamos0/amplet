@@ -76,6 +76,6 @@ def nouvelleAmplet():
             for e in marchands_choisis:
                 db.session.add(marchands_amp.Marchands_amp(id_marchand=str(e),id_amp=nouvelle_amplet.id))
             db.session.commit()        
-            return render_template('info.html', user=current_user, msg="Vous avez créer votre nouvelle Amplet !", retour="/")
+            return render_template('info.html', user=current_user, msg="Vous avez crée votre nouvelle Amplet !", retour="/")
 
     return render_template('nouvelleAmplet.html', mag_dispo=mag_dispo, user=current_user)

@@ -10,7 +10,7 @@ from utils import vote_marchand
 @login_required
 def trajet():
     navettedisp = amplet.Amplets.query.filter_by(navette=True,ferme=True).order_by(amplet.Amplets.id).all()
-    phrase = "Il n'y pas de navette à optimiser"
+    phrase = "Il n'y a pas de navette à optimiser"
     for p in navettedisp:
         a = vote_marchand.vote(p.id)
         print(f"{p.id} et {a}")
