@@ -1,15 +1,25 @@
 from db import *
 from models import *
 
-adresse1 = adresses.Adresse(numero = 34,rue = "Rue des Tilleuls",ville = "Metz",codepostal = 57070)
-adresse2 = adresses.Adresse(numero = 1,rue = "Rue Emile Knoepfler",ville = "Mey",codepostal = 57070)
-db.session.add(adresse1)
-db.session.add(adresse2)
-db.session.add(adresses.Adresse(numero = 37,rue = "Rue Alfred Krieger",ville = "Metz",codepostal = 57070))
-db.session.add(adresses.Adresse(numero = 3,rue = "Rue Delattre de Tassigny",ville = "Laquenexy",codepostal = 57530))
-db.session.add(adresses.Adresse(numero = 1,rue = "Rue du Chapitre",ville = "Woippy",codepostal = 57140))
-db.session.add(adresses.Adresse(numero = 8,rue = "Rue de Metz",ville = "Gravelotte",codepostal = 57130))
-db.session.add(adresses.Adresse(numero = 59,rue = "Avenue du Général Mangin",ville = "Nancy",codepostal = 54000))
+db.session.add(adresses.Adresse(numero = 12,rue = "Rue Charle III",ville = "Nancy",codepostal = 54000))
+db.session.add(adresses.Adresse(numero = 193,rue = "Avenue Paul Muller",ville = "Villers-Lès-Nancy",codepostal = 54602))
+db.session.add(adresses.Adresse(numero = 2,rue = "Rue Pol Chone",ville = "Laxou",codepostal = 54250))
+db.session.add(adresses.Adresse(numero = 10,rue = "Rue Marie Marvingt",ville = "Heillecourt",codepostal = 54180))
+db.session.add(adresses.Adresse(numero = 58,rue = "Avenue du Général Mangin",ville = "Nancy",codepostal = 54000))
+db.session.add(adresses.Adresse(numero = 8,rue = "Rue des Pâquis",ville = "Messein",codepostal = 54850))
+db.session.add(adresses.Adresse(numero = 15,rue = "Rude de Verdun",ville = "Champigneulles",codepostal = 54250))
+
+db.session.add(adresses.Adresse(numero = 21,rue = "Grande Rue",ville = "Heillecourt",codepostal = 54180))
+db.session.add(adresses.Adresse(numero = 7,rue = "Rue de Vannes",ville = "Heillecourt",codepostal = 54180))
+db.session.add(adresses.Adresse(numero = 2,rue = "Rue Jean de la Fontaine",ville = "Laneuveville",codepostal = 54410))
+db.session.add(adresses.Adresse(numero = 4,rue = "Rue Boris Vian",ville = "Laneuveville",codepostal = 54410))
+db.session.add(adresses.Adresse(numero = 1,rue = "Rue Paul Verlaine",ville = "Laneuveville",codepostal = 54410))
+db.session.add(adresses.Adresse(numero = 17,rue = "Rue Jeanne D'Arc",ville = "Nancy",codepostal = 54000))
+db.session.add(adresses.Adresse(numero = 14,rue = "Avenue du Général Leclerc",ville = "Nancy",codepostal = 54000))
+db.session.add(adresses.Adresse(numero = 22,rue = "Rue de Laxou",ville = "Nancy",codepostal = 54000))
+db.session.add(adresses.Adresse(numero = 2,rue = "Rue de la Visitation",ville = "Nancy",codepostal = 54000))
+db.session.add(adresses.Adresse(numero = 29,rue = "Lotissement La Croisette",ville = "Azelot",codepostal = 54210))
+
 
 db.session.commit()
 
@@ -22,16 +32,40 @@ for i in l_ad :
 admin = users.User(username='admin', email='admin@test.com', id_adresse=lad_id[0], points=54, role=666)
 guest = users.User(username='navette', email='guest@test.com', id_adresse=lad_id[1], points=38, role=1)
 third = users.User(username='third', email='third@test.com', id_adresse=lad_id[2])
+user1 = users.User(username='user1', email='user1@test.com', id_adresse=lad_id[3], points=5497)
+user2 = users.User(username='user2', email='user2@test.com', id_adresse=lad_id[4], points=38)
+user3 = users.User(username='user3', email='user3@test.com', id_adresse=lad_id[5])
+user4 = users.User(username='user4', email='user4@test.com', id_adresse=lad_id[6])
 admin.set_password('oof')
 guest.set_password('oof')
 third.set_password('oof')
-db.session.add(marchands.Marchands(nom= 'Chez Jupux',id_adresse=lad_id[3],type="Crémier",multiplicateur=1.0))
-db.session.add(marchands.Marchands(nom= 'Chez Tomczak',id_adresse=lad_id[4],type="Maître Sauceur",multiplicateur=1.0))
-db.session.add(marchands.Marchands(nom= 'Chez LV',id_adresse=lad_id[5],type="Primeur",multiplicateur=1.0))
-db.session.add(marchands.Marchands(nom= 'Chez Malo',id_adresse=lad_id[6],type="Primeur",multiplicateur=1.0))
+user1.set_password('oof1')
+user2.set_password('oof2')
+user3.set_password('oof3')
+user4.set_password('oof4')
+
 db.session.add(admin)
 db.session.add(guest)
 db.session.add(third)
+db.session.add(user1)
+db.session.add(user2)
+db.session.add(user3)
+db.session.add(user4)
+
+
+db.session.add(marchands.Marchands(nom= 'Mâitre de la Crème',id_adresse=lad_id[7],type="Crémier",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'Apprenti de la Crème',id_adresse=lad_id[8],type="Crémier",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'Maître Sauceur',id_adresse=lad_id[9],type="Sauceur",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'Primeur aguerri',id_adresse=lad_id[10],type="Primeur",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'La floraison des Fruits',id_adresse=lad_id[11],type="Primeur",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'La patate fraîche',id_adresse=lad_id[12],type="Primeur",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'Mécanichien',id_adresse=lad_id[13],type="Mécanicien",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'Sports 200',id_adresse=lad_id[14],type="Magasin de Sport",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'Dodécathlon',id_adresse=lad_id[15],type="Magasin de Sport",multiplicateur=1.0))
+db.session.add(marchands.Marchands(nom= 'Technique celle-là',id_adresse=lad_id[16],type="Technologie",multiplicateur=1.0))
+
+
+
 db.session.commit()
 
 l_u = users.User.query.all()
@@ -39,29 +73,96 @@ lu_id = []
 for i in l_u :
     lu_id.append(i.id)
 
-db.session.add(amplet.Amplets(navette=False,date_depart=1640717400000,date_arrivee=1640721000000,places_dispo=5,id_coursier=lu_id[0],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
-db.session.add(amplet.Amplets(navette=False,date_depart=1640868629249, date_arrivee=1640807400000,places_dispo=5,id_coursier=lu_id[1],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
-db.session.add(amplet.Amplets(navette=False,date_depart=1640890200000,date_arrivee=1640893800000,places_dispo=5,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660,dist_max = 50))
-db.session.add(amplet.Amplets(navette=True,date_depart=1641031200000,date_arrivee=1641038400000,places_dispo=5,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
-db.session.add(amplet.Amplets(navette=True,date_depart=1641128400000,date_arrivee=1641135600000,places_dispo=5,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
-db.session.add(amplet.Amplets(navette=True,date_depart=1641225600000,date_arrivee=1641232800000,places_dispo=5,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
-db.session.add(amplet.Amplets(navette=True,date_depart=1641322800000,date_arrivee=1641330000000,places_dispo=5,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
+
+l_m = marchands.Marchands.query.all()
+lm_id = []
+for i in l_m :
+    lm_id.append(i.id)
+
+
+db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse",prix = 500))
+db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide",prix = 500))
+db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide entière",prix = 300))
+db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse suprême",prix = 1000))
+
+db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Crème épaisse",prix = 500))
+db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Crème liquide",prix = 500))
+
+
+db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Blanche",prix = 500))
+db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Andalouse",prix = 500))
+db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Bolognaise",prix = 300))
+db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Sauce Burger",prix = 200))
+
+db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Tomate",prix=450))
+db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Pomme de terre",prix=450))
+db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Orange",prix=450))
+db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Carotte",prix=450))
+
+db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Fraise",prix=450))
+db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Pas Paille",prix=50))
+db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Pomme",prix=250))
+db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Orange",prix=750))
+db.session.add(produits.Produits(id_marchand=lm_id[4],nom = "Citron",prix=350))
+
+db.session.add(produits.Produits(id_marchand=lm_id[5],nom = "Pomme de terre",prix=450))
+db.session.add(produits.Produits(id_marchand=lm_id[5],nom = "Pomme de terre de qualité",prix=650))
+
+db.session.add(produits.Produits(id_marchand=lm_id[6],nom = "Essuie-glaces",prix=1450))
+db.session.add(produits.Produits(id_marchand=lm_id[6],nom = "Pneu",prix=3650))
+db.session.add(produits.Produits(id_marchand=lm_id[6],nom = "Pneu hiver",prix=4650))
+
+db.session.add(produits.Produits(id_marchand=lm_id[7],nom = "Chaussures bof",prix=4450))
+db.session.add(produits.Produits(id_marchand=lm_id[7],nom = "Ballon crevé",prix=350))
+db.session.add(produits.Produits(id_marchand=lm_id[7],nom = "Masque percé",prix=450))
+
+db.session.add(produits.Produits(id_marchand=lm_id[8],nom = "Chaussures bof",prix=4450))
+db.session.add(produits.Produits(id_marchand=lm_id[8],nom = "Chaussures bien",prix=8450))
+db.session.add(produits.Produits(id_marchand=lm_id[8],nom = "Ballon",prix=950))
+
+db.session.add(produits.Produits(id_marchand=lm_id[9],nom = "Adaptateur",prix=3499))
+db.session.add(produits.Produits(id_marchand=lm_id[9],nom = "Siège Gaming",prix=18350))
+db.session.add(produits.Produits(id_marchand=lm_id[9],nom = "Tablette Graphique",prix=19950))
+
+
+db.session.commit()
+
+db.session.add(amplet.Amplets(navette=False,date_depart=1641312000000,date_arrivee=1641314600000,places_dispo=5,id_coursier=lu_id[3],ferme = True,delai_fermeture_depart = 6666666,dist_max = 50))
+db.session.add(amplet.Amplets(navette=False,date_depart=1643040000000,date_arrivee=1643043600000,places_dispo=4,id_coursier=lu_id[6],ferme = False,delai_fermeture_depart = 6666666,dist_max = 25))
+db.session.add(amplet.Amplets(navette=False,date_depart=1643130000000,date_arrivee=1643133600000,places_dispo=2,id_coursier=lu_id[4],ferme = False,delai_fermeture_depart = 6666660,dist_max = 10))
+db.session.add(amplet.Amplets(navette=False,date_depart=1643184000000,date_arrivee=1643189800000,places_dispo=3,id_coursier=lu_id[6],ferme = False,delai_fermeture_depart = 6666666,dist_max = 5))
+db.session.add(amplet.Amplets(navette=False,date_depart=1643205600000,date_arrivee=1643209200000,places_dispo=5,id_coursier=lu_id[5],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
+db.session.add(amplet.Amplets(navette=True,date_depart=1641312000000,date_arrivee=1641356000000,places_dispo=100,id_coursier=guest.id,ferme = True,delai_fermeture_depart = 6666660))
+db.session.add(amplet.Amplets(navette=True,date_depart=1643040000000,date_arrivee=1643043600000,places_dispo=100,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
+db.session.add(amplet.Amplets(navette=True,date_depart=1643040000000,date_arrivee=1643043600000,places_dispo=100,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
+db.session.add(amplet.Amplets(navette=True,date_depart=1643184000000,date_arrivee=1643189800000,places_dispo=100,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
+db.session.add(amplet.Amplets(navette=True,date_depart=1643205600000,date_arrivee=1643205600000,places_dispo=100,id_coursier=lu_id[2],ferme = False,delai_fermeture_depart = 6666660,dist_max = 50))
+
 
 db.session.commit()
 
 
-l_m = marchands.Marchands.query.all()
 l_a = amplet.Amplets.query.all()
-lm_id = []
+l_p = produits.Produits.query.all()
 la_id = []
-
+lp_id = []
 for i in l_a :
     la_id.append(i.id)
+for i in l_p :
+    lp_id.append(i.id)
 
-for i in l_m :
-    lm_id.append(i.id)
 
-db.session.add(participants_amp.Participants_amp(id_amp = la_id[0],id_user = lu_id[1],valide=0))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[0],id_marchand = lm_id[0]))
+db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[0],id_marchand = lm_id[3]))
+
+
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[0],id_user = lu_id[5],valide=1))
+db.session.add(participants_amp.Participants_amp(id_amp = la_id[0],id_user = lu_id[4],valide=1))
+
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[0], id_user = lu_id[5], id_produit= lp_id[0],quantite = 5,unite = "unite"))
+
+
+
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[1],id_user = lu_id[2],valide=1))
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[1],valide=1))
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[2],id_user = lu_id[2],valide=1))
@@ -85,23 +186,6 @@ db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id
 db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[2]))
 db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[4],id_marchand = lm_id[3]))
 
-db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème épaisse 50 cL",prix = 500))
-db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 50 cL",prix = 500))
-db.session.add(produits.Produits(id_marchand=lm_id[0],nom = "Crème liquide 25 cL",prix = 300))
-
-db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Blanche 50 cL",prix = 500))
-db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Andalouse 50 cL",prix = 500))
-db.session.add(produits.Produits(id_marchand=lm_id[1],nom = "Sauce Bolognaise 25 cL",prix = 300))
-
-db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Tomate",prix=450))
-db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Pomme de terre",prix=450))
-db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Orange",prix=450))
-db.session.add(produits.Produits(id_marchand=lm_id[2],nom = "Carotte",prix=450))
-
-db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Tomate",prix=450))
-db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Pomme de terre",prix=450))
-db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Orange",prix=450))
-db.session.add(produits.Produits(id_marchand=lm_id[3],nom = "Carotte",prix=450))
 
 db.session.add(participants_amp.Participants_amp(id_amp=la_id[2], id_user=lu_id[0], valide=1))
 db.session.add(participants_amp.Participants_amp(id_amp=la_id[0], id_user=lu_id[2], valide=1))
