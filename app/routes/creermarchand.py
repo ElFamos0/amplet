@@ -28,7 +28,7 @@ def creer_marchand():
             erreur = True
             flash("Veuillez remplir le champs nom.")
 
-        if not numero:
+        if not numero or numero < 0:
             erreur = True
             flash("Veuillez remplir le champs numéro.")
 
@@ -40,7 +40,7 @@ def creer_marchand():
             erreur = True
             flash("Veuillez remplir le champs ville.")
 
-        if not codepostal:
+        if not codepostal or codepostal < 0:
             erreur = True
             flash("Veuillez remplir le champs code postal.")
 
@@ -54,7 +54,7 @@ def creer_marchand():
             db.session.add(adr)
             db.session.add(marchand)
             db.session.commit()
-            return render_template("infos.html", user=current_user, msg="Vous avez créé ce marchand !", retour="admin/creer_marchand")
+            return render_template("info.html", user=current_user, msg="Vous avez créé ce marchand !", retour="admin/creer_marchand")
 
     return render_template("admin/creermarchand.html", user=current_user)
 
