@@ -45,6 +45,7 @@ def commande():
     cours_nom_participants = []
     cours_places_amp_tot = []
     cours_valide_participants_acceptes = []
+    cours_places_amp_occ = []
     coursier = amplet.Amplets\
         .query.filter_by(id_coursier = current_user.id).all()
     if coursier:
