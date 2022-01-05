@@ -12,7 +12,7 @@
       <div class="col-sm">
         Les Amplets sur lesquelles je suis inscrit :<br><br>
         {% for i in range(n) %}
-        Amplet numéro {{i+1}}<br>
+        <b>Amplet numéro {{i+1}}</b><br>
         ID : {{inscr_id_amp[i]}}<br>
         Coursier : <a href="/p/{{inscr_id_coursier[i]}}" >{{inscr_nom_coursier[i]}}</a><br>
         Statut : {{inscr_valide[i]}}<br><br>
@@ -24,7 +24,7 @@
         Les produits que j'ai commandé sur les navettes :<br><br>
         {% for i in range(p) %}
         ================================<br>
-        Navette du {{nav_date[i]}}<br>
+        <b>Navette du {{nav_date[i]}}</b><br>
           {% for j in range(nav_list_len[i]) %}
             Nom du produit : {{nav_nom_produits_choisis[i][j]}}<br>
             Un marchand proposant ce produit a été élu !<br>
@@ -38,7 +38,7 @@
         Les Amplets que je propose :<br><br>
         {% for i in range(m) %}
           ================================<br>
-          Amplet numéro {{i+1}}<br><br>
+          <b>Amplet numéro {{i+1}}</b><br><br>
           ID : {{cours_id_amp[i]}}<br><br>
           Participants : {{cours_places_amp_occ[i]}}/{{cours_places_amp_tot[i]}}<br>
           {% for j in range(cours_list_len[i]) %}
