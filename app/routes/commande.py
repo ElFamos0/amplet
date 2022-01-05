@@ -71,6 +71,7 @@ def commande():
     nav_unite_produits_choisis = []
     nav_date = []
     nav_list_len = []
+    nav_totaux = []
     p = len(nav_id)
     for i in range(p):
         nav_id_marchands_choisis.append(vote(nav_id[i])[0])
@@ -94,9 +95,10 @@ def commande():
         nav_unite_produits_choisis.append([e[0].unite for e in prod_choisis if e[1].id_marchand in nav_id_marchands_choisis[i]])
         nav_date.append(timestamp.timestamp_to_date(amplet.Amplets.query.filter_by(id=nav_id[i]).first().date_depart,format='True'))
     nav_list_len = [len(e) for e in nav_id_produits_choisis]
+    nav_totaux = [sum([nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100 for j in range(nav_list_len[i])]) for i in range (p)]
     # print('\n\n\n')
     # print(nav_id)
     # print('\n\n\n')
     return render_template("commande.html",user=current_user,n=n,m=m,p=p,inscr_id_amp=inscr_id_amp, inscr_valide=inscr_valide,inscr_id_coursier=inscr_id_coursier,inscr_nom_coursier=inscr_nom_coursier, 
     cours_id_amp=cours_id_amp,cours_places_amp_occ=cours_places_amp_occ, cours_places_amp_tot=cours_places_amp_tot,cours_id_participants=cours_id_participants, cours_nom_participants=cours_nom_participants,cours_valide_participants=cours_valide_participants,cours_list_len=cours_list_len,
-    nav_id=nav_id,nav_list_len=nav_list_len,nav_id_produits_choisis=nav_id_produits_choisis,nav_prix_produits_choisis=nav_prix_produits_choisis,nav_nom_produits_choisis=nav_nom_produits_choisis,nav_quantite_produits_choisis=nav_quantite_produits_choisis,nav_unite_produits_choisis=nav_unite_produits_choisis,nav_date=nav_date)
+    nav_id=nav_id,nav_list_len=nav_list_len,nav_totaux=nav_totaux,nav_id_produits_choisis=nav_id_produits_choisis,nav_prix_produits_choisis=nav_prix_produits_choisis,nav_nom_produits_choisis=nav_nom_produits_choisis,nav_quantite_produits_choisis=nav_quantite_produits_choisis,nav_unite_produits_choisis=nav_unite_produits_choisis,nav_date=nav_date)

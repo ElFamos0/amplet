@@ -21,16 +21,17 @@
       <div class="col-sm">
 
 
-        Les produits que j'ai commandé sur les navettes :<br>
+        Les produits que j'ai commandé sur les navettes :<br><br>
         {% for i in range(p) %}
+        ================================<br>
         Navette du {{nav_date[i]}}<br>
           {% for j in range(nav_list_len[i]) %}
             Nom du produit : {{nav_nom_produits_choisis[i][j]}}<br>
             Un marchand proposant ce produit a été élu !<br>
             Vous avez commandé {{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}}<br>
-            Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€<br>
-            <br>
+            Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€<br><br>
           {% endfor %}
+          Total : {{nav_totaux[i]}}€<br>
         {% endfor %}
       </div>
       <div class="col-sm">
