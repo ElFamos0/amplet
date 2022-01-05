@@ -2,8 +2,8 @@ import threading
 from time import sleep
 from utils.vote_marchand import vote
 from utils.update_multiplicateur import update_multiplicateur
+from utils.timestamp import until
 from models.amplet import Amplets
-from timestamp import until
 from db import *
 
 def attend_vote_automatique(id):
