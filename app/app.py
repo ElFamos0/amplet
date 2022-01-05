@@ -35,7 +35,7 @@ if setup:
         lad_id.append(i.id)
 
     admin = users.User(username='admin', email='admin@test.com', id_adresse=lad_id[0], points=54, role=666)
-    guest = users.User(username='guest', email='guest@test.com', id_adresse=lad_id[1], points=38, role=38)
+    guest = users.User(username='navette', email='navette@test.com', id_adresse=lad_id[1], points=38, role=38)
     third = users.User(username='third', email='third@test.com', id_adresse=lad_id[2])
     JeSuisLaNavette = users.User(username='JeSuisLaNavette', email='jesuislanavette@test.com', id_adresse=lad_id[0], points=0, role=666)
     admin.set_password('oof')
