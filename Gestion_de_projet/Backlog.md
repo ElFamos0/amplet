@@ -13,7 +13,12 @@ Malo :
 | 21 décembre | 23 décembre | Mise en place de la BDD grâce à SQLAlchemy |
 | 25 décembre | 28 décembre | Création de la page navette, utilisation de la BDD pour afficher des éléments et créer de nouvelles entrées en fonction des demandes utilisateurs / mise en page css |
 | 25 décembre  | 28 décembre | Modifications mineures sur l’ensemble du projet (ex ajout d’une fonction formatage sur les timestamps) |
-|  |  | Implémentation de l’algorithme du plus court chemin pour savoir dans quel ordre passer chez les marchants |
+| 27 décembre | 31 décembre | Implémentation de l’algorithme du plus court chemin pour savoir dans quel ordre passer chez les marchands (rapide et exhaustif) |
+| 1 janvier | 3 janvier |  Correction de bug et ajout de commentaire sur la navette et création de la possibilité de changer ses informations |
+| 3 janvier | 5 janvier |  Correction de bug et ajout de la fonctionnalité de vote pour la navette (ce qui fini de lier toutes les parties de notre programme ensemble) - Rédaction du rapport|
+| 4 janvier | 6 janvier |  Correction de bug et ajout de la fonctionnalité de plus court trajet avec le vote la page n'est pas terminé - Rédaction du rapport |
+
+
 
 Tristan :
 
@@ -75,5 +80,5 @@ Louis-Vincent :
 | 5 janvier | 5 janvier | Actualisation des points de l'utilisateur qui ferme une Amplet |
 | 5 janvier | 5 janvier | Relecture de l'entièreté du code pour corriger les fautes de français | 
 | 5 janvier | 5 janvier | Création de la DB de test finale avec Jules |
-|  |  | Rédaction de la partie gestion de projet du rapport |
-|  |  | Relecture de l'entièreté du rapport pour corriger les fautes de français | 
+| 5 janvier | 6 janvier | Rédaction de la partie gestion de projet du rapport |
+| 6 janvier | 6 janvier | Relecture de l'entièreté du rapport pour corriger les fautes de français | 
