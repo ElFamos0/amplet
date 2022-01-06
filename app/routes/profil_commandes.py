@@ -171,8 +171,14 @@ def accepter_participation(id_ampl,id_part):
     curr_amp_id = curr_amp.id_amp
     amp = amplet.Amplets.query.filter_by(id = curr_amp_id).first()
     cours_id = amp.id_coursier
+    amp_places_max = amp.places_dispo
+    amp_places_occ = len([participants_amp.Participants_amp.query.filter(participants_amp.Participants_amp.id_amp==id_ampl,participants_amp.Participants_amp.valide==1).all()])
+    concurrents = participants_amp.Participants_amp.query.filter(participants_amp.Participants_amp.id_amp==id_ampl,participants_amp.Participants_amp.valide==0,participants_amp.Participants_amp.id_user!=id_part).all()
     if curr_amp and current_user.id==cours_id:
         curr_amp.valide=1
+        if amp_places_occ==amp_places_max-1:
+            for e in concurrents:
+                e.valide=2
         db.session.commit()
         return commande()
     else:

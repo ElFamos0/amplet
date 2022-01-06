@@ -129,7 +129,7 @@
                 <div class="amplet_body">
                     <div class="amplet_item">ID : {{cours_id_amp[i]}} </div>
 
-                    {% if cours_places_amp_occ[i] %}
+                    
                     <div class="amplet_list">
                         <div class="amplet_list_title">
                             <div class="titre2">Participants : {{cours_places_amp_occ[i]}}/{{cours_places_amp_tot[i]}} </div>
@@ -172,11 +172,11 @@
                         </div>
                         {% endif %} {% endfor %}
                     </div>
-                    {% else %}
+                        {% if cours_id_participants[i]==[] %}
 
-                    <div class="amplet_item"> Aucun participant </div>
-
-                    {% endif %}
+                        <div class="titre2"> Aucun participant </div>
+                        {% endif %}
+                    
                 </div>
             </div>
             {% endfor %}
