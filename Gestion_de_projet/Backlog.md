@@ -34,6 +34,9 @@ Tristan :
 | 2 janvier | 3 janvier | modification du comportement entre utilisateurs loggé ou non |
 | 3 janvier | 3 janvier | création de la barre de recherche d'utilisateurs |
 | 4 janvier | 4 janvier | réglage sur l'envoi d'inscription sur une amplet |
+| 5 janvier | 5 janvier | ajout de la gestion de la fin des amplets |
+| 5 janvier | 5 janvier | création de la page pour ajouter des marchands ainsi que la page pour gérer les navettes |
+| 6 janvier | 6 janvier | réglage des icônes et des alignements |
 
 
 Jules :
