@@ -3,7 +3,7 @@ from models import *
 from flask_login import login_required
 from flask_login import current_user
 from flask import render_template, request
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from time import mktime
 from utils.recherche_par import recherche_par
 from utils.amplets_a_afficher import amplets_a_afficher
@@ -18,7 +18,9 @@ def amplets_en_cours() :
 
     march = marchands.Marchands.query.all()
     recherche = ['Proximité','Date de début']
-    d2 = date.today().strftime("%Y-%m-%d")
+    d2 = date.today()
+    d3 = (d2 + timedelta(31)).strftime("%Y-%m-%d")
+    d2 = d2.strftime("%Y-%m-%d")
 
     liste_type = []
     liste_mag =  []
@@ -32,9 +34,9 @@ def amplets_en_cours() :
         debut = request.form.get('mindate',d2)
         if debut == "" :
             debut = d2
-        fin = request.form.get('maxdate',d2)
+        fin = request.form.get('maxdate',d3)
         if fin == "" :
-            fin = d2
+            fin = d3
         
         recherche_actuelle = request.form.get('recherche','Proximité')
         i = 0
@@ -51,7 +53,7 @@ def amplets_en_cours() :
                 liste_typebis.append((i,False))
     else :
         debut = d2
-        fin = d2
+        fin = d3
         liste_typebis = []
         for i in liste_type :
             liste_typebis.append((i,False))
