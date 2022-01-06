@@ -81,8 +81,10 @@ def commande():
             cours_valide_participants.append([e.valide for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1]) if e.valide!=2])
             cours_valide_participants_acceptes.append([e.valide for e in participants_amp.Participants_amp.query.filter_by(id_amp = cours_id_amp[-1]) if e.valide==1])
             cours_nom_participants.append([users.User.query.filter_by(id = e).first().username for e in cours_id_participants[-1]])
+            print(amplet.Amplets.query.filter_by(id=coursier[i].id).first().ferme)
+            cours_strstatut_amp.append("Fermée" if (amplet.Amplets.query.filter_by(id=coursier[i].id,ferme=True).first()) else "Ouverte")
         m = len(coursier)
-        cours_strstatut_amp = ["Fermée" if (amplet.Amplets.query.filter_by(id=idd).first().ferme) else "Ouverte" for idd in cours_id_amp ]
+        #cours_strstatut_amp = ["Fermée" if (amplet.Amplets.query.filter_by(id=idd).first().ferme) else "Ouverte" for idd in cours_id_amp ]
         print('\n\n\n')
         print(cours_strstatut_amp)
         cours_list_len = [len(e) for e in cours_id_participants]
@@ -182,8 +184,9 @@ def accepter_participation(id_ampl,id_part):
         if amp_places_occ==amp_places_max-1:
             for e in concurrents:
                 e.valide=2
+            return redirect('/f/'+str(id_ampl))
         db.session.commit()
-        return redirect('/f/'+str(id_ampl))
+        return commande()
     else:
         return render_template('info.html', user=current_user, msg="Vous n'avez pas l'autorisation de modifier le statut de cette Amplet ou elle n'existe pas", retour="/commande")
 
@@ -191,7 +194,7 @@ def accepter_participation(id_ampl,id_part):
 @login_required
 def refuser_participation(id_ampl,id_part):
     curr_amp = participants_amp.Participants_amp.query.filter_by(id_user = id_part, id_amp=id_ampl).first()
-    curr_amp_id = curr_amp.id_amp
+    curr_amp_id = id_ampl
     amp = amplet.Amplets.query.filter_by(id = curr_amp_id).first()
     cours_id = amp.id_coursier
     if curr_amp and current_user.id==cours_id:
