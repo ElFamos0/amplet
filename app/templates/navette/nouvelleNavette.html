@@ -14,26 +14,26 @@
         <h1 class="mt-2 text-center">Créer une navette</h1>
     </div>
     <form action="nouvelleNavette" method="POST">
-    <div class="row mt-5">
-        <div class="text-center col-12 align-self-center">
-            <div class="container border rounded-3 border-secondary">
-                <h5 class="text-center">Choisissez les marchands :</h5>
-                <div class="row justify-content-center">
-                    {% for mag in mag_dispo %}
-                    <div class="text-center col-2 align-self-center">
-                        <input type="checkbox" id="{{mag.id}}" value="{{mag.id}}" name="marchands[]">
-                        <label for="{{mag.id}}">{{mag.nom}}</label>
+        <div class="row mt-5">
+            <div class="text-center col-12 align-self-center">
+                <div class="container border rounded-3 border-secondary">
+                    <h5 class="text-center">Choisissez les marchands :</h5>
+                    <div class="row justify-content-center">
+                        {% for mag in mag_dispo %}
+                        <div class="text-center col-2 align-self-center">
+                            <input type="checkbox" id="{{mag.id}}" value="{{mag.id}}" name="marchands[]">
+                            <label for="{{mag.id}}">{{mag.nom}}</label>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row mt-5">
-        <div class="text-center col-12 align-self-center">
-            <div class="container border rounded-3 border-secondary">
-                <h5 class="text-center">Remplissez les informations :</h5>
+        <div class="row mt-5">
+            <div class="text-center col-12 align-self-center">
+                <div class="container border rounded-3 border-secondary">
+                    <h5 class="text-center">Remplissez les informations :</h5>
                     <div class="row">
                         <div class="text-center mt-3 col-12 align-self-center">
                             <label for="startdate">Jour de départ : </label>
@@ -59,19 +59,19 @@
                             <label for="delai">h avant le départ.</label>
                         </div>
                     </div>
-                    <input type="submit" class="btn mt-3 btn-primary btn-lg" value="Valider" /> 
+                    <input type="submit" class="btn mt-3 btn-primary btn-lg" value="Valider" />
                     <div class="text-center mt-3 col-12 align-self-center"></div>
                     {% for mesg in get_flashed_messages() %}
                     <div class="alert alert-danger" role="alert">
                         {{ mesg }}
                     </div>
                     {% endfor %}
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+        </div>
+        </div>
+    </form>
 </body>
 
 </html>

@@ -20,9 +20,9 @@ def nouvelleNavette():
         rayon = 40100
         marchands_choisis = request.form.getlist('marchands[]')
         datedebut = request.form.get("startdate", d2) or d2
-        heuredebut = request.form.get("starthour")
+        heuredebut = request.form.get("starthour")+1
         datefin = request.form.get("enddate", d2) or d2
-        heurefin = request.form.get("endhour")
+        heurefin = request.form.get("endhour")+1
         delai = conversion(request.form.get("delai"), int, 2)
         places = 100
 

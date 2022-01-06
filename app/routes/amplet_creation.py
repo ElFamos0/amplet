@@ -17,9 +17,9 @@ def nouvelleAmplet():
         marchands_choisis = request.form.getlist('marchands[]')
         rayon = conversion(request.form.get("rayon"), int, 20)
         datedebut = request.form.get("startdate", d2) or d2
-        heuredebut = request.form.get("starthour")
+        heuredebut = request.form.get("starthour")+1
         datefin = request.form.get("enddate", d2) or d2
-        heurefin = request.form.get("endhour")
+        heurefin = request.form.get("endhour")+1
         delai = conversion(request.form.get("delai"), int, 2)
         places = conversion(request.form.get("places"), int, 1)
 

@@ -82,11 +82,11 @@ def send_inscription_amplet(id) :
                     break
             if skip:
                 continue
-            if unite == "kg" and (0 >= qte or qte > 10):
+            if unite == "kg" and qte < 0 or qte > 10000:
                 continue
-            if unite == "g" and (0 >= qte or qte > 10000):
+            if unite == "g" and qte < 0 or qte > 10000:
                 continue
-            if unite == "unite" and qte <= 0:
+            if unite == "unite" and qte < 0:
                 continue
             print(conversion(item["quantite"], int, 0))
             idproduit = produits.Produits.query.filter(produits.Produits.nom==produit).first()

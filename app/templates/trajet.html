@@ -6,9 +6,9 @@
     <title>Trajet</title>
     {% include 'headers/imports.html' %}
 </head>
+
 <body>
-    {% include 'headers/navbar.html' %}
-    {% for item in affichage %}
+    {% include 'headers/navbar.html' %} {% for item in affichage %}
     <p>{{item}}</p>
     {% endfor %}
 </body>
