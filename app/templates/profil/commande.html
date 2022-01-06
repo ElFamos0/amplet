@@ -42,7 +42,6 @@
             {% endfor %}
         </div>
 
-
         <div class="main_container">
             <div class="main_title">
                 Les produits que j'ai commandé sur les navettes :
@@ -53,60 +52,53 @@
                     <div class="titre1">Navette du {{nav_date[i]}}</div>
                 </div>
                 <div class="amplet_body p-3">
-                    {% if nav_ferme[i] %} 
-                        {% for j in range(nav_list_len[i]) %}
-                        <div class="container border-bottom bg-success text-light">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="d-flex justify-content-center text-light text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
-                                    <div class="text-light">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€</div>
-                                </div>
-                                <div class="col-2 d-flex justify-content-center align-items-center">
-                                    <h3 data-tooltip="Un marchand proposant ce produit a été sélectionné !" class="align-middle text-light"><i class="far fa-check-circle float-right"></i></h3>
-                                </div>
+                    {% if nav_ferme[i] %} {% for j in range(nav_list_len[i]) %}
+                    <div class="container border-bottom bg-success text-light">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="d-flex justify-content-center text-light text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
+                                <div class="text-light">Sous-total : {{nav_prix_produits_choisis[i][j]*nav_quantite_produits_choisis[i][j]/100}}€</div>
+                            </div>
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <h3 data-tooltip="Un marchand proposant ce produit a été sélectionné !" class="align-middle text-light"><i class="far fa-check-circle float-right"></i></h3>
                             </div>
                         </div>
-                        {% endfor %} 
-                        {% for j in range(nav_list_len2[i]) %}
-                        <div class="container border-bottom bg-danger text-light">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="text-light text-center"><b>{{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} de {{nav_nom_produits_pas_choisis[i][j]}}</b></div>
-                                </div>
-                                <div class="col-2 d-flex justify-content-center align-items-center">
-                                    <h4 data-tooltip="Aucun marchand proposant ce produit n'a été sélectionné..." class="align-middle"><i class="fas fa-times-circle float-right"></i></h4>
-                                </div>
+                    </div>
+                    {% endfor %} {% for j in range(nav_list_len2[i]) %}
+                    <div class="container border-bottom bg-danger text-light">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="text-light text-center"><b>{{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} de {{nav_nom_produits_pas_choisis[i][j]}}</b></div>
+                            </div>
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <h3 data-tooltip="Aucun marchand proposant ce produit n'a été sélectionné..." class="align-middle text-light"><i class="far fa-times-circle float-right"></i></h3>
                             </div>
                         </div>
-                        {% endfor %} 
-                    {% endif %} 
-                    {% if not nav_ferme[i] %} 
-                        {% for j in range(nav_list_len[i]) %}
-                        <div class="container border-bottom bg-light text-dark">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
-                                </div>
-                                <div class="col-2 d-flex justify-content-center align-items-center">
-                                    <h4 data-tooltip="En attente de la clôture du vote." class="align-middle"><i class="fas fa-sync-alt float-right"></i></h4>
-                                </div>
+                    </div>
+                    {% endfor %} {% endif %} {% if not nav_ferme[i] %} {% for j in range(nav_list_len[i]) %}
+                    <div class="container border-bottom bg-light text-dark">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="text-center"><b>{{nav_quantite_produits_choisis[i][j]}} {{nav_unite_produits_choisis[i][j]}} de {{nav_nom_produits_choisis[i][j]}}</b></div>
+                            </div>
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <h3 data-tooltip="En attente de la clôture du vote." class="align-middle"><i class="fas fa-sync-alt float-right"></i></h3>
                             </div>
                         </div>
-                        {% endfor %} {% for j in range(nav_list_len2[i]) %}
-                        <div class="container border-bottom bg-light text-dark">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="text-center"><b>{{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} de {{nav_nom_produits_pas_choisis[i][j]}}</b></div>
-                                    </div>
-                                <div class="col-2 d-flex justify-content-center align-items-center">
-                                    <h4 data-tooltip="En attente de la clôture du vote." class="text-dark align-middle"><i class="fas fa-sync-alt float-right"></i></h4>
-                                </div>
+                    </div>
+                    {% endfor %} {% for j in range(nav_list_len2[i]) %}
+                    <div class="container border-bottom bg-light text-dark">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="text-center"><b>{{nav_quantite_produits_pas_choisis[i][j]}} {{nav_unite_produits_pas_choisis[i][j]}} de {{nav_nom_produits_pas_choisis[i][j]}}</b></div>
+                            </div>
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <h3 data-tooltip="En attente de la clôture du vote." class="text-dark align-middle"><i class="fas fa-sync-alt float-right"></i></h3>
                             </div>
                         </div>
-                        {% endfor %} 
-                    {% endif %}
-                    {% if nav_ferme[i] %}
-                        <div class="amplet_item">Total : {{nav_totaux[i]}}€ </div>
+                    </div>
+                    {% endfor %} {% endif %} {% if nav_ferme[i] %}
+                    <div class="amplet_item">Total : {{nav_totaux[i]}}€ </div>
                     {% endif %}
                 </div>
             </div>
@@ -123,13 +115,12 @@
                 <div class="amplet_title">
                     <div class="titre3">Amplet numéro {{i+1}} : {{cours_strstatut_amp[i]}}</div>
                     {% if cours_strstatut_amp[i]=='Ouverte' %}
-                    <a href="/f/{{cours_id_amp[i]}}" class="btn btn-success m-2 "><i class="fas fa-check-circle"></i> Fermer l'Amplet </a>
-                    {% endif %}
+                    <a href="/f/{{cours_id_amp[i]}}" class="btn btn-success m-2 "><i class="fas fa-check-circle"></i> Fermer l'Amplet </a> {% endif %}
                 </div>
                 <div class="amplet_body">
                     <div class="amplet_item">ID : {{cours_id_amp[i]}} </div>
 
-                    
+
                     <div class="amplet_list">
                         <div class="amplet_list_title">
                             <div class="titre2">Participants : {{cours_places_amp_occ[i]}}/{{cours_places_amp_tot[i]}} </div>
@@ -172,11 +163,11 @@
                         </div>
                         {% endif %} {% endfor %}
                     </div>
-                        {% if cours_id_participants[i]==[] %}
+                    {% if cours_id_participants[i]==[] %}
 
-                        <div class="titre2"> Aucun participant </div>
-                        {% endif %}
-                    
+                    <div class="titre2"> Aucun participant </div>
+                    {% endif %}
+
                 </div>
             </div>
             {% endfor %}
