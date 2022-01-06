@@ -2,9 +2,10 @@ from flask_login.utils import login_required
 from db import *
 from models import *
 from flask_login import current_user
-from flask import render_template
+from flask import render_template, redirect
 from utils.vote_marchand import *
 from utils.timestamp import *
+from routes.amplet_fermeture import *
 
 ##############################
 ########## COMMANDE  #########
@@ -82,6 +83,8 @@ def commande():
             cours_nom_participants.append([users.User.query.filter_by(id = e).first().username for e in cours_id_participants[-1]])
         m = len(coursier)
         cours_strstatut_amp = ["Fermée" if (amplet.Amplets.query.filter_by(id=idd).first().ferme) else "Ouverte" for idd in cours_id_amp ]
+        print('\n\n\n')
+        print(cours_strstatut_amp)
         cours_list_len = [len(e) for e in cours_id_participants]
         cours_places_amp_occ = [len(e) for e in cours_valide_participants_acceptes]
         for i in range(len(coursier)):
@@ -180,7 +183,7 @@ def accepter_participation(id_ampl,id_part):
             for e in concurrents:
                 e.valide=2
         db.session.commit()
-        return commande()
+        return redirect('/f/'+str(id_ampl))
     else:
         return render_template('info.html', user=current_user, msg="Vous n'avez pas l'autorisation de modifier le statut de cette Amplet ou elle n'existe pas", retour="/commande")
 

@@ -16,6 +16,7 @@ def fermerAmplet(id_ampl):
         nb_participants = len(participants_amp.Participants_amp.query.filter_by(id_amp=id_ampl,valide=1).all())
         current_user.points+=score_course(nb_marchands,nb_participants)
         db.session.commit()
+        # le commit c'est pas pris en compte quand j'arrive sur la route depuis accepter
         return commande()
     else:
         return render_template('info.html', user=current_user, msg="Vous n'avez pas l'autorisation de fermer cette Amplet ou elle n'existe pas", retour="/commande")
