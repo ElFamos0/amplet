@@ -51,11 +51,20 @@ Jules :
 | 16 décembre | 19 décembre | Création du template de la page Particulier à particulier, mise en forme du style css |
 | 19 décembre |  23 décembre | Affichage des différents amplets et mise en forme css, renommage de la page |
 | 23 décembre | 27 décembre | Implémentation du mode de recherche des amplets  |
-| 28 décembre |  | Mise en lien des actions de la page avec la base de donnée (accordement aux nouvelles modifications de celle-ci)  |
-|  |  | Création de la page de vote pour la navette |
-|  |  | Prise en compte des votes pour choisir la navette + création de l’amplet associée |
-|  |  | Modification du multiplicateur (poids) des commerçants pour les votes |
-|  |  | Envoi d’un mail automatique à la fin d’une amplet, et fermeture automatique des amplets après un certain temps |
+| 28 décembre | 29 | Mise en lien des actions de la page avec la base de donnée (accordement aux nouvelles modifications de celle-ci)  |
+|  30 décembre | 30 décembre | Création de la page d'inscription |
+|  30 décembre | 30 décembre | Rédaction de la partie Etat de l'Art du rapport |
+|  2 Janvier| 2 Janvier | Ajouts de nouveaux exemples dans la BD |
+|  2 Janvier| 3 Janvier | Link de la page inscription BD |
+|  4 Janvier| 4 Janvier | Recherche par proximité des Amplets |
+|  4 Janvier| 4 Janvier | Page Erreur 404 |
+|  4 Janvier |  4 Janvier | Modification du multiplicateur (poids) des commerçants pour les votes |
+|  5 Janvier| 5 Janvier | Implémentation de "dist_max" sur les navettes |
+|  5 Janvier| 5 Janvier | CSS de la page Commande  avec Louis-Vincent |
+|  5 Janvier| 6 Janvier | Base de donnée de test complète |
+|  6 Janvier| 6 Janvier | Rédaction du rapport (Présentation / une partie de l'algorithmie) |
+
+
 
 Louis-Vincent :
 
