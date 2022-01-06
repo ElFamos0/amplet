@@ -20,14 +20,14 @@ def nouvelleNavette():
         rayon = 40100
         marchands_choisis = request.form.getlist('marchands[]')
         datedebut = request.form.get("startdate", d2) or d2
-        heuredebut = request.form.get("starthour")+1
+        heuredebut = request.form.get("starthour")
         datefin = request.form.get("enddate", d2) or d2
-        heurefin = request.form.get("endhour")+1
+        heurefin = request.form.get("endhour")
         delai = conversion(request.form.get("delai"), int, 2)
         places = 100
 
-        debut_stamp = mktime(datetime.strptime(datedebut,"%Y-%m-%d").timetuple()) * 1000 + conversion(heuredebut, int, 0)*60*60*1000
-        fin_stamp = mktime(datetime.strptime(datefin,"%Y-%m-%d").timetuple()) * 1000 + conversion(heurefin, int, 0)*60*60*1000
+        debut_stamp = mktime(datetime.strptime(datedebut,"%Y-%m-%d").timetuple()) * 1000 + conversion(heuredebut, int, 0)*60*60*1000 + 60*60*1000
+        fin_stamp = mktime(datetime.strptime(datefin,"%Y-%m-%d").timetuple()) * 1000 + conversion(heurefin, int, 0)*60*60*1000 + 60*60*1000
 
         print(debut_stamp, now(), fin_stamp)
 
