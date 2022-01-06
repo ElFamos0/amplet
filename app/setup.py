@@ -129,8 +129,8 @@ db.session.commit()
 
 db.session.add(amplet.Amplets(navette=False,date_depart=1641312000000,date_arrivee=1641314600000,places_dispo=5,id_coursier=lu_id[3],ferme = True,delai_fermeture_depart = 6666666,dist_max = 50))
 db.session.add(amplet.Amplets(navette=False,date_depart=1643040000000,date_arrivee=1643043600000,places_dispo=4,id_coursier=lu_id[6],ferme = False,delai_fermeture_depart = 6666666,dist_max = 25))
-db.session.add(amplet.Amplets(navette=False,date_depart=1643130000000,date_arrivee=1643133600000,places_dispo=2,id_coursier=lu_id[4],ferme = False,delai_fermeture_depart = 6666660,dist_max = 10))
-db.session.add(amplet.Amplets(navette=False,date_depart=1643184000000,date_arrivee=1643189800000,places_dispo=3,id_coursier=lu_id[6],ferme = False,delai_fermeture_depart = 6666666,dist_max = 5))
+db.session.add(amplet.Amplets(navette=False,date_depart=1643130000000,date_arrivee=1643133600000,places_dispo=2,id_coursier=lu_id[4],ferme = False,delai_fermeture_depart = 6666660,dist_max = 15))
+db.session.add(amplet.Amplets(navette=False,date_depart=1643184000000,date_arrivee=1643189800000,places_dispo=3,id_coursier=lu_id[6],ferme = False,delai_fermeture_depart = 6666666,dist_max = 10))
 db.session.add(amplet.Amplets(navette=False,date_depart=1643205600000,date_arrivee=1643209200000,places_dispo=5,id_coursier=lu_id[5],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
 db.session.add(amplet.Amplets(navette=True,date_depart=1641312000000,date_arrivee=1641356000000,places_dispo=100,id_coursier=guest.id,ferme = True,delai_fermeture_depart = 6666660))
 db.session.add(amplet.Amplets(navette=True,date_depart=1643040000000,date_arrivee=1643043600000,places_dispo=100,id_coursier=guest.id,ferme = False,delai_fermeture_depart = 6666660))
@@ -262,18 +262,18 @@ db.session.add(participants_amp.Participants_amp(id_amp = la_id[6],id_user = lu_
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[6],id_user = lu_id[4],valide=0))
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[6],id_user = lu_id[5],valide=0))
 
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[12],quantite = 4,unite = "kg"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[16],quantite = 4,unite = "kg"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[9],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[12],quantite = 4,unite = "kg"))  #Orange Primeur aguerri
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[16],quantite = 4,unite = "kg"))  #Orange FLoraison des fruits
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[4], id_produit= lp_id[9],quantite = 1,unite = "unite")) # Sauce burger
 
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[3], id_produit= lp_id[14],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[3], id_produit= lp_id[20],quantite = 2,unite = "kg"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[3], id_produit= lp_id[14],quantite = 1,unite = "unite")) # Fraise floraison
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[3], id_produit= lp_id[20],quantite = 2,unite = "kg")) # Patates de qualités 
 
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[31],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[7],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[24],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[28],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[27],quantite = 1,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[31],quantite = 1,unite = "unite")) # Siège gaming
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[7],quantite = 1,unite = "unite")) #Sauce Andalouse
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[24],quantite = 1,unite = "unite")) # Chaussure BOf sport 200
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[28],quantite = 1,unite = "unite")) # Chaussure bien dodécathlon
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[6], id_user = lu_id[5], id_produit= lp_id[27],quantite = 1,unite = "unite")) # Chaussure BOf Dodécathlon
 
 
 
@@ -289,13 +289,13 @@ db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[7],id_marchand = lm_id
 db.session.add(participants_amp.Participants_amp(id_amp = la_id[7],id_user = lu_id[3],valide=0))
 
 
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[12],quantite = 4,unite = "kg"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[16],quantite = 4,unite = "kg"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[0],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[4],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[1],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[5],quantite = 1,unite = "unite"))
-db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[3],quantite = 2,unite = "unite"))
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[12],quantite = 4,unite = "kg")) #Orange Primeur aguerri
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[16],quantite = 4,unite = "kg")) #Orange FLoraison des fruits
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[0],quantite = 1,unite = "unite")) #Crème épaisse mâitre
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[4],quantite = 1,unite = "unite")) #Crème épaisse apprenti
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[1],quantite = 1,unite = "unite")) #Crème liquide Maître
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[5],quantite = 1,unite = "unite")) #Crème liquide apprenti
+db.session.add(produits_amp.Produits_amp(id_amp = la_id[7], id_user = lu_id[4], id_produit= lp_id[3],quantite = 2,unite = "unite")) #Crème suprème Maître
 
 
 db.session.add(marchands_amp.Marchands_amp(id_amp = la_id[8],id_marchand = lm_id[0]))

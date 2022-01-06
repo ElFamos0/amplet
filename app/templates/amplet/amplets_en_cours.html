@@ -35,15 +35,16 @@
                     </select>
             </div>
             <div class="itemopt">
-                <p>Type de magasins à inclure :</p>
-                <div class="checkboxlist">
+                Type de magasins à inclure :
+            </div>
+            <div class = "checkboxlist">
+
                     {% for mag in type_magasins %}
                     <div class="checkboxitem">
-                        <input type="checkbox" id="{{mag[0]}}" name="{{mag[0]}}" value="on" {{ "checked" if mag[1] else "" }}>
-                        <label for="{{mag[0]}}">{{mag[0]}}</label>
+                        <input type="checkbox" class = 'c_item'  name="{{mag[0]}}" value="on" {{ "checked" if mag[1] else "" }}>
+                        <div class = "c_item">{{mag[0]}}</div>
                     </div>
                     {% endfor %}
-                </div>
             </div>
             <div class="itemopt">
                 <button type="submit" href="/amplets_en_cours" class="button1"> Rechercher </button>
@@ -66,13 +67,13 @@
 
                 <div class="a_body">
 
-                    <div class="a_cont">
+                    <div class="a_cont1">
                         <p> Place{{ "s" if amp.places >1 else "" }} restante{{ "s" if amp.places >1 else "" }} : {{(amp.places)}} </p>
                         <p> Code postal : {{amp.cp}} </p>
                         <p> Coursier : {% if amp.navette != "NULL" %} Navette {% endif %} {% if amp.id_cours!="Navette" %} <a href="/p/{{amp.id_cours}}"> {{amp.coursier}}</a> {% endif %} </p>
                     </div>
 
-                    <div class="a_cont">
+                    <div class="a_cont2">
 
                         <div class="a_text">
                             Participant{{ "s" if amp.participants|length>1 else ""}} :
@@ -86,7 +87,7 @@
                         </div>
                     </div>
 
-                    <div class="a_cont">
+                    <div class="a_cont3">
 
                         <div class="a_text">
                             Magasin{{ "s" if amp.l_magasins|length>1 else ""}} visité{{ "s" if amp.l_magasins|length>1 else ""}} :
