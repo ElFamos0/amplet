@@ -72,7 +72,7 @@ def commande():
     cours_nom_produits_participants = []
     cours_list_len2 = []
     coursier = amplet.Amplets\
-        .query.filter_by(id_coursier = current_user.id).all()
+        .query.filter_by(id_coursier = current_user.id, navette=False).all()
     if coursier:
         for i in range(len(coursier)):
             cours_id_amp.append(coursier[i].id)
