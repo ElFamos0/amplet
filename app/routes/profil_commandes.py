@@ -184,6 +184,7 @@ def accepter_participation(id_ampl,id_part):
         if amp_places_occ==amp_places_max-1:
             for e in concurrents:
                 e.valide=2
+            db.session.commit()
             return redirect('/f/'+str(id_ampl))
         db.session.commit()
         return commande()
