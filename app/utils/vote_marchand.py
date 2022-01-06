@@ -33,11 +33,12 @@ def vote(id_amplet:str):
         .add_entity(marchands.Marchands)\
         .join(marchands.Marchands, produits.Produits.id_marchand == marchands.Marchands.id)
     for p in infovote:
-        # print(f"{p[0].id_amp} commande {p[1].nom} chez {p[2].nom} de type {p[2].type}")
+        #print(f"{p[0].id_amp} commande {p[1].nom} chez {p[2].nom} de type {p[2].type}")
         idm = p[2].id 
         if idm not in listedejavu:
             dicttype[idm] = p[2].type
             listedejavu.append(idm)
+            #print(marchands.Marchands.query.get(idm).nom)
             mamp = marchands_amp.Marchands_amp.query.filter_by(id_amp=id_amplet, id_marchand=idm).first()
             if not mamp.votes is None:
                 dicomarchand[idm] = mamp.votes
