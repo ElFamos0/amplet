@@ -88,7 +88,7 @@ def amplets_a_afficher(debut_stamp,fin_stamp,liste_typebis,current_user) :
         l_type = ampl['l_type']
 
         valide = True
-        if amp.ferme or amp.date_depart < debut_stamp or amp.date_depart > fin_stamp or places <= 0 or amp.navette or dist > max_dist:
+        if amp.ferme or amp.date_depart < debut_stamp or amp.date_depart > fin_stamp or places <= 0 or amp.navette or dist > max_dist or amp.id_coursier == current_user.id:
             valide = False
             #print("date")
         for mag_typ in liste_typebis : 
