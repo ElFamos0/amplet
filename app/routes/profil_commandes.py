@@ -102,7 +102,7 @@ def commande():
     """A RECUP A PARTIR DU VOTE"""
     nav_voeux = produits_amp.Produits_amp.query.filter_by(id_user=current_user.id)
     nav_id = nav_voeux.group_by(produits_amp.Produits_amp.id_amp).all()
-    nav_id = [e.id_amp for e in nav_id]
+    nav_id = [e.id_amp for e in nav_id if amplet.Amplets.query.filter_by(id=e.id_amp).first().navette]
     nav_ferme = []
     nav_id_produits_choisis = []
     nav_prix_produits_choisis = []
