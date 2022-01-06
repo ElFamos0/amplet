@@ -84,9 +84,40 @@ def calcultrajet(listepoint):
 
 
 def pluscourtcheminexhaustifb(listepoint:list):
-    return f"je suis arrivé jusque la {listepoint}"
- 
+    """Sachant qu'au maximum on passe par 6 points (une seule fois) on aura donc 1/2*(n-1)! chemins à tester pour voir lequel est le meilleur on liste donc toute les
+    substitution avec un algorithme de Heap"""
+    listepossible = []
+    depart = listepoint[0]
+    min = float("inf")
 
+    def heap(listepoint:list,n):
+
+        if n == 1:
+            listepossible.append(listepoint)    
+    
+        for i in range(n):
+            heap(listepoint, n-1)
+    
+            if n & 1:
+                listepoint[0], listepoint[n-1] = listepoint[n-1], listepoint[0]
+            else:
+                listepoint[i], listepoint[n-1] = listepoint[n-1], listepoint[i] 
+    heap(listepoint[1:],len(listepoint[1:]))
+    for liste in listepossible:
+        trajet = 0
+        precedent = depart
+        for elm in liste:
+            trajet += sqrt(((elm[0] - precedent[0])**2) +  ((elm[1] - precedent[1])**2))
+            precedent = elm
+        trajet += sqrt(((depart[0] - precedent[0])**2) +  ((depart[1] - precedent[1])**2))
+        if trajet < min:
+            min = trajet
+            listeretenu = liste
+            listeretenu.append(depart)
+    return listeretenu, trajet
+
+#print(pluscourtcheminexhaustif([(20,13),(21,4),(45,9),(20,28),(8,7)]))
+#print(pluscourtcheminexhaustifb([(20,13,"maison"),(21,4,"point 1"),(45,9,"point 2"),(20,28,"point 3"),(8,7,"point 4")]))
 #print(creationgraph([(5,6),(3,2),(8,7),(6,9),(0,0)]))  
 #print(pluscourtchemin([(5,6),(3,2),(8,7),(6,9),(0,0)]))
 #print(pluscourtchemin([(20,13),(21,4),(45,9),(20,28),(8,7)]))

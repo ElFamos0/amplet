@@ -8,9 +8,9 @@
 </head>
 <body>
     {% include 'headers/navbar.html' %}
-
-    <p>{{phrase}}</p>
-
+    {% for item in affichage %}
+    <p>{{item}}</p>
+    {% endfor %}
 </body>
 
 </html>

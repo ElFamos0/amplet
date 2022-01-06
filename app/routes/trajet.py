@@ -10,8 +10,10 @@ from utils import chemin
 @app.route('/trajet', methods=['GET','POST'])
 @login_required
 def trajet():
+    affichage = []
     navettedisp = amplet.Amplets.query.filter_by(navette=True,ferme=True).order_by(amplet.Amplets.id).all()
-    ifnull = "Il n'y a pas de navette à optimiser"
+    if not navettedisp:
+        return render_template("info.html", msg="Il n'y a pas de navette")
     for p in navettedisp:
         fonctionvote = vote_marchand.vote(p.id)
         listechoisie = fonctionvote[0]
@@ -25,9 +27,14 @@ def trajet():
             coordx = requete.coordx
             coordy = requete.coordy
             calcultrajet.append((coordx,coordy,elm))
-        print(calcultrajet)
-        chemin.pluscourtcheminexhaustifb(calcultrajet)
+        resultat = chemin.pluscourtcheminexhaustifb(calcultrajet)
+        trajet = resultat[1]
+        passage = []
+        for elm in resultat[0][:-1]:
+            requete3 = marchands.Marchands.query.filter(marchands.Marchands.id==elm[2]).first()
+            print(elm[2])
+            passage.append(requete3.nom)
+        affichage.append((p.id,passage,trajet))
         
 
-
-    return render_template("trajet.html", user=current_user.id)
+    return render_template("trajet.html", user=current_user.id, affichage=affichage)
