@@ -129,7 +129,7 @@ db.session.commit()
 
 db.session.add(amplet.Amplets(navette=False,date_depart=1641312000000,date_arrivee=1641314600000,places_dispo=5,id_coursier=lu_id[3],ferme = True,delai_fermeture_depart = 6666666,dist_max = 50))
 db.session.add(amplet.Amplets(navette=False,date_depart=1643040000000,date_arrivee=1643043600000,places_dispo=4,id_coursier=lu_id[6],ferme = False,delai_fermeture_depart = 6666666,dist_max = 25))
-db.session.add(amplet.Amplets(navette=False,date_depart=1643130000000,date_arrivee=1643133600000,places_dispo=2,id_coursier=lu_id[4],ferme = False,delai_fermeture_depart = 6666660,dist_max = 15))
+db.session.add(amplet.Amplets(navette=False,date_depart=1643130000000,date_arrivee=1643133600000,places_dispo=2,id_coursier=lu_id[4],ferme = True,delai_fermeture_depart = 6666660,dist_max = 15))
 db.session.add(amplet.Amplets(navette=False,date_depart=1643184000000,date_arrivee=1643189800000,places_dispo=3,id_coursier=lu_id[6],ferme = False,delai_fermeture_depart = 6666666,dist_max = 10))
 db.session.add(amplet.Amplets(navette=False,date_depart=1643205600000,date_arrivee=1643209200000,places_dispo=5,id_coursier=lu_id[5],ferme = False,delai_fermeture_depart = 6666666,dist_max = 50))
 db.session.add(amplet.Amplets(navette=True,date_depart=1641312000000,date_arrivee=1641356000000,places_dispo=100,id_coursier=guest.id,ferme = True,delai_fermeture_depart = 6666660))
