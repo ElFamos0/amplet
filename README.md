@@ -1,7 +1,7 @@
 # PPII «Projet Pluridisciplinaire d'Informatique Intégrative» 1 (2021-2022)
 
 
-Site actuellement disponible à l'URL suivante : amplet.yewolf.fr
+Site actuellement disponible à l'URL suivante : https://amplet.yewolf.fr
 
 Olivier Festor <<olivier.festor@telecomnancy.eu>>  
 Gérald Oster <<gerald.oster@telecomnancy.eu>>  
